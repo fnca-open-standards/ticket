@@ -1,0 +1,192 @@
+{
+    "header": {
+       "formatVersion": "0.5",
+       "ticketNumber": "",
+       "sequence": 0,
+       "source": "",
+       "type": "",
+       "standardType": "",
+       "priority": "",
+       "status": "",
+       "isTest": false,
+       "centerName": "",
+       "memberIds": [
+          "",
+          ""
+       ]
+    },
+    "workSite": {
+       "countryCode": "",
+       "stateProvince": "",
+       "county": "",
+       "place": "",
+       "fullAddress": "",
+       "addressNumber": "",
+       "addressPrefix": "",
+       "addressStreetName": "",
+       "addressStreetType": "",
+       "addressSuffix": "",
+       "intersection": ""
+    },
+    "geography": {
+       "srid": 4326,
+       "longitude": -0,
+       "latitude": 0,
+       "secondaryLongitude": -0,
+       "secondaryLatitude": 0,
+       "boundaryArea": ["",""],
+       "workSiteArea": ["",""],
+       "bufferedArea": ["",""]
+    },
+    "locateInformation": {
+       "isWhiteLined": false,
+       "locateInstructions": "",
+       "remarks": "",
+       "drivingDirections": ""
+    },
+    "timeLine": {
+       "createdOn": "",
+       "legalOn": "",
+       "workOn": "",
+       "updateBy": "",
+       "expiresOn": ""
+    },
+    "project": {
+       "workType": "",
+       "duration": "",
+       "workDoneFor": "",
+       "isDirectionalBoring": false,
+       "isExplosives": false
+    },
+    "excavator": {
+       "name": "",
+       "excavatorType": "",
+       "streetAddress": "",
+       "city": "",
+       "state": "",
+       "postalCode": "",
+       "callerName": "",
+       "callerPhone": "",
+       "callerPhoneExtension": "",
+       "callerEmail": "",
+       "contactName": "",
+       "contactPhone": "",
+       "contactPhoneExtension": ""
+    },
+    "customFieldGroups": [
+       {
+          "groupName": "",
+          "displayName": "",
+          "fields": [
+             {
+                "fieldName": "",
+                "displayName": "",
+                "type": "",
+                "value": "",
+                "max": null
+             },
+             {
+                "fieldName": "",
+                "displayName": "",
+                "type": "",
+                "value": "",
+                "max": null
+             }
+          ]
+       },
+       {
+          "groupName": "",
+          "displayName": "",
+          "fields": [
+             {
+                "fieldName": "",
+                "displayName": "",
+                "type": "",
+                "value": null,
+                "max": 0
+             },
+             {
+                "fieldName": "",
+                "displayName": "",
+                "type": "",
+                "value": "",
+                "max": 0
+             }
+          ]
+       }
+    ],
+    "members": [
+       {
+          "memberId": "",
+          "memberName": "",
+          "facilityTypes": [
+             ""
+          ],
+          "phoneNumbers": [
+             {
+                "phone": "",
+                "extension": "",
+                "type": ""
+             }
+          ]
+       },
+       {
+          "memberId": "",
+          "memberName": "",
+          "facilityTypes": [
+             ""
+          ],
+          "phoneNumbers": [
+             {
+                "phone": "",
+                "extension": "",
+                "type": ""
+             }
+          ]
+       }
+    ],
+    "responseHistory": [
+       {
+          "memberId": "",
+          "memberName": "",
+          "facilities": [
+             ""
+          ],
+          "responseEntries": [
+             {
+                "responseDate": "",
+                "responseCode": "",
+                "responseDescription": "",
+                "respondent": "",
+                "comment": ""
+             }
+          ]
+       },
+       {
+          "memberId": "",
+          "memberName": "",
+          "facilities": [
+             ""
+          ],
+          "responseEntries": [
+             {
+                "responseDate": "",
+                "responseCode": "",
+                "responseDescription": "",
+                "respondent": "",
+                "comment": ""
+             }
+          ]
+       }
+    ],
+    "attachments":[
+      {
+          "name":"",
+          "value":""
+      },
+      {
+          "name":"",
+          "value":""
+      }
+   ]
+}

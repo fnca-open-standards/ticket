@@ -1,0 +1,196 @@
+{
+    "header": {
+       "formatVersion": "0.5",
+       "ticketNumber": "230815-001003",
+       "sequence": 12,
+       "source": "Voice",
+       "type": "Normal",
+       "standardType": "Normal",
+       "priority": "Normal ",
+       "status": "New",
+       "isTest": false,
+       "centerName": "GA811",
+       "memberIds": [
+          "GAUPC"
+       ]
+    },
+    "workSite": {
+       "countryCode": "US",
+       "stateProvince": "GA",
+       "county": "Cobb",
+       "place": "Smyrna",
+       "fullAddress": "123 Another LN SE",
+       "addressNumber": "123",
+       "addressPrefix": "",
+       "addressStreetName": "Another",
+       "addressStreetType": "LN",
+       "addressSuffix": "SE",
+       "intersection": "Highway 25"
+    },
+    "geography": {
+       "srid": 4326,
+       "longitude": -84.5482687468752,
+       "latitude": 33.8551704136117,
+       "secondaryLongitude": -84.545451253125,
+       "secondaryLatitude": 33.8575195862275,
+       "boundaryArea": null,
+       "workSiteArea": [
+          "POLYGON((-84.54761 33.85697,-84.54761 33.85572,…))",
+          "POLYGON((…))"
+       ],
+       "bufferedArea": [
+          "POLYGON((-84.547642 33.855171,…))"
+       ]
+    },
+    "locateInformation": {
+       "isWhiteLined": false,
+       "locateInstructions": "FRONT RIGHT - DAF",
+       "remarks": "fdgaewsfa",
+       "drivingDirections": ""
+    },
+    "timeLine": {
+       "createdOn": "2023-08-08T07:32:05.493-04:00",
+       "legalOn": "2023-08-12T07:00:00.000-04:00",
+       "workOn": "2023-08-12T07:00:00.000-04:00",
+       "updateBy": "2023-09-05T16:30:00.000-04:00",
+       "expiresOn": "2023-09-11T23:59:59.000-04:00"
+    },
+    "project": {
+       "workType": "demolition of a building",
+       "duration": "6 days",
+       "workDoneFor": "Someone Else",
+       "isDirectionalBoring": false,
+       "isExplosives": false
+    },
+    "excavator": {
+       "name": "Acme Construction, LLC",
+       "excavatorType": "Business",
+       "streetAddress": "999 New Street Rd",
+       "city": "Duluth",
+       "state": "GA",
+       "postalCode": "30096",
+       "callerName": "Jake Jones",
+       "callerPhone": "7705559999",
+       "callerPhoneExtension": "",
+       "callerEmail": "",
+       "contactName": "Jake Jones",
+       "contactPhone": "7705559999",
+       "contactPhoneExtension": ""
+    },
+    "customFieldGroups": [
+       {
+          "groupName": "timeLine",
+          "displayName": "Time Line",
+          "fields": [
+             {
+                "fieldName": "responseBy",
+                "displayName": "Response By",
+                "type": "DateTime",
+                "value": "2023-08-19T23:59:59.000-04:00",
+                "max": null
+             },
+             {
+                "fieldName": "updateableOn",
+                "displayName": "Updateable On",
+                "type": "DateTime",
+                "value": "2023-09-08T00:00:00.000-04:00",
+                "max": null
+             }
+          ]
+       },
+       {
+          "groupName": "reference",
+          "displayName": "Reference",
+          "fields": [
+             {
+                "fieldName": "previousTicketNumber",
+                "displayName": "Previous Ticket Number",
+                "type": "String",
+                "value": null,
+                "max": 50
+             },
+             {
+                "fieldName": "originalTicketNumber",
+                "displayName": "Original Ticket Number",
+                "type": "String",
+                "value": "230815-001002",
+                "max": 50
+             }
+          ]
+       }
+    ],
+    "members": [
+       {
+          "memberId": "ABC120",
+          "memberName": "DEMO CITY GAS - ABC120",
+          "facilityTypes": [
+             "Gas"
+          ],
+          "phoneNumbers": [
+             {
+                "phone": "9995551234",
+                "extension": "",
+                "type": "Main"
+             }
+          ]
+       },
+       {
+          "memberId": "DEMO230",
+          "memberName": "CITY OF DEMO WATER - DEMO230",
+          "facilityTypes": [
+             "Water"
+          ],
+          "phoneNumbers": [
+             {
+                "phone": "8885554587",
+                "extension": "",
+                "type": "Main"
+             }
+          ]
+       }
+    ],
+    "responseHistory": [
+       {
+          "memberId": "DEMO123",
+          "memberName": "DEMO GAS - DEMO123",
+          "facilities": [
+             "Gas"
+          ],
+          "responseEntries": [
+             {
+                "responseDate": "2023-08-19T00:10:01.620-04:00",
+                "responseCode": "LATE",
+                "responseDescription": "Response is late",
+                "respondent": "System",
+                "comment": "Added by System"
+             }
+          ]
+       },
+       {
+          "memberId": "ABC999",
+          "memberName": "CITY OF DEMO WATER - DEMO999",
+          "facilities": [
+             "Water"
+          ],
+          "responseEntries": [
+             {
+                "responseDate": "2023-08-19T00:10:02.167-04:00",
+                "responseCode": "LATE",
+                "responseDescription": "Response is late",
+                "respondent": "System",
+                "comment": "Added by System"
+             }
+          ]
+       }
+    ],
+    "attachments":[
+      {
+          "name":"Satellite",
+          "value":"MIIHNjCCBh6gAwIBAgIQCVe4E0h49mzI0NcSqMy1+jANBgkqhkiG9w0BAQsFADB1"
+      },
+      {
+          "name":"Project Plan",
+          "value":"NTk1OVowgcoxHTAbBgNVBA8MFFByaXZhdGUgT3JnYW5pemF0aW9uMRMwEQYLKwYB"
+      }
+   ]
+}

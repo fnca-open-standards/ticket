@@ -56,7 +56,7 @@ The first section of the JSON format is the header object.   The purpose of the 
 
 ```
 "header": {
-    "formatVersion": "0.3",
+    "formatVersion": "0.5",
     "ticketNumber": "230815-001003",
     "sequence": 12,
     "source": "Voice",
@@ -176,7 +176,7 @@ All geographic information is available in this section
     "boundaryArea": null,
     "workSiteArea": ["POLYGON((-84.54761 33.85697,-84.54761 33.85572,…))",
                     "POLYGON((…))"],
-    "bufferedArea": ["POLYGON((-84.547642 33.855171,…))”]    
+    "bufferedArea": ["POLYGON((-84.547642 33.855171,…))"]    
 },
 ```
 
@@ -499,3 +499,24 @@ This section contains the response history for all the members on the ticket.  T
    **Respondent (respondent)** string (255) – the username or other identifier for the responder.
 
    **Comment (comment)** string (1000) – any comments added by the respondent.
+
+# Attachments
+
+Attachments to tickets are Base64 encoded binary values contained in a simple object collection where the object has a name and a value.
+
+```
+"attachments":[
+  {
+      "name":"Satellite",
+      "value":"MIIHNjCCBh6gAwIBAgIQCVe4E0h49mzI0NcSqMy1+jANBgkqhkiG9w0BAQsFADB1"
+  },
+  {
+      "name":"Project Plan",
+      "value":"NTk1OVowgcoxHTAbBgNVBA8MFFByaXZhdGUgT3JnYW5pemF0aW9uMRMwEQYLKwYB"
+  }
+]
+```
+
+**Name (name)** string (200) - a descriptive name describing the attachment.
+
+**Value (value)** text - Base64 encoded binary value.
