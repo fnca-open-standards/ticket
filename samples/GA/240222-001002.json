@@ -1,0 +1,528 @@
+{
+  "header": {
+    "formatVersion": "0.3",
+    "ticketNumber": "240222-001002",
+    "sequence": 6,
+    "source": "Voice",
+    "type": "Design",
+    "standardType": "Design",
+    "priority": "Normal",
+    "status": "",
+    "isTest": false,
+    "centerName": "GA811",
+    "memberIds": [
+      "GAUPC"
+    ]
+  },
+  "workSite": {
+    "countryCode": "US",
+    "stateProvince": "GA",
+    "county": "GWINNETT",
+    "place": "DULUTH",
+    "fullAddress": "4498 State Bridge Rd",
+    "addressNumber": "4498",
+    "addressPrefix": "",
+    "addressStreetName": "State Bridge",
+    "addressStreetType": "Rd",
+    "addressSuffix": "",
+    "intersection": "River Chase Dr"
+  },
+  "geography": {
+    "srid": 4326,
+    "longitude": -84.180212,
+    "latitude": 34.007563,
+    "secondaryLongitude": -84.178721,
+    "secondaryLatitude": 34.008408,
+    "boundaryWkt": [],
+    "workSiteWkt": [
+      "POLYGON((-84.17997638525999 34.00840797885596,-84.18021241965357 34.00793660997912,-84.17886058630931 34.00756307052071,-84.17872111144115 34.008034441471025,-84.17997638525999 34.00840797885596))"
+    ],
+    "bufferedWkt": [
+      "POLYGON((-84.1797544339091 34.008925280711864,-84.17849915376976 34.00855174074967,-84.17837460568899 34.00850187544324,-84.17826526651544 34.00843149368658,-84.17817593533036 34.008343684686956,-84.17811053298658 34.0082423025577,-84.17807193002095 34.00813179714753,-84.17806182067429 34.008017018723805,-84.17808064854601 34.007903005083435,-84.17822012663757 34.007431635019955,-84.17826600614565 34.00732521700173,-84.17833707554826 34.00722887595752,-84.17843032386018 34.00714669345043,-84.17854180050355 34.007082151197345,-84.17866678267887 34.007037983569234,-84.17879997544468 34.00701606175299,-84.17893573603068 34.007017314481104,-84.17906831288332 34.007041688686705,-84.18042013919624 34.007415225514265,-84.18054362887787 34.00746154787932,-84.1806531551435 34.00752789860074,-84.18074410043472 34.00761148040154,-84.18081263051563 34.00770876954878,-84.18085585612562 34.00781566440538,-84.18087195479917 34.007927658347654,-84.18086024771556 34.00804002975899,-84.18082122833532 34.00814804109053,-84.18058519655489 34.008619411263886,-84.18052634355242 34.0087112965332,-84.1804477255598 34.0087922809586,-84.18035216799127 34.00885945403132,-84.18024310507933 34.0089104016057,-84.18012445645029 34.00894329266529,-84.18000048625106 34.008956945131146,-84.17987564989113 34.008950868346666,-84.1797544339091 34.008925280711864))"
+    ]
+  },
+  "locateInformation": {
+    "isWhiteLined": true,
+    "locateInstructions": "LOCATE BRIDGE ON BOTH SIDES AND 200 FEET EAST AND WEST OF THE BRIDGE",
+    "remarks": "THIS INFORMATION HAS NOT BEEN VERIFIED BY THE UTILITIES PROTECTION CENTER, INC. D.B.A GEORGIA 811 AND IS NOT WARRANTED FOR ANY PURPOSE. THIS INFORMATION IS FURNISHED SOLELY AS AN ACCOMMODATION TO THE REQUESTING PARTY WHO WARRANTS THAT IT SHALL NOT BE USED IN CONNECTION WITH ANY EXCAVATION OR OTHER WORK COVERED BY TITLE 25, CHAPTER 9 OF THE OFFICIAL CODE OF GEORGIA ANNOTATED.\n",
+    "drivingDirections": ""
+  },
+  "timeLine": {
+    "createdOn": "2024-02-22T16:42:33.120-05:00",
+    "legalOn": "2024-02-28T07:00:00.000-05:00",
+    "updateBy": "2024-03-19T16:30:00.000-04:00",
+    "expiresOn": "2024-03-29T23:59:59.000-04:00"
+  },
+  "project": {
+    "workType": "Design",
+    "duration": "",
+    "workDoneFor": "CITY OF DULUTH",
+    "isDirectionalBoring": false,
+    "isExplosives": false
+  },
+  "excavator": {
+    "name": "John Smith",
+    "excavatorType": "Business",
+    "streetAddress": "123 Second Ave",
+    "city": "Kennesaw",
+    "state": "GA",
+    "postalCode": "30144",
+    "phoneNumber": null,
+    "callerName": "John Smith",
+    "callerPhone": "1112223333",
+    "callerPhoneExtension": "",
+    "callerEmail": "test@georgia811.com",
+    "contactName": "Jane Smith",
+    "contactPhone": "2223334444",
+    "contactPhoneExtension": "111",
+    "contactEmail": null
+  },
+  "customFieldGroups": [
+    {
+      "groupName": "timeLine",
+      "displayName": "Time Line",
+      "fields": [
+        {
+          "fieldName": "responseBy",
+          "displayName": "Response By",
+          "type": "DateTime",
+          "value": "2024-03-08T23:59:00.000-05:00",
+          "max": null
+        }
+      ]
+    },
+    {
+      "groupName": "reference",
+      "displayName": "Reference",
+      "fields": [
+        {
+          "fieldName": "previousTicketNumber",
+          "displayName": "Previous Ticket Number",
+          "type": "String",
+          "value": null,
+          "max": 50
+        },
+        {
+          "fieldName": "originalTicketNumber",
+          "displayName": "Original Ticket Number",
+          "type": "String",
+          "value": "240222-001002",
+          "max": 50
+        }
+      ]
+    },
+    {
+      "groupName": "lastResponse",
+      "displayName": "Last Response",
+      "fields": [
+        {
+          "fieldName": "lastResponseCode",
+          "displayName": "Last Response Code",
+          "type": "String",
+          "value": "",
+          "max": 75
+        },
+        {
+          "fieldName": "description",
+          "displayName": "Description",
+          "type": "String",
+          "value": "",
+          "max": 300
+        },
+        {
+          "fieldName": "comment",
+          "displayName": "Comment",
+          "type": "String",
+          "value": "",
+          "max": 1000
+        }
+      ]
+    },
+    {
+      "groupName": "workSite",
+      "displayName": "Work Site",
+      "fields": [
+        {
+          "fieldName": "NumWhiteLinedAreas",
+          "displayName": "# White Lined Areas",
+          "type": "Integer",
+          "value": "2",
+          "max": null
+        }
+      ]
+    }
+  ],
+  "members": [
+    {
+      "memberId": "BSXX",
+      "memberName": "XXXXXXXXXXXXXXXXXXXX",
+      "facilityTypes": [
+        "Telecommunication"
+      ],
+      "phoneNumbers": [
+        {
+          "phone": "7701239998",
+          "extension": "",
+          "type": "Main"
+        }
+      ]
+    },
+    {
+      "memberId": "CHTXX",
+      "memberName": "XXXXXXXXXXXXXXXXXXXX",
+      "facilityTypes": [
+        "Telecommunication"
+      ],
+      "phoneNumbers": [
+        {
+          "phone": "7701239998",
+          "extension": "",
+          "type": "Main"
+        }
+      ]
+    },
+    {
+      "memberId": "JCXX",
+      "memberName": "XXXXXXXXXXXXXXXXXXXX",
+      "facilityTypes": [
+        "Telecommunication"
+      ],
+      "phoneNumbers": [
+        {
+          "phone": "7701239998",
+          "extension": "",
+          "type": "Main"
+        }
+      ]
+    },
+    {
+      "memberId": "CMXXXX",
+      "memberName": "XXXXXXXXXXXXXXXXXXXX",
+      "facilityTypes": [
+        "Telecommunication"
+      ],
+      "phoneNumbers": [
+        {
+          "phone": "7701239998",
+          "extension": "",
+          "type": "Main"
+        }
+      ]
+    },
+    {
+      "memberId": "FULXX",
+      "memberName": "XXXXXXXXXXXXXXXXXXXX",
+      "facilityTypes": [
+        "Sewer"
+      ],
+      "phoneNumbers": [
+        {
+          "phone": "7701239998",
+          "extension": "",
+          "type": "Main"
+        }
+      ]
+    },
+    {
+      "memberId": "FIXXX",
+      "memberName": "XXXXXXXXXXXXXXXXXXXX",
+      "facilityTypes": [
+        "Water"
+      ],
+      "phoneNumbers": [
+        {
+          "phone": "7701239998",
+          "extension": "",
+          "type": "Main"
+        }
+      ]
+    },
+    {
+      "memberId": "GPXXX",
+      "memberName": "XXXXXXXXXXXXXXXXXXXX",
+      "facilityTypes": [
+        "Electric"
+      ],
+      "phoneNumbers": [
+        {
+          "phone": "7701239998",
+          "extension": "",
+          "type": "Main"
+        }
+      ]
+    },
+    {
+      "memberId": "GPXXX",
+      "memberName": "XXXXXXXXXXXXXXXXXXXX",
+      "facilityTypes": [
+        "Electric"
+      ],
+      "phoneNumbers": [
+        {
+          "phone": "7701239998",
+          "extension": "",
+          "type": "Main"
+        }
+      ]
+    },
+    {
+      "memberId": "GPXXX",
+      "memberName": "XXXXXXXXXXXXXXXXXXXX",
+      "facilityTypes": [
+        "Electric"
+      ],
+      "phoneNumbers": [
+        {
+          "phone": "7701239998",
+          "extension": "",
+          "type": "Main"
+        }
+      ]
+    },
+    {
+      "memberId": "GWXXX",
+      "memberName": "XXXXXXXXXXXXXXXXXXXX",
+      "facilityTypes": [
+        "Sewer"
+      ],
+      "phoneNumbers": [
+        {
+          "phone": "7701239998",
+          "extension": "",
+          "type": "Main"
+        }
+      ]
+    },
+    {
+      "memberId": "GXXXX",
+      "memberName": "XXXXXXXXXXXXXXXXXXXX",
+      "facilityTypes": [
+        "Telecommunication"
+      ],
+      "phoneNumbers": [
+        {
+          "phone": "7701239998",
+          "extension": "",
+          "type": "Main"
+        }
+      ]
+    },
+    {
+      "memberId": "GXXXX",
+      "memberName": "XXXXXXXXXXXXXXXXXXXX",
+      "facilityTypes": [
+        "Traffic"
+      ],
+      "phoneNumbers": [
+        {
+          "phone": "7701239998",
+          "extension": "",
+          "type": "Main"
+        }
+      ]
+    },
+    {
+      "memberId": "GXXXX",
+      "memberName": "XXXXXXXXXXXXXXXXXXXX",
+      "facilityTypes": [
+        "Water"
+      ],
+      "phoneNumbers": [
+        {
+          "phone": "7701239998",
+          "extension": "",
+          "type": "Main"
+        }
+      ]
+    },
+    {
+      "memberId": "LMXXX",
+      "memberName": "XXXXXXXXXXXXXXXXXXXX",
+      "facilityTypes": [
+        "Telecommunication"
+      ],
+      "phoneNumbers": [
+        {
+          "phone": "7701239998",
+          "extension": "",
+          "type": "Main"
+        }
+      ]
+    },
+    {
+      "memberId": "MCXXX",
+      "memberName": "XXXXXXXXXXXXXXXXXXXX",
+      "facilityTypes": [
+        "Telecommunication"
+      ],
+      "phoneNumbers": [
+        {
+          "phone": "7701239998",
+          "extension": "",
+          "type": "Main"
+        }
+      ]
+    },
+    {
+      "memberId": "ZAXX",
+      "memberName": "XXXXXXXXXXXXXXXXXXXX",
+      "facilityTypes": [
+        "Telecommunication"
+      ],
+      "phoneNumbers": [
+        {
+          "phone": "7701239998",
+          "extension": "",
+          "type": "Main"
+        }
+      ]
+    }
+  ],
+  "responseHistory": [
+    {
+      "memberId": "CHXXXX",
+      "memberName": "XXXXXXXXXXXXXXXXXXXX",
+      "facilities": [
+        "Telecommunication"
+      ],
+      "responseEntries": []
+    },
+    {
+      "memberId": "JCXX",
+      "memberName": "XXXXXXXXXXXXXXXXXXXX",
+      "facilities": [
+        "Telecommunication"
+      ],
+      "responseEntries": []
+    },
+    {
+      "memberId": "CMXXX",
+      "memberName": "XXXXXXXXXXXXXXXXXXXX",
+      "facilities": [
+        "Telecommunication"
+      ],
+      "responseEntries": []
+    },
+    {
+      "memberId": "FUXXX",
+      "memberName": "XXXXXXXXXXXXXXXXXXXX",
+      "facilities": [
+        "Sewer"
+      ],
+      "responseEntries": []
+    },
+    {
+      "memberId": "FIXXX",
+      "memberName": "XXXXXXXXXXXXXXXXXXXX",
+      "facilities": [
+        "Water"
+      ],
+      "responseEntries": []
+    },
+    {
+      "memberId": "GPXXX",
+      "memberName": "XXXXXXXXXXXXXXXXXXXX",
+      "facilities": [
+        "Electric"
+      ],
+      "responseEntries": []
+    },
+    {
+      "memberId": "GPXXX",
+      "memberName": "XXXXXXXXXXXXXXXXXXXX",
+      "facilities": [
+        "Electric"
+      ],
+      "responseEntries": []
+    },
+    {
+      "memberId": "GPXXXX",
+      "memberName": "XXXXXXXXXXXXXXXXXXXX",
+      "facilities": [
+        "Electric"
+      ],
+      "responseEntries": []
+    },
+    {
+      "memberId": "GWXXX",
+      "memberName": "XXXXXXXXXXXXXXXXXXXX",
+      "facilities": [
+        "Sewer"
+      ],
+      "responseEntries": []
+    },
+    {
+      "memberId": "GWXXX",
+      "memberName": "XXXXXXXXXXXXXXXXXXXX",
+      "facilities": [
+        "Telecommunication"
+      ],
+      "responseEntries": []
+    },
+    {
+      "memberId": "GWXXX",
+      "memberName": "XXXXXXXXXXXXXXXXXXXX",
+      "facilities": [
+        "Traffic"
+      ],
+      "responseEntries": []
+    },
+    {
+      "memberId": "GWXXX",
+      "memberName": "XXXXXXXXXXXXXXXXXXXX",
+      "facilities": [
+        "Water"
+      ],
+      "responseEntries": []
+    },
+    {
+      "memberId": "LMXXX",
+      "memberName": "XXXXXXXXXXXXXXXXXXXX",
+      "facilities": [
+        "Telecommunication"
+      ],
+      "responseEntries": []
+    },
+    {
+      "memberId": "MCXXX",
+      "memberName": "XXXXXXXXXXXXXXXXXXXX",
+      "facilities": [
+        "Telecommunication"
+      ],
+      "responseEntries": []
+    },
+    {
+      "memberId": "BXXX",
+      "memberName": "XXXXXXXXXXXXXXXXXXXX",
+      "facilities": [
+        "Telecommunication"
+      ],
+      "responseEntries": [
+        {
+          "responseDate": "2024-02-22T16:58:52.043-05:00",
+          "responseCode": "9A",
+          "responseDescription": "Design Locates: Marked ",
+          "respondent": "admin",
+          "comment": "completed"
+        }
+      ]
+    },
+    {
+      "memberId": "ZXXX",
+      "memberName": "XXXXXXXXXXXXXXXXXXXX",
+      "facilities": [
+        "Telecommunication"
+      ],
+      "responseEntries": [
+        {
+          "responseDate": "2024-02-22T16:59:03.310-05:00",
+          "responseCode": "9B",
+          "responseDescription": "Design Locates: Marked with exceptions - Permanent Marker Present ",
+          "respondent": "admin",
+          "comment": "jb"
+        }
+      ]
+    }
+  ],
+  "attachments": []
+}

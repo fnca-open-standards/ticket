@@ -1,0 +1,367 @@
+{
+  "header": {
+    "formatVersion": "0.3",
+    "ticketNumber": "240222-001001",
+    "sequence": 7,
+    "source": "Voice",
+    "type": "Normal",
+    "standardType": "Normal",
+    "priority": "Normal",
+    "status": "",
+    "isTest": false,
+    "centerName": "GA811",
+    "memberIds": [
+      "GAUPC"
+    ]
+  },
+  "workSite": {
+    "countryCode": "US",
+    "stateProvince": "GA",
+    "county": "GWINNETT",
+    "place": "DULUTH",
+    "fullAddress": "3900 Tree Summit Pkwy",
+    "addressNumber": "3900",
+    "addressPrefix": "",
+    "addressStreetName": "Tree Summit",
+    "addressStreetType": "Pkwy",
+    "addressSuffix": "",
+    "intersection": "Summit Ridge Pkwy"
+  },
+  "geography": {
+    "srid": 4326,
+    "longitude": -84.167288,
+    "latitude": 33.988367,
+    "secondaryLongitude": -84.166071,
+    "secondaryLatitude": 33.988817,
+    "boundaryWkt": [],
+    "workSiteWkt": [
+      "POLYGON((-84.16723467960819 33.988656390955285,-84.16728832378905 33.988442891587255,-84.1667894329119 33.98836727709924,-84.16649438992013 33.98837172501153,-84.16611888065839 33.988478474852016,-84.16607060089657 33.9885496413383,-84.16621544018292 33.98868307833857,-84.16638710156015 33.988758692545574,-84.16659094944467 33.98878982778792,-84.1667894329119 33.9888165151293,-84.16685380592826 33.98860746406426,-84.16723467960819 33.988656390955285))"
+    ],
+    "bufferedWkt": [
+      "POLYGON((-84.16725409764798 33.98920512087057,-84.1672460489665 33.98921286592736,-84.1671507499046 33.98927605802773,-84.16704312412477 33.98932357249589,-84.16692684338759 33.9893537883252,-84.16680587474148 33.989365674670985,-84.1666843451758 33.98935882602043,-84.16648586050339 33.9893321384488,-84.16647201121785 33.98933014996174,-84.16626816211334 33.989299014460954,-84.16617098237657 33.98927768660562,-84.16607882151999 33.989244306456484,-84.1659071595013 33.98916869178808,-84.16581055937755 33.98911668962552,-84.1657262751574 33.98905149778372,-84.1655814360953 33.98891806022077,-84.16550056452756 33.988825858170046,-84.16544432459457 33.98872172075294,-84.16541514635755 33.988610147802746,-84.16541429051011 33.988495960427166,-84.16544179392126 33.9883840926847,-84.16549646806155 33.98827937838363,-84.1655447481166 33.98820821213684,-84.16561290717364 33.988126161996824,-84.16569775906227 33.988055735310844,-84.1657965043603 33.98799925555978,-84.16590588530173 33.987958586091736,-84.16628139244435 33.98785183679164,-84.16638055346985 33.9878306410017,-84.16648245778666 33.98782248466352,-84.16677749887354 33.98781803668297,-84.16690748690107 33.98782682041079,-84.16740637478966 33.987902434269756,-84.16753270109794 33.98793267067984,-84.16764931977971 33.987983175349115,-84.16775159824749 33.988051942032214,-84.16783547353725 33.98813623903579,-84.16789761370588 33.988232717727755,-84.16793555019538 33.988337545554465,-84.16794777590506 33.98844655828273,-84.16793380507401 33.988555425419754,-84.16788016239798 33.98876892514477,-84.16784311255421 33.98886828640875,-84.16778423634027 33.98896004641233,-84.16770564576838 33.989040913434735,-84.16761016009056 33.989107986513446,-84.16750120466591 33.98915885951478,-84.16738268808062 33.989191707453585,-84.16725886192904 33.98920535196442,-84.16725409764798 33.98920512087057))"
+    ]
+  },
+  "locateInformation": {
+    "isWhiteLined": false,
+    "locateInstructions": "LOCATE THE FRONT AND BACK RIGHT OF HOUSE INCLUDING R/O/W",
+    "remarks": "",
+    "drivingDirections": ""
+  },
+  "timeLine": {
+    "createdOn": "2024-02-22T16:35:37.193-05:00",
+    "legalOn": "2024-02-27T07:00:00.000-05:00",
+    "updateBy": "2024-03-22T16:30:00.000-04:00",
+    "expiresOn": "2024-03-28T23:59:59.000-04:00"
+  },
+  "project": {
+    "workType": "replacing septic field lines",
+    "duration": "2 weeks",
+    "workDoneFor": "John Smith",
+    "isDirectionalBoring": false,
+    "isExplosives": false
+  },
+  "excavator": {
+    "name": "Andy's Septic",
+    "excavatorType": "Contractor",
+    "streetAddress": "3400 Summit Ridge Pkwy",
+    "city": "Duluth",
+    "state": "GA",
+    "postalCode": "30096",
+    "phoneNumber": null,
+    "callerName": "Andy's Septic",
+    "callerPhone": "7705554332",
+    "callerPhoneExtension": "",
+    "callerEmail": "andy@andyseptic.com",
+    "contactName": "Andy's Septic",
+    "contactPhone": "7705554332",
+    "contactPhoneExtension": "",
+    "contactEmail": null
+  },
+  "customFieldGroups": [
+    {
+      "groupName": "timeLine",
+      "displayName": "Time Line",
+      "fields": [
+        {
+          "fieldName": "responseBy",
+          "displayName": "Response By",
+          "type": "DateTime",
+          "value": "2024-02-26T23:59:00.000-05:00",
+          "max": null
+        },
+        {
+          "fieldName": "updateableOn",
+          "displayName": "Updateable On",
+          "type": "DateTime",
+          "value": "2024-03-19T00:00:00.000-04:00",
+          "max": null
+        }
+      ]
+    },
+    {
+      "groupName": "reference",
+      "displayName": "Reference",
+      "fields": [
+        {
+          "fieldName": "previousTicketNumber",
+          "displayName": "Previous Ticket Number",
+          "type": "String",
+          "value": null,
+          "max": 50
+        },
+        {
+          "fieldName": "originalTicketNumber",
+          "displayName": "Original Ticket Number",
+          "type": "String",
+          "value": "240222-001001",
+          "max": 50
+        }
+      ]
+    },
+    {
+      "groupName": "lastResponse",
+      "displayName": "Last Response",
+      "fields": [
+        {
+          "fieldName": "lastResponseCode",
+          "displayName": "Last Response Code",
+          "type": "String",
+          "value": "",
+          "max": 75
+        },
+        {
+          "fieldName": "description",
+          "displayName": "Description",
+          "type": "String",
+          "value": "",
+          "max": 300
+        },
+        {
+          "fieldName": "comment",
+          "displayName": "Comment",
+          "type": "String",
+          "value": "",
+          "max": 1000
+        }
+      ]
+    },
+    {
+      "groupName": "workSite",
+      "displayName": "Work Site",
+      "fields": [
+        {
+          "fieldName": "NumWhiteLinedAreas",
+          "displayName": "# White Lined Areas",
+          "type": "Integer",
+          "value": "0",
+          "max": null
+        }
+      ]
+    }
+  ],
+  "members": [
+    {
+      "memberId": "BXXX",
+      "memberName": "XXXXXXXXXXXXXXXXXXXXXXXX",
+      "facilityTypes": [
+        "Telecommunication"
+      ],
+      "phoneNumbers": [
+        {
+          "phone": "7705559998",
+          "extension": "",
+          "type": "Main"
+        }
+      ]
+    },
+    {
+      "memberId": "LXXX",
+      "memberName": "XXXXXXXXXXXXXXXXXXXXXXXX",
+      "facilityTypes": [
+        "Telecommunication"
+      ],
+      "phoneNumbers": [
+        {
+          "phone": "7705559998",
+          "extension": "",
+          "type": "Main"
+        }
+      ]
+    },
+    {
+      "memberId": "CMXXXX",
+      "memberName": "XXXXXXXXXXXXXXXXXXXXXXXX",
+      "facilityTypes": [
+        "Telecommunication"
+      ],
+      "phoneNumbers": [
+        {
+          "phone": "7705559998",
+          "extension": "",
+          "type": "Main"
+        }
+      ]
+    },
+    {
+      "memberId": "GPXXXX",
+      "memberName": "XXXXXXXXXXXXXXXXXXXXXXXX",
+      "facilityTypes": [
+        "Electric"
+      ],
+      "phoneNumbers": [
+        {
+          "phone": "7705559998",
+          "extension": "",
+          "type": "Main"
+        }
+      ]
+    },
+    {
+      "memberId": "GWXXX",
+      "memberName": "XXXXXXXXXXXXXXXXXXXXXXXX",
+      "facilityTypes": [
+        "Sewer"
+      ],
+      "phoneNumbers": [
+        {
+          "phone": "7705559998",
+          "extension": "",
+          "type": "Main"
+        }
+      ]
+    },
+    {
+      "memberId": "GWXXX",
+      "memberName": "XXXXXXXXXXXXXXXXXXXXXXXX",
+      "facilityTypes": [
+        "Water"
+      ],
+      "phoneNumbers": [
+        {
+          "phone": "7705559998",
+          "extension": "",
+          "type": "Main"
+        }
+      ]
+    },
+    {
+      "memberId": "JCXXX",
+      "memberName": "XXXXXXXXXXXXXXXXXXXXXXXX",
+      "facilityTypes": [
+        "Electric"
+      ],
+      "phoneNumbers": [
+        {
+          "phone": "7705559998",
+          "extension": "",
+          "type": "Main"
+        }
+      ]
+    },
+    {
+      "memberId": "ZXXX",
+      "memberName": "XXXXXXXXXXXXXXXXXXXXXXXX",
+      "facilityTypes": [
+        "Telecommunication"
+      ],
+      "phoneNumbers": [
+        {
+          "phone": "7705559998",
+          "extension": "",
+          "type": "Main"
+        }
+      ]
+    }
+  ],
+  "responseHistory": [
+    {
+      "memberId": "CMXXXX",
+      "memberName": "XXXXXXXXXXXXXXXXXXXXXXXX",
+      "facilities": [
+        "Telecommunication"
+      ],
+      "responseEntries": []
+    },
+    {
+      "memberId": "GPXXX",
+      "memberName": "XXXXXXXXXXXXXXXXXXXXXXXX",
+      "facilities": [
+        "Electric"
+      ],
+      "responseEntries": []
+    },
+    {
+      "memberId": "GWXXX",
+      "memberName": "XXXXXXXXXXXXXXXXXXXXXXXX",
+      "facilities": [
+        "Sewer"
+      ],
+      "responseEntries": []
+    },
+    {
+      "memberId": "GWXXX",
+      "memberName": "XXXXXXXXXXXXXXXXXXXXXXXX",
+      "facilities": [
+        "Water"
+      ],
+      "responseEntries": []
+    },
+    {
+      "memberId": "JXXXX",
+      "memberName": "XXXXXXXXXXXXXXXXXXXXXXXX",
+      "facilities": [
+        "Electric"
+      ],
+      "responseEntries": []
+    },
+    {
+      "memberId": "BXXX",
+      "memberName": "XXXXXXXXXXXXXXXXXXXXXXXX",
+      "facilities": [
+        "Telecommunication"
+      ],
+      "responseEntries": [
+        {
+          "responseDate": "2024-02-22T16:54:37.740-05:00",
+          "responseCode": "1A",
+          "responseDescription": "Marked",
+          "respondent": "admin",
+          "comment": "completed"
+        }
+      ]
+    },
+    {
+      "memberId": "XXXX",
+      "memberName": "XXXXXXXXXXXXXXXXXXXXXXXX",
+      "facilities":[
+        "Telecommunication"
+      ],
+      "responseEntries": [
+        {
+          "responseDate": "2024-02-22T16:57:25.390-05:00",
+          "responseCode": "4A",
+          "responseDescription": "Clear: No facilities",
+          "respondent": "admin",
+          "comment": "gsc"
+        }
+      ]
+    },
+    {
+      "memberId": "ZXXX",
+      "memberName": "XXXXXXXXXXXXXXXXXXXXXXXX",
+      "facilities": [
+        "Telecommunication"
+      ],
+      "responseEntries": [
+        {
+          "responseDate": "2024-02-22T16:57:36.627-05:00",
+          "responseCode": "5",
+          "responseDescription": "No conflict, utility is outside of requested work site. ",
+          "respondent": "admin",
+          "comment": " "
+        }
+      ]
+    }
+  ],
+  "attachments": []
+}
