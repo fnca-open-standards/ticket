@@ -1,0 +1,252 @@
+{
+   "header": {
+      "formatVersion": "0.5",
+      "ticketNumber": "24020515560001",
+      "sequence": 38,
+      "source": "Voice",
+      "type": "Normal",
+      "standardType": "Normal",
+      "priority": "Compliant",
+      "status": "New",
+      "isTest": false,
+      "centerName": "OKIE811",
+      "memberIds": [
+         "S00811",
+      ]
+   },
+   "workSite": {
+      "countryCode": "US",
+      "stateProvince": "OK",
+      "county": "OKLAHOMA",
+      "place": "OKLAHOMA CITY",
+      "fullAddress": "6908 n robinson ave",
+      "addressNumber": "6908",
+      "addressPrefix": "n",
+      "addressStreetName": "robinson",
+      "addressStreetType": "ave",
+      "addressSuffix": "",
+      "intersection": "63rd st"
+   },
+   "geography": {
+      "srid": 4326,
+      "longitude": -97.515699,
+      "latitude": 35.541641,
+      "secondaryLongitude": -97.514732,
+      "secondaryLatitude": 35.541949,
+      "boundaryArea": [
+         "",
+         ""
+      ],
+      "workSiteArea": [
+         "POLYGON((-97.51489699649915 35.541642544567836,-97.5151322330661 35.541644988025844,-97.51537587199886 35.54164749263769,-97.51561110856579 35.54164993519642,-97.51569866116427 35.54165084171302,-97.51569759007168 35.541826383081165,-97.51553470306408 35.54189296978479,-97.51538345688103 35.541891392373884,-97.51498911045906 35.54188731035116,-97.51495257550089 35.54188694252843,-97.51495219418835 35.54194943911539,-97.51473187107894 35.54194853979333,-97.5147337524607 35.54164085923832,-97.51489699649915 35.541642544567836))</DigsiteWKT><DigsiteBufferWKT>POLYGON((-97.51521052183044 35.54230178384654,-97.51514284204815 35.542330996915666,-97.51504810207707 35.54235406447931,-97.51494967633941 35.5423615823164,-97.51472935210268 35.54236068296248,-97.51463102339564 35.542352362021404,-97.51453657028232 35.54232852229593,-97.51444962260075 35.542290079950384,-97.51437352174204 35.54223851232733,-97.51431119223773 35.54217580117082,-97.51426502936984 35.54210435646543,-97.5142368071234 35.54202692381805,-97.51422761001804 35.54194647894281,-97.51422949332596 35.54163879844227,-97.51423977112375 35.541558047613975,-97.51426921665033 35.54148051013004,-97.51431668729391 35.54140919463687,-97.51438034103698 35.54134686834503,-97.51445770793612 35.54129594965728,-97.51454578596375 35.541258414331665,-97.51464115749253 35.541235718820346,-97.51474012190323 35.54122874375819,-97.51490336510696 35.54123042905896,-97.51513860805726 35.54123287255306,-97.51538221327901 35.54123537678827,-97.51561750507445 35.54123781988809,-97.51570504845944 35.541238726298516,-97.51580282109516 35.541247581488555,-97.51589662990762 35.54127178298305,-97.51598290497579 35.54131040978974,-97.51605836306481 35.54136199195582,-97.51612013256762 35.541424566505064,-97.51616586278483 35.54149575213706,-97.51619381338453 35.54157283984594,-97.51620292063696 35.54165289601112,-97.5162018506433 35.5418284374103,-97.51619290994232 35.54190367729006,-97.51616730624362 35.54197631696153,-97.5161259008365 35.542043912758444,-97.51607008660409 35.54210419068962,-97.51600174116923 35.54215512293985,-97.5159231637314 35.54219499608977,-97.51576027614259 35.54226158308073,-97.51564745821 35.54229468288336,-97.51552826920553 35.54230508465158,-97.51537704704748 35.54230350747262,-97.51521052183044 35.54230178384654))"
+      ],
+      "bufferedArea": [
+         "",
+         ""
+      ]
+   },
+   "locateInformation": {
+      "isWhiteLined": false,
+      "locateInstructions": "",
+      "remarks": "PIPELINE --  Test for Cheniere",
+      "drivingDirections": ""
+   },
+   "timeLine": {
+      "createdOn": "2024/02/05T15:56:11",
+      "legalOn": "",
+      "workOn": "2024/02/08T00:00:00",
+      "updateBy": "02/19/2024",
+      "expiresOn": "02/21/2024"
+   },
+   "project": {
+      "workType": "Pipeline",
+      "duration": "02/08/2024",
+      "workDoneFor": "OKIE811",
+      "isDirectionalBoring": false,
+      "isExplosives": false
+   },
+   "excavator": {
+      "name": "TROY DANIELS",
+      "excavatorType": "Homeowner",
+      "streetAddress": "6908 n robinson ave",
+      "city": "OKLAHOMA CITY",
+      "state": "OK",
+      "postalCode": "73116",
+      "callerName": "TROY DANIELS",
+      "callerPhone": "(800) 522-6544",
+      "callerPhoneExtension": "7164",
+      "callerEmail": "tdaniels@okie811.org",
+      "contactName": "TROY DANIELS",
+      "contactPhone": "(800) 522-6544",
+      "contactPhoneExtension": "7164"
+   },
+   "customFieldGroups": [
+      {
+         "groupName": "project",
+         "displayName": "project",
+         "fields": [
+            {
+               "fieldName": "MultipleTickets",
+               "displayName": "Multiple Tickets",
+               "type": "boolean",
+               "value": "True",
+               "max": null
+            },
+            {
+               "fieldName": "AccessIssues",
+               "displayName": "Access Issues",
+               "type": "boolean",
+               "value": "True",
+               "max": null
+            },
+            {
+               "fieldName": "JobNumber",
+               "displayName": "Job Number",
+               "type": "string",
+               "value": "123456789",
+               "max": "255"
+            }
+         ]
+      },
+      {
+         "groupName": "reference",
+         "displayName": "Reference",
+         "fields": [
+            {
+               "fieldName": "previousTicketNumber",
+               "displayName": "Previous Ticket Number",
+               "type": "String",
+               "value": null,
+               "max": 50
+            },
+            {
+               "fieldName": "createdby",
+               "displayName": "createdby",
+               "type": "string",
+               "value": "tdaniels",
+               "max": "255"
+            },
+            {
+               "fieldName": "hoursnotice",
+               "displayName": "hours notice",
+               "type": "short",
+               "value": "56",
+               "max": "null"
+            }
+         ]
+      },
+      {
+         "groupName": "excavator",
+         "displayName": "excavator",
+         "fields": [
+            {
+               "fieldName": "callback",
+               "displayName": "callback",
+               "type": "string",
+               "value": "(800) 522-6544 ext 7164",
+               "max": 255
+            }
+         ]
+      },
+      {
+         "groupName": "geography",
+         "displayName": "geography",
+         "fields": [
+            {
+               "fieldName": "Grids",
+               "displayName": "Grids",
+               "type": "string",
+               "value": "03WI12N04SE",
+               "max": 255
+            }
+         ]
+      },
+      {
+         "groupName": "members",
+         "displayName": "members",
+         "fields": [
+            {
+               "fieldName": "AddedManually",
+               "displayName": "Added Manually",
+               "type": "boolean",
+               "value": "false",
+               "max": null
+            }
+         ]
+      }
+      ],
+      "members": [
+         {
+            "memberId": "S00811",
+            "memberName": "OKIE811 Test Code S00811</",
+            "facilityTypes": [
+               ""
+            ],
+            "phoneNumbers": [
+               {
+                  "phone": "",
+                  "extension": "",
+                  "type": ""
+               }
+            ]
+         },
+         {
+            "memberId": "",
+            "memberName": "",
+            "facilityTypes": [
+               ""
+            ],
+            "phoneNumbers": [
+               {
+                  "phone": "",
+                  "extension": "",
+                  "type": ""
+               }
+            ]
+         }
+      ],
+      "responseHistory": [
+         {
+            "memberId": "",
+            "memberName": "",
+            "facilities": [
+               ""
+            ],
+            "responseEntries": [
+               {
+                  "responseDate": "",
+                  "responseCode": "",
+                  "responseDescription": "",
+                  "respondent": "",
+                  "comment": ""
+               }
+            ]
+         },
+         {
+            "memberId": "",
+            "memberName": "",
+            "facilities": [
+               ""
+            ],
+            "responseEntries": [
+               {
+                  "responseDate": "",
+                  "responseCode": "",
+                  "responseDescription": "",
+                  "respondent": "",
+                  "comment": ""
+               }
+            ]
+         }
+      ],
+      "attachments": [
+         {
+            "name": "",
+            "value": ""
+         },
+         {
+            "name": "",
+            "value": ""
+         }
+      ]
+   }
