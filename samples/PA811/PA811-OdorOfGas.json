@@ -1,0 +1,644 @@
+{
+  "header": {
+    "formatVersion": ".3",
+    "ticketNumber": "20241231234",
+    "sequence": 14,
+    "source": "WEB",
+    "type": "ODOR OF GAS/EMERGENCY",
+    "standardType": "Emergency",
+    "priority": "Emergency",
+    "status": "New",
+    "isTest": false,
+    "centerName": "PA811",
+    "memberIds": [
+      "QQQ",
+      "YYY"
+    ]
+  },
+  "workSite": {
+    "countryCode": "US",
+    "stateProvince": "PA",
+    "county": "ALLEGHENY",
+    "place": "WEST MIFFLIN BORO",
+    "fullAddress": "925 IRWIN RUN RD",
+    "addressNumber": "",
+    "addressPrefix": "",
+    "addressStreetName": "",
+    "addressStreetType": "",
+    "addressSuffix": "",
+    "intersection": "NOBLE DR"
+  },
+  "geography": {
+    "srid": 4269,
+    "longitude": 40.364853,
+    "latitude": -79.928986,
+    "secondaryLongitude": 40.359524,
+    "secondaryLatitude": -79.93005,
+    "boundaryWkt": [],
+    "workSiteWkt": [
+      "POLYGON ((-79.928984 40.364854, -79.924564 40.365573, -79.92319 40.360472, -79.930057 40.359524, -79.934992 40.362826, -79.928984 40.364854))"
+    ],
+    "bufferedWkt": []
+  },
+  "locateInformation": {
+    "isWhiteLined": true,
+    "locateInstructions": "WORKING IN THE REAR OF THE PROPERTY.",
+    "remarks": "PAY SPECIAL ATTENTION TO FLUFFY THE THREE HEADED DOG. DO NOT GET TOO CLOSE.",
+    "drivingDirections": ""
+  },
+  "timeLine": {
+    "createdOn": "2024-03-04T12:10:42.003-05:00",
+    "legalOn": "2024-03-07T12:10:42.003-05:00",
+    "workOn": "2024-03-07T12:10:42.003-05:00",
+    "updateBy": "2024-03-10T12:10:42.003-04:00",
+    "expiresOn": "2024-03-10T12:10:42.003-04:00"
+  },
+  "project": {
+    "workType": "EXCAVATING FOR A NEW POOL",
+    "duration": "2 DAYS",
+    "workDoneFor": "PENNSYLVANIA ONE CALL SYSTEM INC",
+    "isDirectionalBoring": false,
+    "isExplosives": false
+  },
+  "excavator": {
+    "name": "MAGICAL POOLS",
+    "excavatorType": "",
+    "streetAddress": "4 PRIVET DRIVE",
+    "city": "LITTLE WHINGING",
+    "state": "PA",
+    "postalCode": "15122",
+    "callerName": "HARRY POTTER",
+    "callerPhone": "1231231234",
+    "callerPhoneExtension": "934",
+    "callerEmail": "harry@hogwarts.com",
+    "contactName": "ALBUS DUMBLEDORE",
+    "contactPhone": "3211231234",
+    "contactPhoneExtension": "42"
+  },
+  "customFieldGroups": [
+    {
+      "groupName": "pa811Header",
+      "displayName": "PA811 Header",
+      "fields": [
+        {
+          "fieldName": "version",
+          "displayName": "The Version Of The Ticket",
+          "type": "Integer",
+          "value": "0",
+          "max": null
+        },
+        {
+          "fieldName": "actionType",
+          "displayName": "ACTIONTYPE (CANCEL, NEW, RENOTIFY, UPDATE)",
+          "type": "String",
+          "value": "NEW",
+          "max": null
+        },
+        {
+          "fieldName": "requestType",
+          "displayName": "REQUESTTYPE (CROSS BORE, DAMAGE, DEMOLITION, EXCAVATION, NO ONE CALL, ODOR OF GAS)",
+          "type": "String",
+          "value": "ODOR OF GAS",
+          "max": null
+        },
+        {
+          "fieldName": "requestClass",
+          "displayName": "REQUESTCLASS (COMPLEX PROJECT, EMERGENCY, FINAL DESIGN, INSUFFICIENT, PRELIMINARY DESIGN, ROUTINE)",
+          "type": "String",
+          "value": "EMERGENCY",
+          "max": null
+        },
+        {
+          "fieldName": "outputFormatVersion",
+          "displayName": "Version of the PA811 output format",
+          "type": "String",
+          "value": "2019-08",
+          "max": null
+        }
+      ]
+    },
+    {
+      "groupName": "Worksite",
+      "displayName": "Worksite",
+      "fields": [
+        {
+          "fieldName": "siteWard",
+          "displayName": "Ward Number (ALLENTOWN CITY, ERIE CITY, PHILADELPHIA CITY, PITTSBURGH CITY",
+          "type": "Integer",
+          "value": "",
+          "max": null
+        },
+        {
+          "fieldName": "streetType",
+          "displayName": "Intersecting (I), Linear (L), or Bounding (B) work site streets",
+          "type": "String",
+          "value": "I",
+          "max": 1
+        },
+        {
+          "fieldName": "secondIntersection",
+          "displayName": "The second intersecting street",
+          "type": "String",
+          "value": "Value",
+          "max": null
+        },
+        {
+          "fieldName": "street1",
+          "displayName": "First Site Street (Applies To Linear Or Bounding Streets)",
+          "type": "String",
+          "value": "Value",
+          "max": null
+        },
+        {
+          "fieldName": "street2",
+          "displayName": "Second Site Street (Applies To Linear Or Bounding Streets)",
+          "type": "String",
+          "value": "Value",
+          "max": null
+        },
+        {
+          "fieldName": "street3",
+          "displayName": "Third Site Street (Applies To Linear Or Bounding Streets)",
+          "type": "String",
+          "value": "Value",
+          "max": null
+        },
+        {
+          "fieldName": "street4",
+          "displayName": "Fourth Site Street (Applies To Bounding Streets Only)",
+          "type": "String",
+          "value": "Value",
+          "max": null
+        },
+        {
+          "fieldName": "siteSubdivision",
+          "displayName": "Site Subdivision",
+          "type": "String",
+          "value": "FORBIDDEN FOREST ACRES",
+          "max": null
+        }
+      ]
+    },
+    {
+      "groupName": "Geography",
+      "displayName": "Geography",
+      "fields": [
+        {
+          "fieldName": "mapObjectType",
+          "displayName": "Map Object Type (C, N, P, S, X)",
+          "type": "String",
+          "value": "P",
+          "max": 1
+        },
+        {
+          "fieldName": "mapPoints",
+          "displayName": "The latitude/longitude points of the notification area",
+          "type": "String",
+          "value": "40.364854/-79.928984,40.365573/-79.924564,40.360472/-79.923190,40.359524/-79.930057,40.362826/-79.934992",
+          "max": null
+        },
+        {
+          "fieldName": "mapBuffer",
+          "displayName": "The number of feet that should be utilized for buffering",
+          "type": "String",
+          "value": "150",
+          "max": null
+        }
+      ]
+    },
+    {
+      "groupName": "Locateinformation",
+      "displayName": "Locateinformation",
+      "fields": [
+        {
+          "fieldName": "atIntersection",
+          "displayName": "Working at the intersection",
+          "type": "Boolean",
+          "value": "false",
+          "max": null
+        },
+        {
+          "fieldName": "betweenTwoIntersections",
+          "displayName": "Working between two intersections",
+          "type": "Boolean",
+          "value": "false",
+          "max": null
+        },
+        {
+          "fieldName": "isWorkInStreet",
+          "displayName": "Is the work taking place in the street",
+          "type": "Boolean",
+          "value": "false",
+          "max": null
+        },
+        {
+          "fieldName": "isWorkOnSidewalk",
+          "displayName": "Is the work taking place on the sidewalk",
+          "type": "Boolean",
+          "value": "false",
+          "max": null
+        },
+        {
+          "fieldName": "isWorkOnPublicProperty",
+          "displayName": "Is the work taking place on public property",
+          "type": "Boolean",
+          "value": "false",
+          "max": null
+        },
+        {
+          "fieldName": "isWorkOnPrivateProperty",
+          "displayName": "Is the work taking place on private property",
+          "type": "Boolean",
+          "value": "false",
+          "max": null
+        },
+        {
+          "fieldName": "privateFront",
+          "displayName": "Working in the front of private property",
+          "type": "Boolean",
+          "value": "false",
+          "max": null
+        },
+        {
+          "fieldName": "privateRear",
+          "displayName": "Working in the rear of private property",
+          "type": "Boolean",
+          "value": "false",
+          "max": null
+        },
+        {
+          "fieldName": "privateLeft",
+          "displayName": "Working on the left side of private property",
+          "type": "Boolean",
+          "value": "false",
+          "max": null
+        },
+        {
+          "fieldName": "privateRight",
+          "displayName": "Working on the right side of private property",
+          "type": "Boolean",
+          "value": "false",
+          "max": null
+        },
+        {
+          "fieldName": "privateOther",
+          "displayName": "Working in an other section of private property",
+          "type": "String",
+          "value": "Value",
+          "max": 50
+        },
+        {
+          "fieldName": "otherWorkInOrOn",
+          "displayName": "Other area of the work",
+          "type": "String",
+          "value": "Value",
+          "max": 16
+        },
+        {
+          "fieldName": "remarkRequestedForUpdate",
+          "displayName": "Is remarking of the site requested?",
+          "type": "Boolean",
+          "value": "false",
+          "max": null
+        }
+      ]
+    },
+    {
+      "groupName": "Project",
+      "displayName": "Project",
+      "fields": [
+        {
+          "fieldName": "WorkDepth",
+          "displayName": "Depth Of Excavation",
+          "type": "String",
+          "value": "Value",
+          "max": null
+        },
+        {
+          "fieldName": "workExtent",
+          "displayName": "Extent Of Excavation",
+          "type": "String",
+          "value": "Value",
+          "max": null
+        },
+        {
+          "fieldName": "workMainMethod",
+          "displayName": "Work Main Method",
+          "type": "String",
+          "value": "Value",
+          "max": null
+        },
+        {
+          "fieldName": "jobNumber",
+          "displayName": "Caller\u0027s own job number to associate with the ticket",
+          "type": "String",
+          "value": "Value",
+          "max": null
+        },
+        {
+          "fieldName": "pennDotPermitNo",
+          "displayName": "PENNDOT permit number",
+          "type": "String",
+          "value": "Value",
+          "max": null
+        },
+        {
+          "fieldName": "homeownerCalledForContractor",
+          "displayName": "Did the homeowner call in the notification for the contractor",
+          "type": "Boolean",
+          "value": "false",
+          "max": null
+        },
+        {
+          "fieldName": "nameOfContractorCalledFor",
+          "displayName": "The name of the contractor for which the home owner called in the notification",
+          "type": "String",
+          "value": "Value",
+          "max": null
+        },
+        {
+          "fieldName": "excavationEquipment",
+          "displayName": "Excavation Equipment",
+          "type": "String",
+          "value": "Value",
+          "max": null
+        },
+        {
+          "fieldName": "cpaProjectID",
+          "displayName": "The Coordinate PA Project ID",
+          "type": "Long",
+          "value": "Value",
+          "max": null
+        },
+        {
+          "fieldName": "cpaLocationID",
+          "displayName": "The Coordinate PA Location ID",
+          "type": "Long",
+          "value": "Value",
+          "max": null
+        },
+        {
+          "fieldName": "cpaPhaseID",
+          "displayName": "The Coordinate PA Phase ID",
+          "type": "Long",
+          "value": "Value",
+          "max": null
+        },
+        {
+          "fieldName": "meetingDateTime",
+          "displayName": "The date and time the complex project meeting will occur",
+          "type": "DateTime",
+          "value": "Value",
+          "max": null
+        },
+        {
+          "fieldName": "meetingLocation",
+          "displayName": "The location of the complex project meeting",
+          "type": "String",
+          "value": "Value",
+          "max": null
+        },
+        {
+          "fieldName": "reasonNoMeeting",
+          "displayName": "The reason that no complex project meeting is being requested",
+          "type": "String",
+          "value": "Value",
+          "max": null
+        }
+      ]
+    },
+    {
+      "groupName": "Excavator",
+      "displayName": "Excavator",
+      "fields": [
+        {
+          "fieldName": "callerFax",
+          "displayName": "Caller\u0027s FAX Number",
+          "type": "String",
+          "value": "Value",
+          "max": null
+        },
+        {
+          "fieldName": "bestTimeToContact",
+          "displayName": "Best Time To Contact",
+          "type": "String",
+          "value": "Value",
+          "max": null
+        },
+        {
+          "fieldName": "callerNameUpdateCancelRenotify",
+          "displayName": "Caller Name for UPDATE/CANCEL/RENOTIFY Ticket",
+          "type": "String",
+          "value": "Value",
+          "max": null
+        },
+        {
+          "fieldName": "onsiteContactEmail",
+          "displayName": "Onsite Contact Email",
+          "type": "String",
+          "value": "Value",
+          "max": null
+        }
+      ]
+    },
+    {
+      "groupName": "pa811AdditionalTicketInformation",
+      "displayName": "PA811 General Ticket Information",
+      "fields": [
+        {
+          "fieldName": "csrName",
+          "displayName": "Customer Service Representative Name",
+          "type": "String",
+          "value": "REP NAME",
+          "max": null
+        },
+        {
+          "fieldName": "callerHomeOrBusiness",
+          "displayName": "Caller Is Home (H) Or Business (B)",
+          "type": "String",
+          "value": "B",
+          "max": 1
+        },
+        {
+          "fieldName": "Remarks",
+          "displayName": "Remarks for the ticket",
+          "type": "String",
+          "value": "REMARKS FOR ENTIRE TICKET",
+          "max": null
+        },
+        {
+          "fieldName": "calledForDisconnect",
+          "displayName": "Caller has called utility for meter/utility disconnect",
+          "type": "Boolean",
+          "value": "false",
+          "max": null
+        },
+        {
+          "fieldName": "hazardousRelease",
+          "displayName": "Did a hazerdous release occur",
+          "type": "Boolean",
+          "value": "false",
+          "max": null
+        },
+        {
+          "fieldName": "called911",
+          "displayName": "Has caller called 911",
+          "type": "Boolean",
+          "value": "false",
+          "max": null
+        },
+        {
+          "fieldName": "damageIsExposure",
+          "displayName": "Whether the damage caused an exposure of an underground facility",
+          "type": "Boolean",
+          "value": "false",
+          "max": null
+        },
+        {
+          "fieldName": "gasCompanyName",
+          "displayName": "Name of the gas company",
+          "type": "String",
+          "value": "",
+          "max": 40
+        },
+        {
+          "fieldName": "reasonForUpdateCancelRenotify",
+          "displayName": "Reason for UPDATE/CANCEL/RENOTIFY",
+          "type": "String",
+          "value": "REASON WE DID UPDATE/CANCEL/RENOTIFY",
+          "max": null
+        },
+        {
+          "fieldName": "markingsVisible",
+          "displayName": "Are markings visible? (DAMAGE Ticket Type)",
+          "type": "Boolean",
+          "value": "false",
+          "max": null
+        },
+        {
+          "fieldName": "outputMessageWithGeometry",
+          "displayName": "The human readable format of the ticket, including OGC WKT",
+          "type": "String",
+          "value": "Value",
+          "max": null
+        }
+      ]
+    },
+    {
+      "groupName": "pa811Reference",
+      "displayName": "PA811 References",
+      "fields": [
+        {
+          "fieldName": "updateTraceSerialNumber",
+          "displayName": "Serial Number This Ticket Updates",
+          "type": "String",
+          "value": "Value",
+          "max": 11
+        },
+        {
+          "fieldName": "relatedComplexProjectNumber",
+          "displayName": "Related Complex Project Ticket Number",
+          "type": "String",
+          "value": "Value",
+          "max": null
+        },
+        {
+          "fieldName": "attachments",
+          "displayName": "Attachments",
+          "type": "String",
+          "value": "http://www.pa811.org/attachments/20240669042",
+          "max": null
+        }
+      ]
+    }
+  ],
+  "members": [
+    {
+      "memberId": "QQQ",
+      "memberName": "QQQ",
+      "facilityTypes": [
+        "Telephone"
+      ],
+      "phoneNumbers": [
+        {
+          "phone": "4121112222",
+          "extension": "123",
+          "type": "MAIN"
+        },
+        {
+          "phone": "4122223333",
+          "extension": "123",
+          "type": "ALT"
+        }
+      ]
+    },
+    {
+      "memberId": "YYY",
+      "memberName": "Member Name",
+      "facilityTypes": [],
+      "phoneNumbers": [
+        {
+          "phone": "4123332222",
+          "extension": "123",
+          "type": "MAIN"
+        },
+        {
+          "phone": "4123333333",
+          "extension": "123",
+          "type": "ALT"
+        }
+      ]
+    }
+  ],
+  "responseHistory": [
+    {
+      "memberId": "QQQ",
+      "memberName": "QQQ",
+      "facilities": [
+        "GAS",
+        "ELECTRIC"
+      ],
+      "responseEntries": [
+        {
+          "responseDate": "2024-03-04T12:10:42.003-05:00",
+          "responseCode": "006",
+          "responseDescription": "SCHEDULED DATE \u0026 TIME LINES WILL BE MARKED BY:",
+          "respondent": "JMP",
+          "comment": "WE REQUIRE A DATETIME ON A 006. WE NEED A CUSTOM EXTENSION."
+        },
+        {
+          "responseDate": "2024-03-04T12:10:42.003-05:00",
+          "responseCode": "003",
+          "responseDescription": "FIELD MARKED.",
+          "respondent": "TR",
+          "comment": ""
+        }
+      ]
+    },
+    {
+      "memberId": "YYY",
+      "memberName": "YYY",
+      "facilities": [
+        "WATER",
+        "SEWER"
+      ],
+      "responseEntries": [
+        {
+          "responseDate": "2024-03-04T12:10:42.003-05:00",
+          "responseCode": "005",
+          "responseDescription": "NOT MARKED DUE TO NO ACCESS.",
+          "respondent": "WLA",
+          "comment": "THREE HEADED DOG??? NO MARKY UNTIL IT IS GONE!"
+        },
+        {
+          "responseDate": "2024-03-04T12:10:42.003-05:00",
+          "responseCode": "007",
+          "responseDescription": "VOICE MESSAGE. (TEMPORARY)",
+          "respondent": "WLA",
+          "comment": "Left you a message about that three headed dog..."
+        }
+      ]
+    }
+  ],
+  "attachments": []
+}
