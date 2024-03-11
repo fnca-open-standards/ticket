@@ -59,12 +59,14 @@ The first section of the JSON format is the header object.   The purpose of the 
 "header": {
     "formatVersion": "0.5",
     "ticketNumber": "230815-001003",
+    "ticketVersion": 0,
     "sequence": 12,
     "source": "Voice",
     "type": "Normal",
     "standardType": "Normal",
+    "action": "New",
+    "class": null,
     "priority": "Normal",
-    "status": "New",
     "isTest": false,
     "centerName": "GA811",
     "memberIds": [
@@ -75,9 +77,9 @@ The first section of the JSON format is the header object.   The purpose of the 
 
 **Format Version (formatVersion)** string (10) – This is the version of the Open Ticket Format specification this JSON document represents.  When new versions of the specification are developed, this will allow receivers to know what version of the specification the transmission follows.  For centers not yet implementing newer versions, they can continue to send, and receivers can continue to receive for that version of the spec.  Once a center or receiver has upgraded their system to the latest spec, then they can coordinate the changeover to the new format.
 
-It is possible that ticketing systems need to add a ticket version to this header.  If so, naming this FormatVersion allows us to separate a version of a ticket from the delivery format version.
-
 **Ticket Number (ticketNumber)** string (25) – this is the ticket number.
+
+**Ticket Version (ticketVersion)** integer - the version number for the ticket, if the source system uses ticket versioning.
 
 **Sequence (sequence)** integer – this is a serial number of this transmission for this receiver.   This allows the receiver to know what order tickets were sent to them in a day.  Since this format can be used for transmissions of tickets as well as retrieval of tickets by API call, this will only have a value if this is a transmission.
 [This is very much like a session number for networking.  This identifies the order the ticket was transmitted each day, as if each ticket were a packet sent in a daily session]
@@ -101,24 +103,24 @@ It is possible that ticketing systems need to add a ticket version to this heade
 - Project - a longer-term excavation than a Normal ticket
 - Other - any ticket that does not fit another category
 
-**Priority (priority)** string (10) – This helps the receiver determine how fast this ticket needs to be processed.  This can be one of these values:
+**Action (action)** - The action that caused this ticket to be created, such as New (for a new request), Resend, Cancel, 2nd Notice, Relocate, Late, etc.
+
+**Class (class)** - Classification for the ticket, if used by the center.  Centers that use qualifiers in their ticket types can use class to modify the base Type (above).  Centers that do not use Class should send a NULL value.
+
+**Priority (priority)** string (10) – This helps the receiver determine how fast this ticket needs to be processed.  Values may include:
 	Normal – This should be processed after Rush or Emergency tickets
   Rush – This should be processed before Normal priority tickets, but after emergency priority tickets
 	Emergency – This should be processed before other priority types.
 
-**Status (status)** string (10) - The current status of this ticket, New, Resend, Cancel, or other status supported by the center.
-
-- New – this is the first send of this ticket
-- Resend – this is a resend of a previous ticket
-- Cancel – this is a cancellation of a ticket
-
-**IsTest (isTest)** boolean – If implemented by the center, this would allow them to send test tickets to members and have them identify those tickets as test tickets.  Although most testing is done using test systems, there is still a need for test tickets to be sent through production systems.  This would allow the identification of test tickets that do not require an actual locate to be performed.
+**IsTest (isTest)** boolean – If implemented by the center, this would allow them to send test tickets to members and have them identify those tickets as test tickets.  Although most testing is done using test systems, there is still a need for test tickets to be sent through production systems.  This would allow the identification of test tickets that do not require an actual locate to be performed. If this is not implemented by the center, a NULL value should be sent.
 
 If this is not implemented by the center’s system, then this flag should indicate Null.  This will tell the receiver that the sending system does not implement this feature, rather than False which would indicate the center positively identifying this as a production ticket.
 
 **Center Name (centerName)** string (25) – an identifier for the center transmitting the ticket.  This is most often the state abbreviation plus “811”.
 
 **Member Ids (memberIds)** string (10) array – this is an array of string values containing the alphanumeric member identifiers for the facilities included in this transmission.  This allows a single ticket to be delivered for multiple facilities for a single operator.  For instance, a member who operates water and sewer facilities may receive a single ticket that includes the codes for the water and sewer facilities they operate, so this would contain both member ids corresponding to those facilities.
+
+This is helful for routing tickets to the appropriate internal group for the recipient.  For instance, contract locator companies with many customers can use this to route the ticket to the appropriate locator.
 
 Since this format can be used for transmissions of tickets as well as retrieval of tickets by API call, this will only have a value if this is a transmission.
 
