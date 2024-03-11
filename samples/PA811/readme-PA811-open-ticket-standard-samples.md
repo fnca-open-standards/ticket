@@ -4,7 +4,7 @@ A number of PA811 tickets were mapped and permutations of PA811 ticket types are
 
 ## Standard Section Extensions
 
-Custom field groups were created for most standard section of the Open Ticket FormatAll are prefixed with "pa811."
+Custom field groups were created for most standard section of the Open Ticket Format. 
 
 ### Header/pa811Header
 
@@ -62,7 +62,7 @@ PA811 tickets were mapped into the standard section Header. The custom field gro
 
 **requstClass** - COMPLEX PROJECT, EMERGENCY, FINAL DESIGN, INSUFFICIENT, PRELIMINARY DESIGN, ROUTINE.
 
-**outputFormatVersion** - Our output formats are versioned, and we would like to inlcude our parsable/human readable output (pa811AdditionalTicketInformation).
+**outputFormatVersion** - Our output formats are versioned, and we would like to include our parsable/human readable output (pa811AdditionalTicketInformation).
 
 ### Worksite
 
