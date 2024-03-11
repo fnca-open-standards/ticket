@@ -1,4 +1,4 @@
-# Open Ticket Standard
+# Open Ticket Specification
 This document describes a Open Ticket Format that can be used to send any ticket from an 811 center any receiver.
 
 This is an open standard that is freely available for adoption.  This means that it is not specific to any vendor and can be implemented by anyone wanting to send or receive 811 excavation tickets.  It does require centers and receivers to agree to the format, and to develop and maintain this format for widest adoption.
