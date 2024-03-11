@@ -2,33 +2,862 @@
 
 A number of PA811 tickets were mapped and permutations of PA811 ticket types are included. The initial goal was to simply determine inital custom field groups for additional fields. 
 
-# Standard Section Extensions
+## Standard Section Extensions
 
-Custom field groups were created for each standard section of the Open Ticket Format, with the exception of Timeline for now. All are prefixed with "pa811."
+Custom field groups were created for most standard section of the Open Ticket FormatAll are prefixed with "pa811."
 
-# Header/pa811Header
+### Header/pa811Header
 
 PA811 tickets were mapped into the standard section Header. The custom field group also includes PA811 primary fields used for ticket classification.
 
-** version ** - PA811 tickets are versioned. Versions apply to specific tickets types, such as CANCEL and RENOTIFY
+```
+    {
+      "groupName": "pa811Header",
+      "displayName": "PA811 Header",
+      "fields": [
+        {
+          "fieldName": "version",
+          "displayName": "The Version Of The Ticket",
+          "type": "Integer",
+          "value": "0",
+          "max": null
+        },
+        {
+          "fieldName": "actionType",
+          "displayName": "ACTIONTYPE (CANCEL, NEW, RENOTIFY, UPDATE)",
+          "type": "String",
+          "value": "NEW",
+          "max": null
+        },
+        {
+          "fieldName": "requestType",
+          "displayName": "REQUESTTYPE (CROSS BORE, DAMAGE, DEMOLITION, EXCAVATION, NO ONE CALL, ODOR OF GAS)",
+          "type": "String",
+          "value": "EXCAVATION",
+          "max": null
+        },
+        {
+          "fieldName": "requestClass",
+          "displayName": "REQUESTCLASS (COMPLEX PROJECT, EMERGENCY, FINAL DESIGN, INSUFFICIENT, PRELIMINARY DESIGN, ROUTINE)",
+          "type": "String",
+          "value": "ROUTINE",
+          "max": null
+        },
+        {
+          "fieldName": "outputFormatVersion",
+          "displayName": "Version of the PA811 output format",
+          "type": "String",
+          "value": "2019-08",
+          "max": null
+        }
+      ]
+    },
+```
 
-** actionType ** - CANCEL, NEW, RENOTIFY, UPDATE.
+**version** - PA811 tickets are versioned. Versions apply to specific tickets types, such as CANCEL and RENOTIFY.
 
-** requestType ** - CROSS BORE, DAMAGE, DEMOLITION, EXCAVATION, NO ONE CALL, ODOR OF GAS.
+**actionType** - CANCEL, NEW, RENOTIFY, UPDATE.
 
-** requstClass ** - COMPLEX PROJECT, EMERGENCY, FINAL DESIGN, INSUFFICIENT, PRELIMINARY DESIGN, ROUTINE.
+**requestType** - CROSS BORE, DAMAGE, DEMOLITION, EXCAVATION, NO ONE CALL, ODOR OF GAS.
 
-** outputFormatVersion ** - Our output formats are versioned, and we would like to inlcude our parsable/human readable output (pa811AdditionalTicketInformation.).
+**requstClass** - COMPLEX PROJECT, EMERGENCY, FINAL DESIGN, INSUFFICIENT, PRELIMINARY DESIGN, ROUTINE.
 
-# Additional Custom Field Groups
+**outputFormatVersion** - Our output formats are versioned, and we would like to inlcude our parsable/human readable output (pa811AdditionalTicketInformation).
 
-Some additional custom field groups were created and are prefixed with "pa811."
+### Worksite
 
-** pa811AddtitionalTicketInformation** - Fields applying to the entire ticket, or for data relevant to specific types. This could change depending on how granular the usage of custom field groups becomes.
+Extended Workstite without types and lengths.
 
-** pa811NoOneCall ** - Data specific to a NO ONE CALL ticket type.
+```
+    {
+      "groupName": "Worksite",
+      "displayName": "Worksite",
+      "fields": [
+        {
+          "fieldName": "siteWard",
+          "displayName": "Ward Number (ALLENTOWN CITY, ERIE CITY, PHILADELPHIA CITY, PITTSBURGH CITY",
+          "type": "Integer",
+          "value": "",
+          "max": null
+        },
+        {
+          "fieldName": "streetType",
+          "displayName": "Intersecting (I), Linear (L), or Bounding (B) work site streets",
+          "type": "String",
+          "value": "I",
+          "max": 1
+        },
+        {
+          "fieldName": "secondIntersection",
+          "displayName": "The second intersecting street",
+          "type": "String",
+          "value": "Value",
+          "max": null
+        },
+        {
+          "fieldName": "street1",
+          "displayName": "First Site Street (Applies To Linear Or Bounding Streets)",
+          "type": "String",
+          "value": "Value",
+          "max": null
+        },
+        {
+          "fieldName": "street2",
+          "displayName": "Second Site Street (Applies To Linear Or Bounding Streets)",
+          "type": "String",
+          "value": "Value",
+          "max": null
+        },
+        {
+          "fieldName": "street3",
+          "displayName": "Third Site Street (Applies To Linear Or Bounding Streets)",
+          "type": "String",
+          "value": "Value",
+          "max": null
+        },
+        {
+          "fieldName": "street4",
+          "displayName": "Fourth Site Street (Applies To Bounding Streets Only)",
+          "type": "String",
+          "value": "Value",
+          "max": null
+        },
+        {
+          "fieldName": "siteSubdivision",
+          "displayName": "Site Subdivision",
+          "type": "String",
+          "value": "FORBIDDEN FOREST ACRES",
+          "max": null
+        }
+      ]
+    },
+```
 
-** pa811Reference ** - From the suggested reference custom field group.
+**siteWard** - Ward Number (ALLENTOWN CITY, ERIE CITY, PHILADELPHIA CITY, PITTSBURGH CITY).
 
-** pa811Renotify ** - Data specific to a RENOTIFY.
+**streetType** - Intersecting (I), Linear (L), or Bounding (B) work site streets.
+
+**secondIntersection** - The second intersecting street.
+
+**street1** - First Site Street (Applies To Linear Or Bounding Streets).
+
+**street2** - Second Site Street (Applies To Linear Or Bounding Streets).
+
+**street3** - Third Site Street (Applies To Linear Or Bounding Streets).
+
+**street4** - Fourth Site Street (Applies To Bounding Streets Only).
+
+**siteSubdivision** - Site Subdivision.
+
+### Geography
+
+Extended Geography without types and lengths.
+
+```
+    {
+      "groupName": "Geography",
+      "displayName": "Geography",
+      "fields": [
+        {
+          "fieldName": "mapObjectType",
+          "displayName": "Map Object Type (C, N, P, S, X)",
+          "type": "String",
+          "value": "P",
+          "max": 1
+        },
+        {
+          "fieldName": "mapPoints",
+          "displayName": "The latitude/longitude points of the notification area",
+          "type": "String",
+          "value": "40.364854/-79.928984,40.365573/-79.924564,40.360472/-79.923190,40.359524/-79.930057,40.362826/-79.934992",
+          "max": null
+        },
+        {
+          "fieldName": "mapBuffer",
+          "displayName": "The number of feet that should be utilized for buffering",
+          "type": "String",
+          "value": "150",
+          "max": null
+        }
+      ]
+    },
+```    
+
+**mapObjectType** - Map Object Type (C, N, P, S, X).
+
+**mapPoints** - The latitude/longitude points of the notification area.
+
+**mapBuffer** - The number of feet that should be utilized for buffering.
+
+### LocateInformation
+
+Extended LocatInformation without types and lengths.
+
+```
+    {
+      "groupName": "Locateinformation",
+      "displayName": "Locateinformation",
+      "fields": [
+        {
+          "fieldName": "atIntersection",
+          "displayName": "Working at the intersection",
+          "type": "Boolean",
+          "value": "false",
+          "max": null
+        },
+        {
+          "fieldName": "betweenTwoIntersections",
+          "displayName": "Working between two intersections",
+          "type": "Boolean",
+          "value": "false",
+          "max": null
+        },
+        {
+          "fieldName": "isWorkInStreet",
+          "displayName": "Is the work taking place in the street",
+          "type": "Boolean",
+          "value": "false",
+          "max": null
+        },
+        {
+          "fieldName": "isWorkOnSidewalk",
+          "displayName": "Is the work taking place on the sidewalk",
+          "type": "Boolean",
+          "value": "false",
+          "max": null
+        },
+        {
+          "fieldName": "isWorkOnPublicProperty",
+          "displayName": "Is the work taking place on public property",
+          "type": "Boolean",
+          "value": "false",
+          "max": null
+        },
+        {
+          "fieldName": "isWorkOnPrivateProperty",
+          "displayName": "Is the work taking place on private property",
+          "type": "Boolean",
+          "value": "false",
+          "max": null
+        },
+        {
+          "fieldName": "privateFront",
+          "displayName": "Working in the front of private property",
+          "type": "Boolean",
+          "value": "false",
+          "max": null
+        },
+        {
+          "fieldName": "privateRear",
+          "displayName": "Working in the rear of private property",
+          "type": "Boolean",
+          "value": "false",
+          "max": null
+        },
+        {
+          "fieldName": "privateLeft",
+          "displayName": "Working on the left side of private property",
+          "type": "Boolean",
+          "value": "false",
+          "max": null
+        },
+        {
+          "fieldName": "privateRight",
+          "displayName": "Working on the right side of private property",
+          "type": "Boolean",
+          "value": "false",
+          "max": null
+        },
+        {
+          "fieldName": "privateOther",
+          "displayName": "Working in an other section of private property",
+          "type": "String",
+          "value": "Value",
+          "max": 50
+        },
+        {
+          "fieldName": "otherWorkInOrOn",
+          "displayName": "Other area of the work",
+          "type": "String",
+          "value": "Value",
+          "max": 16
+        },
+        {
+          "fieldName": "remarkRequestedForUpdate",
+          "displayName": "Is remarking of the site requested?",
+          "type": "Boolean",
+          "value": "false",
+          "max": null
+        }
+      ]
+    },
+```
+
+**atIntersection** - Working at the intersection.
+
+**betweenTwoIntersections** - Working between two intersections.
+
+**isWorkInStreet** - Is the work taking place in the street.
+
+**isWorkOnSidewalk** - Is the work taking place on the sidewalk.
+
+**isWorkOnPublicProperty** - Is the work taking place on public property.
+
+**isWorkOnPrivateProperty** - Is the work taking place on private property.
+
+**privateFront** - Working in the front of private property.
+
+**privateRear** - Working in the rear of private property.
+
+**privateLeft** - Working on the left side of private property.
+
+**privateRight** - Working on the right side of private property.
+
+**privateOther** - Working in an other section of private property.
+
+**otherWorkInOrOn** - Other area of the work.
+
+**remarkRequestedForUpdate** - Is remarking of the site requested?
+
+### Project
+
+Extended Project without types and lengths.
+
+```
+    {
+      "groupName": "Project",
+      "displayName": "Project",
+      "fields": [
+        {
+          "fieldName": "WorkDepth",
+          "displayName": "Depth Of Excavation",
+          "type": "String",
+          "value": "Value",
+          "max": null
+        },
+        {
+          "fieldName": "workExtent",
+          "displayName": "Extent Of Excavation",
+          "type": "String",
+          "value": "Value",
+          "max": null
+        },
+        {
+          "fieldName": "workMainMethod",
+          "displayName": "Work Main Method",
+          "type": "String",
+          "value": "Value",
+          "max": null
+        },
+        {
+          "fieldName": "jobNumber",
+          "displayName": "Caller\u0027s own job number to associate with the ticket",
+          "type": "String",
+          "value": "Value",
+          "max": null
+        },
+        {
+          "fieldName": "pennDotPermitNo",
+          "displayName": "PENNDOT permit number",
+          "type": "String",
+          "value": "Value",
+          "max": null
+        },
+        {
+          "fieldName": "homeownerCalledForContractor",
+          "displayName": "Did the homeowner call in the notification for the contractor",
+          "type": "Boolean",
+          "value": "false",
+          "max": null
+        },
+        {
+          "fieldName": "nameOfContractorCalledFor",
+          "displayName": "The name of the contractor for which the home owner called in the notification",
+          "type": "String",
+          "value": "Value",
+          "max": null
+        },
+        {
+          "fieldName": "excavationEquipment",
+          "displayName": "Excavation Equipment",
+          "type": "String",
+          "value": "Value",
+          "max": null
+        },
+        {
+          "fieldName": "cpaProjectID",
+          "displayName": "The Coordinate PA Project ID",
+          "type": "Long",
+          "value": "Value",
+          "max": null
+        },
+        {
+          "fieldName": "cpaLocationID",
+          "displayName": "The Coordinate PA Location ID",
+          "type": "Long",
+          "value": "Value",
+          "max": null
+        },
+        {
+          "fieldName": "cpaPhaseID",
+          "displayName": "The Coordinate PA Phase ID",
+          "type": "Long",
+          "value": "Value",
+          "max": null
+        },
+        {
+          "fieldName": "meetingDateTime",
+          "displayName": "The date and time the complex project meeting will occur",
+          "type": "DateTime",
+          "value": "Value",
+          "max": null
+        },
+        {
+          "fieldName": "meetingLocation",
+          "displayName": "The location of the complex project meeting",
+          "type": "String",
+          "value": "Value",
+          "max": null
+        },
+        {
+          "fieldName": "reasonNoMeeting",
+          "displayName": "The reason that no complex project meeting is being requested",
+          "type": "String",
+          "value": "Value",
+          "max": null
+        }
+      ]
+    },
+```
+
+**WorkDepth** - Depth Of Excavation.
+
+**workExtent** - Extent Of Excavation.
+
+**workMainMethod** - Work Main Method.
+
+**jobNumber** - Caller's own job number to associate with the ticket.
+
+**pennDotPermitNo** - PENNDOT permit number.
+
+**homeownerCalledForContractor** - Did the homeowner call in the notification for the contractor.
+
+**nameOfContractorCalledFor** - The name of the contractor for which the home owner called in the notification.
+
+**excavationEquipment** - Excavation Equipment.
+
+**cpaProjectID** - The Coordinate PA Project ID.
+
+**cpaLocationID** - The Coordinate PA Location ID.
+
+**cpaPhaseID** - The Coordinate PA Phase ID.
+
+**meetingDateTime** - The date and time the complex project meeting will occur.
+
+**meetingLocation** - The location of the complex project meeting.
+
+**reasonNoMeeting** - The reason that no complex project meeting is being requested.
+
+### Excavator
+
+Extended Excavator without types and lengths.
+
+```
+    {
+      "groupName": "Excavator",
+      "displayName": "Excavator",
+      "fields": [
+        {
+          "fieldName": "callerFax",
+          "displayName": "Caller\u0027s FAX Number",
+          "type": "String",
+          "value": "Value",
+          "max": null
+        },
+        {
+          "fieldName": "bestTimeToContact",
+          "displayName": "Best Time To Contact",
+          "type": "String",
+          "value": "Value",
+          "max": null
+        },
+        {
+          "fieldName": "callerNameUpdateCancelRenotify",
+          "displayName": "Caller Name for UPDATE/CANCEL/RENOTIFY Ticket",
+          "type": "String",
+          "value": "Value",
+          "max": null
+        },
+        {
+          "fieldName": "onsiteContactEmail",
+          "displayName": "Onsite Contact Email",
+          "type": "String",
+          "value": "Value",
+          "max": null
+        }
+      ]
+    },
+```    
+
+**callerFax** - Caller's FAX Number.
+
+**bestTimeToContact** - Best Time To Contact.
+
+**callerNameUpdateCancelRenotify** - Caller Name for UPDATE/CANCEL/RENOTIFY Ticket.
+
+**onsiteContactEmail** - Onsite Contact Email.
+
+## Additional Custom Field Groups
+
+Some additional custom field groups were created and are prefixed with "pa811." (without types and lengths).
+
+### pa811AddtitionalTicketInformation
+
+Fields applying to the entire ticket, or for data relevant to specific types. This could change depending on how granular the usage of custom field groups becomes.
+
+```
+    {
+      "groupName": "pa811AdditionalTicketInformation",
+      "displayName": "PA811 General Ticket Information",
+      "fields": [
+        {
+          "fieldName": "csrName",
+          "displayName": "Customer Service Representative Name",
+          "type": "String",
+          "value": "REP NAME",
+          "max": null
+        },
+        {
+          "fieldName": "callerHomeOrBusiness",
+          "displayName": "Caller Is Home (H) Or Business (B)",
+          "type": "String",
+          "value": "B",
+          "max": 1
+        },
+        {
+          "fieldName": "Remarks",
+          "displayName": "Remarks for the ticket",
+          "type": "String",
+          "value": "REMARKS FOR ENTIRE TICKET",
+          "max": null
+        },
+        {
+          "fieldName": "calledForDisconnect",
+          "displayName": "Caller has called utility for meter/utility disconnect",
+          "type": "Boolean",
+          "value": "false",
+          "max": null
+        },
+        {
+          "fieldName": "hazardousRelease",
+          "displayName": "Did a hazerdous release occur",
+          "type": "Boolean",
+          "value": "false",
+          "max": null
+        },
+        {
+          "fieldName": "called911",
+          "displayName": "Has caller called 911",
+          "type": "Boolean",
+          "value": "false",
+          "max": null
+        },
+        {
+          "fieldName": "damageIsExposure",
+          "displayName": "Whether the damage caused an exposure of an underground facility",
+          "type": "Boolean",
+          "value": "false",
+          "max": null
+        },
+        {
+          "fieldName": "gasCompanyName",
+          "displayName": "Name of the gas company",
+          "type": "String",
+          "value": "",
+          "max": 40
+        },
+        {
+          "fieldName": "reasonForUpdateCancelRenotify",
+          "displayName": "Reason for UPDATE/CANCEL/RENOTIFY",
+          "type": "String",
+          "value": "REASON WE DID UPDATE/CANCEL/RENOTIFY",
+          "max": null
+        },
+        {
+          "fieldName": "markingsVisible",
+          "displayName": "Are markings visible? (DAMAGE Ticket Type)",
+          "type": "Boolean",
+          "value": "false",
+          "max": null
+        },
+        {
+          "fieldName": "outputMessageWithGeometry",
+          "displayName": "The human readable format of the ticket, including OGC WKT",
+          "type": "String",
+          "value": "Value",
+          "max": null
+        }
+      ]
+    },
+```
+
+**csrName** - Customer Service Representative Name.
+
+**callerHomeOrBusiness** - Caller Is Home (H) Or Business (B).
+
+**Remarks** - Remarks for the ticket.
+
+**calledForDisconnect** - Caller has called utility for meter/utility disconnect.
+
+**hazardousRelease** - Did a hazerdous release occur.
+
+**called911** - Has caller called 911?.
+
+**damageIsExposure** - Whether the damage caused an exposure of an underground facility.
+
+**gasCompanyName** - Name of the gas company.
+
+**reasonForUpdateCancelRenotify** - Reason for UPDATE/CANCEL/RENOTIFY.
+                
+**markingsVisible** - Are markings visible? (DAMAGE Ticket Type).
+                
+**outputMessageWithGeometry** The human readable format of the ticket, including OGC WKT.
+
+### pa811NoOneCall
+
+Data specific to a NO ONE CALL ticket type.
+
+```
+    {
+      "groupName": "pa811NoOneCall",
+      "displayName": "PA811 No One Call",
+      "fields": [
+        {
+          "fieldName": "isEquipmentPresent",
+          "displayName": "Is equipment present at the site? (NO ONE CALL TicketType)",
+          "type": "Boolean",
+          "value": "false",
+          "max": null
+        },
+        {
+          "fieldName": "isActiveDigging",
+          "displayName": "Is there active excavation? (NO ONE CALL Ticket Type)",
+          "type": "Boolean",
+          "value": "false",
+          "max": null
+        },
+        {
+          "fieldName": "nameOnEquipment",
+          "displayName": "Name Written On On-Site Equipment (NO ONE CALL TicketType)",
+          "type": "String",
+          "value": "",
+          "max": null
+        }
+      ]
+    }
+```    
+
+**isEquipmentPresent** - Is equipment present at the site? (NO ONE CALL TicketType).
+
+**isActiveDigging** - Is there active excavation? (NO ONE CALL Ticket Type).
+
+**nameOnEquipment** - Name Written On On-Site Equipment (NO ONE CALL TicketType).
+
+### pa811Reference
+
+From the suggested reference custom field group.
+
+```
+    {
+      "groupName": "pa811Reference",
+      "displayName": "PA811 References",
+      "fields": [
+        {
+          "fieldName": "updateTraceSerialNumber",
+          "displayName": "Serial Number This Ticket Updates",
+          "type": "String",
+          "value": "Value",
+          "max": 11
+        },
+        {
+          "fieldName": "relatedComplexProjectNumber",
+          "displayName": "Related Complex Project Ticket Number",
+          "type": "String",
+          "value": "Value",
+          "max": null
+        },
+        {
+          "fieldName": "attachments",
+          "displayName": "Attachments",
+          "type": "String",
+          "value": "http://www.pa811.org/attachments/20240669042",
+          "max": null
+        }
+      ]
+    },
+```    
+
+**updateTraceSerialNumber** - Serial Number This Ticket Updates.
+
+**relatedComplexProjectNumber** - Related Complex Project Ticket Number.
+
+**attachments** - Attachments.
+
+### pa811Renotify
+
+Data specific to a RENOTIFY ticket type.
+
+```
+    {
+      "groupName": "pa811Renotify",
+      "displayName": "PA811 RENOTIFY Ticket",
+      "fields": [
+        {
+          "fieldName": "rnoCaller",
+          "displayName": "RENOTIFY Ticket Caller Name",
+          "type": "String",
+          "value": "Value",
+          "max": null
+        },
+        {
+          "fieldName": "rnoCallerPhone",
+          "displayName": "RENOTIFY Ticket Caller Phone",
+          "type": "String",
+          "value": "Value",
+          "max": null
+        },
+        {
+          "fieldName": "rnoCallerExt",
+          "displayName": "RENOTIFY Ticket Caller Phone Extension",
+          "type": "String",
+          "value": "Value",
+          "max": null
+        },
+        {
+          "fieldName": "rnoOnsiteContact",
+          "displayName": "RENOTIFY Ticket Onsite Contact Name",
+          "type": "String",
+          "value": "Value",
+          "max": null
+        },
+        {
+          "fieldName": "rnoOnsitePhone",
+          "displayName": "RENOTIFY Ticket Onsite Contact Phone",
+          "type": "String",
+          "value": "Value",
+          "max": null
+        },
+        {
+          "fieldName": "rnoOnsiteExt",
+          "displayName": "RENOTIFY Ticket Onsite Contact Phone Extension",
+          "type": "String",
+          "value": "Value",
+          "max": null
+        },
+        {
+          "fieldName": "rnoOnsiteContactEmail",
+          "displayName": "RENOTIFY Ticket Onsite Contact Email",
+          "type": "String",
+          "value": "Value",
+          "max": null
+        },
+        {
+          "fieldName": "crewOnSite",
+          "displayName": "Is the crew at the site?",
+          "type": "Boolean",
+          "value": "false",
+          "max": null
+        },
+        {
+          "fieldName": "unmarked",
+          "displayName": "Was the site unmarked?",
+          "type": "Boolean",
+          "value": "false",
+          "max": null
+        },
+        {
+          "fieldName": "incorrectlyMarked",
+          "displayName": "Was the site incorrectly marked?",
+          "type": "Boolean",
+          "value": "false",
+          "max": null
+        },
+        {
+          "fieldName": "hasWorkStarted",
+          "displayName": "Has the work started?",
+          "type": "Boolean",
+          "value": "false",
+          "max": null
+        },
+        {
+          "fieldName": "isInitialArrival",
+          "displayName": "Is this the intial arrival to the site?",
+          "type": "Boolean",
+          "value": "false",
+          "max": null
+        },
+        {
+          "fieldName": "rnoRemarks",
+          "displayName": "RENOTIFY Ticket Remarks",
+          "type": "String",
+          "value": "Value",
+          "max": null
+        },
+        {
+          "fieldName": "renotificationTraceCSRName",
+          "displayName": "XXXXXXXXXXXX",
+          "type": "String",
+          "value": "Value",
+          "max": null
+        },
+        {
+          "fieldName": "renotificationTraceChannel",
+          "displayName": "XXXXXXXXXXXX",
+          "type": "String",
+          "value": "Value",
+          "max": null
+        },
+        {
+          "fieldName": "renotificationTraceTicketEntryStart",
+          "displayName": "XXXXXXXXXXXX",
+          "type": "DateTime",
+          "value": "Value",
+          "max": null
+        }
+      ]
+    }
+```
+
+**rnoCaller** - RENOTIFY Ticket Caller Name.
+
+**rnoCallerPhone** - RENOTIFY Ticket Caller Phone.
+
+**rnoCallerExt** - RENOTIFY Ticket Caller Phone Extension.
+
+**rnoOnsiteContact** - RENOTIFY Ticket Onsite Contact Name.
+
+**rnoOnsitePhone** - RENOTIFY Ticket Onsite Contact Phone.
+
+**rnoOnsiteExt** - RENOTIFY Ticket Onsite Contact Phone Extension.
+
+**rnoOnsiteContactEmail** - RENOTIFY Ticket Onsite Contact Email.
+
+**crewOnSite** - Is the crew at the site?
+
+**unmarked** - Was the site unmarked?
+
+**incorrectlyMarked** - Was the site incorrectly marked?
+
+**hasWorkStarted** - Has the work started?
+
+**isInitialArrival** - Is this the intial arrival to the site?
+
+**rnoRemarks** - RENOTIFY Ticket Remarks.
+
+**renotificationTraceCSRName** - XXXXXXXXXXXX.
+
+**renotificationTraceChannel** - XXXXXXXXXXXX.
+
+**renotificationTraceTicketEntryStart** - XXXXXXXXXXXX.
+
 
