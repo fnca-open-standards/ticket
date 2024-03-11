@@ -1,4 +1,4 @@
-# Open Ticket Format
+# Open Ticket Specification
 
 The open ticket format is described here.  
 
