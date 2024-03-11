@@ -49,6 +49,7 @@ The type for custom fields is specified in its Type value as part of its definit
 
 **Response History** – This section shows the response history for this ticket.  Initially, this may be blank.  Any resends of the ticket would contain the response history as of the resend date and time.
 
+**Attachments** - Section to include binary attachments in the file.
 
 # Header
 
@@ -62,7 +63,7 @@ The first section of the JSON format is the header object.   The purpose of the 
     "source": "Voice",
     "type": "Normal",
     "standardType": "Normal",
-    "priority": "Normal ",
+    "priority": "Normal",
     "status": "New",
     "isTest": false,
     "centerName": "GA811",
@@ -106,6 +107,7 @@ It is possible that ticketing systems need to add a ticket version to this heade
 	Emergency – This should be processed before other priority types.
 
 **Status (status)** string (10) - The current status of this ticket, New, Resend, Cancel, or other status supported by the center.
+
 - New – this is the first send of this ticket
 - Resend – this is a resend of a previous ticket
 - Cancel – this is a cancellation of a ticket
@@ -169,10 +171,10 @@ All geographic information is available in this section
 ```
 "geography":{
     "srid": 4326,
-    "longitude": -84.5482687468752,
-    "latitude": 33.8551704136117,
-    "secondaryLongitude": -84.545451253125,
-    "secondaryLatitude": 33.8575195862275,
+    "longitude": -84.548269,
+    "latitude": 33.855170,
+    "secondaryLongitude": -84.545451,
+    "secondaryLatitude": 33.857520,
     "boundaryArea": null,
     "workSiteArea": ["POLYGON((-84.54761 33.85697,-84.54761 33.85572,…))",
                     "POLYGON((…))"],
