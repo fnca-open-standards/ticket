@@ -71,6 +71,27 @@ The first section of the JSON format is the header object.   The purpose of the 
     "centerName": "GA811",
     "memberIds": [
       "GAUPC"
+    ],
+    "trace": [
+      {
+        "dateTime": "2023-08-08T07:32:05.493-04:00",
+        "action": "sent",
+        "host": "GA811 GeoCall"},
+      {
+        "dateTime": "2023-08-08T07:35:26.157-04:00",
+        "action": "received",
+        "host": "BigCity Lights EMC BCSTicket"
+      },
+      {
+        "dateTime": "2023-08-08T10:42:22.736-04:00",
+        "action": "sent",
+        "host": "BigCity Lights EMC BCSTicket",
+      },
+      {
+        "dateTime": "2023-08-08T10:43:01.412-04:00",
+        "action": "received",
+        "host": "Accurate Locating, Inc. Dispatch",
+      }
     ]
   },
 ```
@@ -123,6 +144,14 @@ If this is not implemented by the center’s system, then this flag should indic
 This is helful for routing tickets to the appropriate internal group for the recipient.  For instance, contract locator companies with many customers can use this to route the ticket to the appropriate locator.
 
 Since this format can be used for transmissions of tickets as well as retrieval of tickets by API call, this will only have a value if this is a transmission.
+
+**Trace (trace)** array of trace objects - this section contains the trace information for this ticket.  The trace information is information appended to the ticket by each system that processes a ticket.  This allows for inspecting the path the ticket has taken through various systems.  This information will be more critical as more systems are used for processing and forwarding tickets.
+
+> **DateTime (dateTime)** DateTime - The date and time of the event (ticket send or receive).
+>  
+> **Action (action)** string (20) - typically "send" or "receive".  What action is being taken on the ticket.  Other actions can be specified, such as routing to internal processing or groups.
+> 
+> **Host (host)** string (100) - an identifier to show the organization and host name of the system processing the ticket for this action.
 
 # Work Site
 
@@ -235,6 +264,7 @@ This section should contain all the dates for the ticket.
 ```
 "timeLine": {
     "createdOn": "2023-08-08T07:32:05.493-04:00",
+    "responseDue": "2023-08-11T00:00:00.000-04:00",
     "legalOn": "2023-08-12T07:00:00.000-04:00",
     "workOn": "2023-08-12T07:00:00.000-04:00",
     "updateBy": "2023-09-05T16:30:00.000-04:00",
@@ -242,6 +272,8 @@ This section should contain all the dates for the ticket.
   },
 ```
 **Created On (createdOn)** datetime – The date and time the ticket was created.
+
+**Response Due (responseDue)** datetime - The date and time responses are due for this ticket.  If no time is included, this is assumed to be be inclusive of the entire date (i.e. a due date of 4/1/2024 has all day 4/1/2024 to respond).
 
 **Legal On (legalOn)** datetime – the date and time the ticket is legal to dig.
 
@@ -261,7 +293,9 @@ The project section contains information about the excavation project itself.  W
     "duration": "6 days",
     "workDoneFor": "Someone Else",
     "isDirectionalBoring": false,
-    "isExplosives": false
+    "isExplosives": false,
+    "projectReference": "Demo of Dollar Central # 1435",
+    "excavationDepthInches": 24 
   },
 ```
 
@@ -274,6 +308,10 @@ The project section contains information about the excavation project itself.  W
 **Is Directional Boring (isDirectionalBoring)** boolean – Will directional boring be used?
 
 **Is Explosives (isExplosives)** boolean – Will explosives be used?
+
+**Project Reference (projectReference)** string (100) - This can be used  for a project number, job number, permit number, or project name by the excavator.
+
+**Excavation Depth Inches (excavationDepthInches)** - The excavation depth, in inches.
 
 # Excavator
 
@@ -512,15 +550,19 @@ Attachments to tickets are Base64 encoded binary values contained in a simple ob
 "attachments":[
   {
       "name":"Satellite",
+      "mimeType":"image/png",
       "value":"MIIHNjCCBh6gAwIBAgIQCVe4E0h49mzI0NcSqMy1+jANBgkqhkiG9w0BAQsFADB1"
   },
   {
       "name":"Project Plan",
+      "mimeType":"application/pdf",
       "value":"NTk1OVowgcoxHTAbBgNVBA8MFFByaXZhdGUgT3JnYW5pemF0aW9uMRMwEQYLKwYB"
   }
 ]
 ```
 
 **Name (name)** string (200) - a descriptive name describing the attachment.
+
+**Mime Type (mimeType)** string (255) - the mime type for the binary information stored in the value field (below).  This is needed so the receiver can correctly interpret the binary data.
 
 **Value (value)** text - Base64 encoded binary value.
