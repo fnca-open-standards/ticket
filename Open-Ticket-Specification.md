@@ -201,39 +201,114 @@ All geographic information is available in this section
 
 ```
 "geography":{
-    "srid": 4326,
-    "longitude": -84.548269,
-    "latitude": 33.855170,
-    "secondaryLongitude": -84.545451,
-    "secondaryLatitude": 33.857520,
-    "boundaryArea": null,
-    "workSiteArea": ["POLYGON((-84.54761 33.85697,-84.54761 33.85572,…))",
-                    "POLYGON((…))"],
-    "bufferedArea": ["POLYGON((-84.547642 33.855171,…))"]    
+  "type": "FeatureCollection",
+  "bbox": [-83.782915, 32.630501, -83.780738, 32.632213],
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "excavationSite",
+        "index": 0
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [-83.782266, 32.631388],
+            [-83.781601, 32.631049],
+            [-83.781387, 32.631366],
+            [-83.781961, 32.631664],
+            [-83.782266, 32.631388]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "bufferedSite",
+        "index": 0
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [-83.781694, 32.630506],
+            [-83.781566, 32.630501],
+            [-83.781438, 32.630517],
+            [-83.781317, 32.630555],
+            [-83.781207, 32.630612],
+            [-83.781113, 32.630687],
+            [-83.781038, 32.630776],
+            [-83.780824, 32.631092],
+            [-83.780772, 32.631188],
+            [-83.780743, 32.631291],
+            [-83.780738, 32.631397],
+            [-83.780758, 32.631501],
+            [-83.7808, 32.631601],
+            [-83.780864, 32.631691],
+            [-83.780947, 32.63177],
+            [-83.781047, 32.631834],
+            [-83.781621, 32.632132],
+            [-83.781735, 32.632179],
+            [-83.781857, 32.632206],
+            [-83.781984, 32.632213],
+            [-83.782109, 32.632199],
+            [-83.782229, 32.632164],
+            [-83.782339, 32.63211],
+            [-83.782434, 32.63204],
+            [-83.78274, 32.631764],
+            [-83.782818, 32.631678],
+            [-83.782875, 32.631581],
+            [-83.782908, 32.631475],
+            [-83.782915, 32.631367],
+            [-83.782898, 32.631259],
+            [-83.782855, 32.631157],
+            [-83.78279, 32.631063],
+            [-83.782704, 32.630982],
+            [-83.782601, 32.630917],
+            [-83.781936, 32.630579],
+            [-83.78182, 32.630532],
+            [-83.781694, 32.630506]
+          ]
+        ]
+      }
+    }
+  ]
 },
 ```
 
-**SRID (srid)** integer – This is the Spatial Reference Identifier of the coordinate system used for WKT values.  The best practice is for this to always be 4326 (WGS84). 
+The geography property of the ticket contains the geography for the ticket in a GeoJson compatible form (RFC 7946).
 
-The following 4 fields provide the upper-left and lower-right points of a rectangle that encloses the work site extent.  This rectangle could be created as a polygon in Well-Known-Text (WKT) and sent as the boundaryArea below instead.  This provides two methods of sending the extent information.
+The geographic information for each ticket is a FeatureCollection containing at least two features:
 
-**Longitude (longitude)** float – The longitude of the left-most point of the work site.
+excavationSite - The excavation site as defined by the excavator.
 
-**Latitude (latitude)** float – The latitude of the upper-most point of the work site.
+bufferedSite - The excavation site with the center's buffer applied.
 
-**Secondary Longitude (secondaryLongitude)** float – the longitude of the right-most point of the work site.
+The properties of each of these features include an **id** property with the name *excavationSite* or *bufferedSite* to indicate the type, and a (zero-based) index value to indicate the number of the object if
+there are multiple excavation or buffered sites sent.  For instance, if the ticket has two excavationSites, the properties of the first would be:
 
-**Secondary Latitude (secondaryLatitude)** float – the latitude of the bottom-most point of the work site.
+```
+"properties": {
+    "id": "excavationSite",
+    "index": 0
+```
+And, the second would be:
+```
+"properties": {
+    "id": "excavationSite",
+    "index": 1
+```
+In addition, the FeatureCollection itself has a bounding box property (**(bbox**).  This can be used by the receiver to set a display window that will encompass the entire geometry included in the ticket.
 
-*NOTE: Well Known Text Fields - The following fields contain Well Known Text (WKT) values.  All WKT values are expressed in the WGS84 (SRID 4326) and have a precision of 6 digits (11.1 cm resolution at the equator).*
+**Notes**
+1 GeoJson assumes the coordinate reference system to be WGS84.
 
-*Additionally, any buffered geometry should minimize the number of points used in rounding endcaps.  Reducing the number of points and keeping the precision to 6 digits can speed up processing significantly, which is particularly important for high-volume receivers or pre-screeners.*
+2 Coordinate values should be limited to 6 digits (11.1 cm resolution at the equator).  This should handle the resolution that is needed in the 811 industry, and keeping this limited to 6 digits speeds up processing time for recievers.
 
-**Boundary Area (boundaryArea)** text array – a string array of the well-known-text areas of the work site extent.  
+3 any buffered geometry should minimize the number of points used in rounding endcaps.  Reducing the number of points and keeping the precision to 6 digits can speed up processing significantly, which is particularly important for high-volume receivers or pre-screeners.
 
-**Work Site Area (workSiteArea)** text array – a string array of the the well-known-text of the work site areas.
-
-**Buffered Area (bufferedArea)** text array – a string array of the well-known-text of the buffered work site areas.
 
 # Locate Information
 
