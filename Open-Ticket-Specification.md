@@ -282,9 +282,9 @@ The geography property of the ticket contains the geography for the ticket in a 
 
 The geographic information for each ticket is a FeatureCollection containing at least two features:
 
-excavationSite - The excavation site as defined by the excavator.
+**excavationSite** - The excavation site as defined by the excavator.
 
-bufferedSite - The excavation site with the center's buffer applied.
+**bufferedSite** - The excavation site with the center's buffer applied.
 
 The properties of each of these features include an **id** property with the name *excavationSite* or *bufferedSite* to indicate the type, and a (zero-based) index value to indicate the number of the object if
 there are multiple excavation or buffered sites sent.  For instance, if the ticket has two excavationSites, the properties of the first would be:
@@ -303,11 +303,11 @@ And, the second would be:
 In addition, the FeatureCollection itself has a bounding box property (**(bbox**).  This can be used by the receiver to set a display window that will encompass the entire geometry included in the ticket.
 
 **Notes**
-1 GeoJson assumes the coordinate reference system to be WGS84.
+1. GeoJson assumes the coordinate reference system to be WGS84.
 
-2 Coordinate values should be limited to 6 digits (11.1 cm resolution at the equator).  This should handle the resolution that is needed in the 811 industry, and keeping this limited to 6 digits speeds up processing time for recievers.
+2. Coordinate values should be limited to 6 digits (11.1 cm resolution at the equator).  This should handle the resolution that is needed in the 811 industry, and keeping this limited to 6 digits speeds up processing time for recievers.
 
-3 any buffered geometry should minimize the number of points used in rounding endcaps.  Reducing the number of points and keeping the precision to 6 digits can speed up processing significantly, which is particularly important for high-volume receivers or pre-screeners.
+3. any buffered geometry should minimize the number of points used in rounding endcaps.  Reducing the number of points and keeping the precision to 6 digits can speed up processing significantly, which is particularly important for high-volume receivers or pre-screeners.
 
 
 # Locate Information
