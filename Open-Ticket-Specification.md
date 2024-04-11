@@ -195,20 +195,20 @@ The work site information is all the information regarding where the excavation 
 
 **Intersection (intersection)** string (370) – the name of the nearest intersecting street.
 
-# Geography
+# SpatialArea
 
-All geographic information is available in this section
+All spatial information is available in this section.
 
 ```
-"geography":{
+"spatialArea":{
   "type": "FeatureCollection",
   "bbox": [-83.782915, 32.630501, -83.780738, 32.632213],
   "features": [
     {
       "type": "Feature",
-      "properties": {
-        "id": "excavationSite",
-        "index": 0
+      "id": 0,
+      "properties": {        
+        "layer": "excavationSite"
       },
       "geometry": {
         "type": "Polygon",
@@ -225,9 +225,9 @@ All geographic information is available in this section
     },
     {
       "type": "Feature",
+      "id": 1,      
       "properties": {
-        "id": "bufferedSite",
-        "index": 0
+        "layer": "bufferedSite"        
       },
       "geometry": {
         "type": "Polygon",
@@ -278,36 +278,77 @@ All geographic information is available in this section
 },
 ```
 
-The geography property of the ticket contains the geography for the ticket in a GeoJson compatible form (RFC 7946).
+The spatialArea property of the ticket contains the geography for the ticket in a GeoJson compatible form ([RFC 7946](https://datatracker.ietf.org/doc/html/rfc7946)).
 
-The geographic information for each ticket is a FeatureCollection containing at least two features:
-
-**excavationSite** - The excavation site as defined by the excavator.
-
-**bufferedSite** - The excavation site with the center's buffer applied.
-
-The properties of each of these features include an **id** property with the name *excavationSite* or *bufferedSite* to indicate the type, and a (zero-based) index value to indicate the number of the object if
-there are multiple excavation or buffered sites sent.  For instance, if the ticket has two excavationSites, the properties of the first would be:
+The geographic information for each ticket is a FeatureCollection containing at least two features.  One feature will be the Excavation Site, and the second would be the Buffered Excavation Site.  These features are differentiated by using a "layer" property for the feature. Each feature will be identified as an "excavationSite" or a "bufferedSite".
 
 ```
 "properties": {
-    "id": "excavationSite",
-    "index": 0
+    "layer": "excavationSite"
+}
 ```
-And, the second would be:
+OR
 ```
 "properties": {
-    "id": "excavationSite",
-    "index": 1
+    "layer": "bufferedSite"
+}
 ```
-In addition, the FeatureCollection itself has a bounding box property (**(bbox**).  This can be used by the receiver to set a display window that will encompass the entire geometry included in the ticket.
+
+If a ticket contains multiple excavation areas, then the ticket would have multiple features identified as "excavationSite"s and "bufferedSite"s.
+
+The features also include an **id** which is a (zero-based) index value to indicate the number of the feature that can be used to uniquely identify that feature on the ticket.  This allows senders and receivers to have a way to have a common unique identifier for features when troubleshooting (for instance).
+
+**Multiple Excavation Site Example**
+If there are mulitple shapes that define the excavation site such as a polygon for a power station and a point for a nearby power pole, then the features might look like this (focussing on the Id and Properties of the GeoJson, excluding the actual coordinates for clarity):
+
+```
+"id": 0,
+"properties": {
+    "layer": "excavationSite"
+},
+  "geometry": {
+    "type": "Polygon",
+.
+.
+.
+"id": 1,
+"properties": {
+    "layer": "excavationSite"
+},
+  "geometry": {
+    "type": "Point",
+.
+.
+.
+"id": 2,
+"properties": {
+    "layer": "bufferedSite"
+},
+  "geometry": {
+    "type": "Polygon",
+.
+.
+.
+"id": 3,
+"properties": {
+    "layer": "bufferedSite"
+},
+  "geometry": {
+    "type": "Polygon",
+```
+
+Each feature can be referenced using the id, and each feature identifies with the Layer property if it is either the excavation site, or the buffered excavation site.
+
+**Bounding Box**
+
+In addition, the FeatureCollection itself has a bounding box property (**bbox**).  This can be used by the receiver to set a display window that will encompass the entire geometry included in the ticket.
 
 **Notes**
 1. GeoJson assumes the coordinate reference system to be WGS84.
 
-2. Coordinate values should be limited to 6 digits (11.1 cm resolution at the equator).  This should handle the resolution that is needed in the 811 industry, and keeping this limited to 6 digits speeds up processing time for recievers.
+2. Coordinate values should be limited to 6 digits (11.1 cm resolution at the equator).  This should handle the resolution that is needed in the 811 industry, and keeping this limited to 6 digits speeds up processing time for recievers.  This is the recommendation from the GeoJson spec (section 11.2 Coordinate Precision).
 
-3. any buffered geometry should minimize the number of points used in rounding endcaps.  Reducing the number of points and keeping the precision to 6 digits can speed up processing significantly, which is particularly important for high-volume receivers or pre-screeners.
+3. Any buffered geometry should minimize the number of points used in rounding endcaps.  Reducing the number of points simplifies the calculations needed to be performed, so reduced processing time.
 
 
 # Locate Information
