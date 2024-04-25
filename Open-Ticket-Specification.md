@@ -208,7 +208,7 @@ All spatial information is available in this section.
       "type": "Feature",
       "id": 0,
       "properties": {        
-        "layer": "excavationSite"
+        "objectType": "excavationSite"
       },
       "geometry": {
         "type": "Polygon",
@@ -227,7 +227,7 @@ All spatial information is available in this section.
       "type": "Feature",
       "id": 1,      
       "properties": {
-        "layer": "bufferedSite"        
+        "objectType": "bufferedSite"        
       },
       "geometry": {
         "type": "Polygon",
@@ -280,17 +280,17 @@ All spatial information is available in this section.
 
 The spatialArea property of the ticket contains the geography for the ticket in a GeoJson compatible form ([RFC 7946](https://datatracker.ietf.org/doc/html/rfc7946)).
 
-The geographic information for each ticket is a FeatureCollection containing at least two features.  One feature will be the Excavation Site, and the second would be the Buffered Excavation Site.  These features are differentiated by using a "layer" property for the feature. Each feature will be identified as an "excavationSite" or a "bufferedSite".
+The geographic information for each ticket is a FeatureCollection containing at least two features.  One feature will be the Excavation Site, and the second would be the Buffered Excavation Site.  These features are differentiated by using a "objectType" property for the feature. Each feature will be identified as an "excavationSite" or a "bufferedSite".
 
 ```
 "properties": {
-    "layer": "excavationSite"
+    "objectType": "excavationSite"
 }
 ```
 OR
 ```
 "properties": {
-    "layer": "bufferedSite"
+    "objectType": "bufferedSite"
 }
 ```
 
@@ -304,7 +304,7 @@ If there are mulitple shapes that define the excavation site such as a polygon f
 ```
 "id": 0,
 "properties": {
-    "layer": "excavationSite"
+    "objectType": "excavationSite"
 },
   "geometry": {
     "type": "Polygon",
@@ -316,7 +316,7 @@ If there are mulitple shapes that define the excavation site such as a polygon f
     "layer": "excavationSite"
 },
   "geometry": {
-    "type": "Point",
+    "objectType": "Point",
 .
 .
 .
@@ -325,7 +325,7 @@ If there are mulitple shapes that define the excavation site such as a polygon f
     "layer": "bufferedSite"
 },
   "geometry": {
-    "type": "Polygon",
+    "objectType": "Polygon",
 .
 .
 .
@@ -334,7 +334,7 @@ If there are mulitple shapes that define the excavation site such as a polygon f
     "layer": "bufferedSite"
 },
   "geometry": {
-    "type": "Polygon",
+    "objectType": "Polygon",
 ```
 
 Each feature can be referenced using the id, and each feature identifies with the Layer property if it is either the excavation site, or the buffered excavation site.
