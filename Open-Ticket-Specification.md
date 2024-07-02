@@ -206,11 +206,11 @@ All geometric information is available in this section
     "latitude": 33.855170,
     "secondaryLongitude": -84.545451,
     "secondaryLatitude": 33.857520,
-    "boundaryArea": null,
+    "boundaryArea": Null,
     "workSiteArea": ["POLYGON((-84.54761 33.85697,-84.54761 33.85572,…))",
                     "POLYGON((…))"],
     "bufferedArea": ["POLYGON((-84.547642 33.855171,…))"],
-    "spatialArea":{
+    "geospatialDocument":{
       "type": "FeatureCollection",
       "bbox": [-83.782915, 32.630501, -83.780738, 32.632213],
       "features": [
@@ -311,9 +311,9 @@ The following 4 fields provide the upper-left and lower-right points of a rectan
 
 **Buffered Area (bufferedArea)** text array – a string array of the well-known-text of the buffered work site areas.
 
-# SpatialArea
+# Geospatial Document
 
-The spatialArea property of the ticket contains the geography for the ticket in a GeoJson compatible form ([RFC 7946](https://datatracker.ietf.org/doc/html/rfc7946)).
+The geospatialDocument property of the ticket contains the geospatial information for the ticket in a GeoJson compatible form ([RFC 7946](https://datatracker.ietf.org/doc/html/rfc7946)).  This is an optional section, which can be null.  The purpose of this section is to allow senders to transmit the geospatial information for a ticket in an open standard format that can be used in receiver's GIS systems.
 
 The geographic information for each ticket is a FeatureCollection containing at least two features.  One feature will be the Excavation Site, and the second would be the Buffered Excavation Site.  These features are differentiated by using a "objectType" property for the feature. Each feature will be identified as an "excavationSite" or a "bufferedSite".
 
