@@ -33,7 +33,7 @@ The type for custom fields is specified in its Type value as part of its definit
 
 **Work Site** – information about where the excavation is happening.
 
-**Geography** - all geographic information for the ticket.
+**Geometry** - all geometric information for the ticket.
 
 **Locate Information** – Locate instructions, remarks, and driving directions.  These are needed by the locator to properly locate the facilities.
 
@@ -145,7 +145,7 @@ This is helful for routing tickets to the appropriate internal group for the rec
 
 Since this format can be used for transmissions of tickets as well as retrieval of tickets by API call, this will only have a value if this is a transmission.
 
-**Trace (trace)** array of trace objects - this section contains the trace information for this ticket.  The trace information is information appended to the ticket by each system that processes a ticket.  This allows for inspecting the path the ticket has taken through various systems.  This information will be more critical as more systems are used for processing and forwarding tickets.
+**Trace (trace)** array of trace objects - this section contains the trace information for this ticket.  The optional trace information is appended to the ticket by each system that processes a ticket.  This allows for inspecting the path the ticket has taken through various systems.  This information will be more critical as more systems are used for processing and forwarding tickets.
 
 > **DateTime (dateTime)** DateTime - The date and time of the event (ticket send or receive).
 >  
@@ -210,7 +210,7 @@ All geometric information is available in this section
     "workSiteArea": ["POLYGON((-84.54761 33.85697,-84.54761 33.85572,…))",
                     "POLYGON((…))"],
     "bufferedArea": ["POLYGON((-84.547642 33.855171,…))"],
-    "geospatialDocument":{
+    "geoJson":{
       "type": "FeatureCollection",
       "bbox": [-83.782915, 32.630501, -83.780738, 32.632213],
       "features": [
@@ -311,9 +311,9 @@ The following 4 fields provide the upper-left and lower-right points of a rectan
 
 **Buffered Area (bufferedArea)** text array – a string array of the well-known-text of the buffered work site areas.
 
-# Geospatial Document
+## GeoJson
 
-The geospatialDocument property of the ticket contains the geospatial information for the ticket in a GeoJson compatible form ([RFC 7946](https://datatracker.ietf.org/doc/html/rfc7946)).  This is an optional section, which can be null.  The purpose of this section is to allow senders to transmit the geospatial information for a ticket in an open standard format that can be used in receiver's GIS systems.
+The geoJson property of the ticket contains the geospatial information for the ticket in a GeoJson compatible form ([RFC 7946](https://datatracker.ietf.org/doc/html/rfc7946)).  This is an optional section, which can be null.  The purpose of this section is to allow senders to transmit the geospatial information for a ticket in an open standard format that can be used in receiver's GIS systems.
 
 The geographic information for each ticket is a FeatureCollection containing at least two features.  One feature will be the Excavation Site, and the second would be the Buffered Excavation Site.  These features are differentiated by using a "objectType" property for the feature. Each feature will be identified as an "excavationSite" or a "bufferedSite".
 
@@ -386,14 +386,14 @@ In addition, the FeatureCollection itself has a bounding box property (**bbox**)
 3. Any buffered geometry should minimize the number of points used in rounding endcaps.  Reducing the number of points simplifies the calculations needed to be performed, so reduced processing time.
 
 
-# Locate Information
+# Marking Information
 
 This section contains the information the locator needs to mark facilities at the work site.
 
 ```
-"locateInformation": {
+"markingInformation": {
     "isWhiteLined": false,
-    "locateInstructions": "FRONT RIGHT - DAF",
+    "markingInstructions": "FRONT RIGHT - DAF",
     "remarks": "fdgaewsfa",
     "drivingDirections": ""
   },
@@ -441,18 +441,15 @@ The project section contains information about the excavation project itself.  W
 ```
 "project": {
     "workType": "demolition of a building",
-    "duration": "6 days",
     "workDoneFor": "Someone Else",
     "isDirectionalBoring": false,
     "isExplosives": false,
-    "projectReference": "Demo of Dollar Central # 1435",
-    "excavationDepthInches": 24 
+    "isRoadExcavation: false,
+    "projectReference": "Demo of Dollar Central # 1435"
   },
 ```
 
 **Work Type (workType)** string (300) – the description for the type of work being performed.
-
-**Duration (duration)** string (50) – The duration of the project.
 
 **Work Done For (workDoneFor)** string (100) – The name of the person or company that this excavation is being done for. 
 
@@ -460,9 +457,9 @@ The project section contains information about the excavation project itself.  W
 
 **Is Explosives (isExplosives)** boolean – Will explosives be used?
 
-**Project Reference (projectReference)** string (100) - This can be used  for a project number, job number, permit number, or project name by the excavator.
+**Is Road Excavation (isRoadExcavation)** boolean - Does the excavation involve any work on roads?
 
-**Excavation Depth Inches (excavationDepthInches)** - The excavation depth, in inches.
+**Project Reference (projectReference)** string (100) - This can be used  for a project number, job number, permit number, or project name by the excavator.
 
 # Excavator
 
