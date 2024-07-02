@@ -195,12 +195,12 @@ The work site information is all the information regarding where the excavation 
 
 **Intersection (intersection)** string (370) – the name of the nearest intersecting street.
 
-# Geography
+# Geometry
 
-All geographic information is available in this section
+All geometric information is available in this section
 
 ```
-"geography":{
+"geometry":{
     "srid": 4326,
     "longitude": -84.548269,
     "latitude": 33.855170,
@@ -209,7 +209,83 @@ All geographic information is available in this section
     "boundaryArea": null,
     "workSiteArea": ["POLYGON((-84.54761 33.85697,-84.54761 33.85572,…))",
                     "POLYGON((…))"],
-    "bufferedArea": ["POLYGON((-84.547642 33.855171,…))"]    
+    "bufferedArea": ["POLYGON((-84.547642 33.855171,…))"],
+    "spatialArea":{
+      "type": "FeatureCollection",
+      "bbox": [-83.782915, 32.630501, -83.780738, 32.632213],
+      "features": [
+        {
+          "type": "Feature",
+          "id": 0,
+          "properties": {        
+	    "objectType": "excavationSite"
+          },
+          "geometry": {
+    	     "type": "Polygon",
+	    "coordinates": [
+	      [
+	        [-83.782266, 32.631388],
+	        [-83.781601, 32.631049],
+	        [-83.781387, 32.631366],
+	        [-83.781961, 32.631664],
+	        [-83.782266, 32.631388]
+	      ]
+	    ]
+          }
+        },
+        {
+          "type": "Feature",
+          "id": 1,      
+          "properties": {
+    	    "objectType": "bufferedSite"        
+              },
+          "geometry": {
+	    "type": "Polygon",
+	    "coordinates": [
+	      [
+	        [-83.781694, 32.630506],
+	        [-83.781566, 32.630501],
+	        [-83.781438, 32.630517],
+	        [-83.781317, 32.630555],
+	        [-83.781207, 32.630612],
+	        [-83.781113, 32.630687],
+	        [-83.781038, 32.630776],
+	        [-83.780824, 32.631092],
+	        [-83.780772, 32.631188],
+	        [-83.780743, 32.631291],
+	        [-83.780738, 32.631397],
+	        [-83.780758, 32.631501],
+	        [-83.7808, 32.631601],
+	        [-83.780864, 32.631691],
+	        [-83.780947, 32.63177],
+	        [-83.781047, 32.631834],
+	        [-83.781621, 32.632132],
+	        [-83.781735, 32.632179],
+	        [-83.781857, 32.632206],
+	        [-83.781984, 32.632213],
+	        [-83.782109, 32.632199],
+	        [-83.782229, 32.632164],
+	        [-83.782339, 32.63211],
+	        [-83.782434, 32.63204],
+	        [-83.78274, 32.631764],
+	        [-83.782818, 32.631678],
+	        [-83.782875, 32.631581],
+	        [-83.782908, 32.631475],
+	        [-83.782915, 32.631367],
+	        [-83.782898, 32.631259],
+	        [-83.782855, 32.631157],
+	        [-83.78279, 32.631063],
+	        [-83.782704, 32.630982],
+	        [-83.782601, 32.630917],
+	        [-83.781936, 32.630579],
+	        [-83.78182, 32.630532],
+	        [-83.781694, 32.630506]
+	      ]
+	    ]
+          }
+        }
+      ]
+    },
 },
 ```
 
@@ -234,6 +310,81 @@ The following 4 fields provide the upper-left and lower-right points of a rectan
 **Work Site Area (workSiteArea)** text array – a string array of the the well-known-text of the work site areas.
 
 **Buffered Area (bufferedArea)** text array – a string array of the well-known-text of the buffered work site areas.
+
+# SpatialArea
+
+The spatialArea property of the ticket contains the geography for the ticket in a GeoJson compatible form ([RFC 7946](https://datatracker.ietf.org/doc/html/rfc7946)).
+
+The geographic information for each ticket is a FeatureCollection containing at least two features.  One feature will be the Excavation Site, and the second would be the Buffered Excavation Site.  These features are differentiated by using a "objectType" property for the feature. Each feature will be identified as an "excavationSite" or a "bufferedSite".
+
+```
+"properties": {
+    "objectType": "excavationSite"
+}
+```
+OR
+```
+"properties": {
+    "objectType": "bufferedSite"
+}
+```
+
+If a ticket contains multiple excavation areas, then the ticket would have multiple features identified as "excavationSite"s and "bufferedSite"s.
+
+The features also include an **id** which is a (zero-based) index value to indicate the number of the feature that can be used to uniquely identify that feature on the ticket.  This allows senders and receivers to have a way to have a common unique identifier for features when troubleshooting (for instance).
+
+**Multiple Excavation Site Example**
+If there are mulitple shapes that define the excavation site such as a polygon for a power station and a point for a nearby power pole, then the features might look like this (focussing on the Id and Properties of the GeoJson, excluding the actual coordinates for clarity):
+
+```
+"id": 0,
+"properties": {
+    "objectType": "excavationSite"
+},
+  "geometry": {
+    "type": "Polygon",
+.
+.
+.
+"id": 1,
+"properties": {
+    "layer": "excavationSite"
+},
+  "geometry": {
+    "objectType": "Point",
+.
+.
+.
+"id": 2,
+"properties": {
+    "layer": "bufferedSite"
+},
+  "geometry": {
+    "objectType": "Polygon",
+.
+.
+.
+"id": 3,
+"properties": {
+    "layer": "bufferedSite"
+},
+  "geometry": {
+    "objectType": "Polygon",
+```
+
+Each feature can be referenced using the id, and each feature identifies with the Layer property if it is either the excavation site, or the buffered excavation site.
+
+**Bounding Box**
+
+In addition, the FeatureCollection itself has a bounding box property (**bbox**).  This can be used by the receiver to set a display window that will encompass the entire geometry included in the ticket.
+
+**Notes**
+1. GeoJson assumes the coordinate reference system to be WGS84.
+
+2. Coordinate values should be limited to 6 digits (11.1 cm resolution at the equator).  This should handle the resolution that is needed in the 811 industry, and keeping this limited to 6 digits speeds up processing time for recievers.  This is the recommendation from the GeoJson spec (section 11.2 Coordinate Precision).
+
+3. Any buffered geometry should minimize the number of points used in rounding endcaps.  Reducing the number of points simplifies the calculations needed to be performed, so reduced processing time.
+
 
 # Locate Information
 
