@@ -206,7 +206,7 @@ All geometric information is available in this section
     "latitude": 33.855170,
     "secondaryLongitude": -84.545451,
     "secondaryLatitude": 33.857520,
-    "boundaryArea": Null,
+    "boundaryArea": ["MULITPOINT((-83.782915, 32.630501),(-83.780738, 32.632213))"],
     "workSiteArea": ["POLYGON((-84.54761 33.85697,-84.54761 33.85572,…))",
                     "POLYGON((…))"],
     "bufferedArea": ["POLYGON((-84.547642 33.855171,…))"],
@@ -305,7 +305,7 @@ The following 4 fields provide the upper-left and lower-right points of a rectan
 
 *Additionally, any buffered geometry should minimize the number of points used in rounding endcaps.  Reducing the number of points and keeping the precision to 6 digits can speed up processing significantly, which is particularly important for high-volume receivers or pre-screeners.*
 
-**Boundary Area (boundaryArea)** text array – a string array of the well-known-text areas of the work site extent.  
+**Boundary Area (boundaryArea)** text array – a string array of the well-known-text of the work site extent.  The extent is a rectangle that encompasses the excavation sites on the ticket.  If provided, it is represented by a MULTIPOINT WKT string that contains two points: the lower-left (Southwestern) corner of the rectangle, and the upper-right (Northeastern) corner of the rectangle.  This is similar to the bbox property in GeoJson.
 
 **Work Site Area (workSiteArea)** text array – a string array of the the well-known-text of the work site areas.
 
