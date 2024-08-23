@@ -473,13 +473,23 @@ Information about the excavator, including contact information, is contained in 
     "city": "Duluth",
     "state": "GA",
     "postalCode": "30096",
-    "callerName": "Jake Jones",
-    "callerPhone": "7705559999",
-    "callerPhoneExtension": "",
-    "callerEmail": "",
-    "contactName": "Jake Jones",
-    "contactPhone": "7705559999",
-    "contactPhoneExtension": ""
+    "phoneNumber":"",
+    "contacts":[
+	{
+	   "contactType":"Caller",
+	   "Name":"Jake Jones",	   
+           "Phone": "7705559999",
+           "PhoneExtension": "",
+	   "EmailAddress":""
+	},
+	{
+	   "contactType":"Field Contact",
+	   "Name":"Jake Jones",	   
+           "Phone": "7705559999",
+           "PhoneExtension": "",
+	   "EmailAddress":""
+	},
+    ]
   },
 ```
 
@@ -497,7 +507,7 @@ Information about the excavator, including contact information, is contained in 
 
 **Caller Name (callerName)** string (150)
 
-**Caller Phone (callerPhone)** string (10)
+**Caller Phone (callerPhone)** string (10) - phone number, digits only - no formatting characters
 
 **Caller Phone Extension (callerPhoneExtension)** string (10)
 
@@ -505,7 +515,7 @@ Information about the excavator, including contact information, is contained in 
 
 **Contact Name (contactName)** string (150)
 
-**Contact Phone (contactPhone)** string (10)
+**Contact Phone (contactPhone)** string (10) - phone number, digits only - no formatting characters
 
 **Contact Phone Extension (contactPhoneExtension)** string (10)
 
@@ -522,6 +532,7 @@ If the group name matches an existing ticket section (such as timeLine or workSi
     {
       "groupName": "timeLine",
       "displayName": "Time Line",
+      "isCenterGroup": false,
       "fields": [
         {
           "fieldName": "responseBy",
@@ -542,6 +553,7 @@ If the group name matches an existing ticket section (such as timeLine or workSi
     {
       "groupName": "reference",
       "displayName": "Reference",
+      "isCenterGroup": false,
       "fields": [
         {
           "fieldName": "previousTicketNumber",
