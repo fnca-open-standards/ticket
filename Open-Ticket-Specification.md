@@ -602,7 +602,15 @@ The members that have facilities in the work site area will be listed in this se
       "memberId": "ABC120",
       "memberName": "DEMO CITY GAS - ABC120",
       "facilityTypes": [
-        "Gas"
+	{
+            "typeName": "Gas",
+            "attributes": {
+	    	"color": "yellow",
+		"priority": "standard",
+		"lineType": "3 inch",
+                "lineType": "2 inch"
+	    }
+	}
       ],
       "phoneNumbers": [
         {
