@@ -663,14 +663,14 @@ The members that have facilities in the work site area will be listed in this se
 
 # Response History
 
-This section contains the response history for all the members on the ticket.  This is useful if the ticketing system automatically adds responses in cases (for instance, corrected tickets that add a new member but wants to retain the response history of all others members), or if the ticket is re-sent.
+This section contains the response history for all the members on the ticket, and this will only appear on tickets sent from the center.  This is useful if the ticketing system automatically adds responses in cases (for instance, corrected tickets that add a new member but wants to retain the response history of all others members), or if the ticket is re-sent.
 
 ```
 "responseHistory": [
     {
-      "memberId": "DEMO123",
+      "memberCode": "DEMO123",
       "memberName": "DEMO GAS – DEMO123",
-      "facilities": [
+      "facilityType": [
         "Gas"
       ],
       "responseEntries": [
@@ -679,7 +679,20 @@ This section contains the response history for all the members on the ticket.  T
           "responseCode": "LATE",
           "responseDescription": "Response is late",
           "respondent": "System",
-          "comment": "Added by System"
+          "note": "Added by System",
+	  "attachments":[
+		  {
+		      "name":"Satellite",
+		      "mimeType":"image/png",
+		      "value":"MIIHNjCCBh6gAwIBAgIQCVe4E0h49mzI0NcSqMy1+jANBgkqhkiG9w0BAQsFADB1",
+		      "url":"https://media.georgia811.com/cSqMy1+jAN"
+		  },
+		  {
+		      "name":"Project Plan",
+		      "mimeType":"application/pdf",
+		      "value":"NTk1OVowgcoxHTAbBgNVBA8MFFByaXZhdGUgT3JnYW5pemF0aW9uMRMwEQYLKwYB"
+		  }
+            ]
         }
       ]
     },
@@ -729,7 +742,8 @@ Attachments to tickets are Base64 encoded binary values contained in a simple ob
   {
       "name":"Satellite",
       "mimeType":"image/png",
-      "value":"MIIHNjCCBh6gAwIBAgIQCVe4E0h49mzI0NcSqMy1+jANBgkqhkiG9w0BAQsFADB1"
+      "value":"MIIHNjCCBh6gAwIBAgIQCVe4E0h49mzI0NcSqMy1+jANBgkqhkiG9w0BAQsFADB1",
+      "url":"https://media.georgia811.com/cSqMy1+jAN"
   },
   {
       "name":"Project Plan",
@@ -743,4 +757,7 @@ Attachments to tickets are Base64 encoded binary values contained in a simple ob
 
 **Mime Type (mimeType)** string (255) - the mime type for the binary information stored in the value field (below).  This is needed so the receiver can correctly interpret the binary data.
 
+The attachment can either have a binary value for transmissions to include the actual document OR the URL for a link to the resource.  This can include either Value or URL, or both.
 **Value (value)** text - Base64 encoded binary value.
+
+**URL (url)** text - URL to the "attached" document.
