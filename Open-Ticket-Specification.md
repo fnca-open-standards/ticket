@@ -624,7 +624,13 @@ The members that have facilities in the work site area will be listed in this se
       "memberId": "DEMO230",
       "memberName": "CITY OF DEMO WATER – DEMO230",
       "facilityTypes": [
-        "Water"
+        {
+            "typeName": "Water",
+            "attributes": {
+	    	"color": "blue",		
+		"lineType": "1.5 inch"
+	    }
+	}
       ],
       "phoneNumbers": [
         {
@@ -641,7 +647,11 @@ The members that have facilities in the work site area will be listed in this se
 
 **Member Name (memberName)** string (300) – The member’s name.
 
-**Facility Types (facilityTypes)** string (40) array – This is an array of strings containing the facility types this member operates in the service area represented by the member id (above).
+**Facility Types (facilityTypes)** array – This is an array of facility objects containing the facility types this member operates in the service area represented by the member id (above).
+  
+  **Type Name (typeName)** string (40) - the name of the facility type, such as Electric, Water, Sewer, Telecom, etc.
+  
+  **Attributes (attributes)** name/value pairs - these are name/value pairs allowing the center to add additional information about the facility that may be useful for the excavator.  This is similar to the Foreign Members feature of GeoJSON.  These can be used to describe the APWA color for that facility, or the types of line (diameter, material, etc.), or any other information.
 
 **Phone Numbers (phoneNumbers)** array – this is an array of phone number objects containing phone information for the member.  These objects contain the following information:
 
