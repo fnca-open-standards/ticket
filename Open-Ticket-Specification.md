@@ -1,12 +1,12 @@
 # Open Ticket Specification
 
-The open ticket format is described here.  
+The Open Ticket is a JSON format that can be used to send and receive 811 tickets.  Traditionally, tickets are sent in formats like text, html, xml, and json to recipients, but those are formats defined by each center.  The Open Ticket is an open specification that allows any 811 ticket to be represented in a common JSON format.  This includes any ticket type with any number of custom fields.  
 
-Fields that are common to all tickets are standardized and placed in sections for organization.  These are the "Core" fields for tickets.
+Fields that are common to all tickets (like a Ticket Number, Excavator information, and work site information) are standardized and placed in sections for organization.  These are the "Core" fields for tickets.
 
-Fields that are custom to a center are contained in the custom field groups section after all the core ticket sections.
+Fields that are custom to a center are contained in the custom field groups section after all the core ticket sections.  The custom fields are sent with their names, types, values, and other meta-data to instruct the receiver on what the field represents and where it belongs on the ticket.
 
-Each section includes a description of what that section contains, followed by a sample in JSON format.  Finally, each field in the section is described along with its data type and maximum length (for strings).
+Each section below includes a description of what that section contains, followed by a sample in JSON format.  Finally, each field in the section is described along with its data type and maximum length (for strings).
 
 
 ## Data Types
