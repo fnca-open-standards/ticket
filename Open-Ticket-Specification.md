@@ -683,8 +683,7 @@ This section contains the response history for all the members on the ticket, an
 	  "attachments":[
 		  {
 		      "name":"Satellite",
-		      "mimeType":"image/png",
-		      "value":"MIIHNjCCBh6gAwIBAgIQCVe4E0h49mzI0NcSqMy1+jANBgkqhkiG9w0BAQsFADB1",
+		      "mimeType":"image/png",		      
 		      "url":"https://media.georgia811.com/cSqMy1+jAN"
 		  },
 		  {
@@ -708,7 +707,7 @@ This section contains the response history for all the members on the ticket, an
           "responseCode": "LATE",
           "responseDescription": "Response is late",
           "respondent": "System",
-          "comment": "Added by System"
+          "Note": "Added by System"
         }
       ]
     }
@@ -731,9 +730,21 @@ This section contains the response history for all the members on the ticket, an
 
    **Respondent (respondent)** string (255) – the username or other identifier for the responder.
 
-   **Comment (comment)** string (1000) – any comments added by the respondent.
+   **Note (note)** string (1000) – any comments or notes added by the respondent.
+   
+   **Attachments (attachments)** - array of attachment objects that are attached to this response.  Attachment objects have the following properties:
+   
+   - **Name (name)** string (200) - a descriptive name describing the attachment.
 
-# Attachments
+   - **Mime Type (mimeType)** string (255) - the mime type for the binary information stored in the value field (below).  This is needed so the receiver can correctly interpret the binary data.
+   
+   - **Value (value)** text - Base64 encoded binary value.
+ 
+   - **URL (url)** text - URL to the "attached" document.
+
+*Note: The attachment can either have a binary value for transmissions to include the actual document OR the URL for a link to the resource.  This can include either Value or URL, or both.*
+
+# Attachments (Ticket Attachments)
 
 Attachments to tickets are Base64 encoded binary values contained in a simple object collection where the object has a name and a value.
 
@@ -757,7 +768,8 @@ Attachments to tickets are Base64 encoded binary values contained in a simple ob
 
 **Mime Type (mimeType)** string (255) - the mime type for the binary information stored in the value field (below).  This is needed so the receiver can correctly interpret the binary data.
 
-The attachment can either have a binary value for transmissions to include the actual document OR the URL for a link to the resource.  This can include either Value or URL, or both.
+*The attachment can either have a binary value for transmissions to include the actual document OR the URL for a link to the resource.  This can include either Value or URL, or both.*
+
 **Value (value)** text - Base64 encoded binary value.
 
 **URL (url)** text - URL to the "attached" document.
