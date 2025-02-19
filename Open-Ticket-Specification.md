@@ -76,7 +76,7 @@ The first section of the JSON format is the header object.   The purpose of the 
       {
         "dateTime": "2023-08-08T07:32:05.493-04:00",
         "action": "sent",
-        "host": "GA811 GeoCall"},
+        "host": "GA811 GeoCall",
       {
         "dateTime": "2023-08-08T07:35:26.157-04:00",
         "action": "received",
