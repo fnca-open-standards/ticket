@@ -56,7 +56,8 @@ The type for custom fields is specified in its Type value as part of its definit
 The first section of the JSON format is the header object.   The purpose of the header is to identify the ticket and other data regarding the transmission.  The inspiration for this section is that of an IP header that contains information about the delivery and routing of an IP packet.  In this case, it is about the delivery and potential routing of a ticket.
 
 ```
-"header": {
+{
+  "header": {
     "formatVersion": "0.5",
     "ticketNumber": "230815-001003",
     "ticketVersion": 0,
@@ -76,7 +77,8 @@ The first section of the JSON format is the header object.   The purpose of the 
       {
         "dateTime": "2023-08-08T07:32:05.493-04:00",
         "action": "sent",
-        "host": "GA811 GeoCall",
+        "host": "GA811 GeoCall"
+      },
       {
         "dateTime": "2023-08-08T07:35:26.157-04:00",
         "action": "received",
@@ -85,12 +87,12 @@ The first section of the JSON format is the header object.   The purpose of the 
       {
         "dateTime": "2023-08-08T10:42:22.736-04:00",
         "action": "sent",
-        "host": "BigCity Lights EMC BCSTicket",
+        "host": "BigCity Lights EMC BCSTicket"
       },
       {
         "dateTime": "2023-08-08T10:43:01.412-04:00",
         "action": "received",
-        "host": "Accurate Locating, Inc. Dispatch",
+        "host": "Accurate Locating, Inc. Dispatch"
       }
     ]
   },
@@ -285,7 +287,7 @@ All geometric information is available in this section
           }
         }
       ]
-    },
+    }
 },
 ```
 
@@ -444,7 +446,7 @@ The project section contains information about the excavation project itself.  W
     "workDoneFor": "Someone Else",
     "isDirectionalBoring": false,
     "isExplosives": false,
-    "isRoadExcavation: false,
+    "isRoadExcavation": false,
     "projectReference": "Demo of Dollar Central # 1435"
   },
 ```
@@ -488,7 +490,7 @@ Information about the excavator, including contact information, is contained in 
            "Phone": "7705559999",
            "PhoneExtension": "",
 	   "EmailAddress":""
-	},
+	}
     ]
   },
 ```
@@ -571,7 +573,7 @@ If the group name matches an existing ticket section (such as timeLine or workSi
         }
       ]
     }
-  ]
+  ],
 ```
 
 Each group within this section has these properties:
@@ -607,8 +609,7 @@ The members that have facilities in the work site area will be listed in this se
             "attributes": {
 	    	"color": "yellow",
 		"priority": "standard",
-		"lineType": "3 inch",
-                "lineType": "2 inch"
+		"lineType": "3 inch"
 	    }
 	}
       ],
@@ -640,7 +641,7 @@ The members that have facilities in the work site area will be listed in this se
         }
       ]
     }
-  ]
+  ],
 ```
 
 **Member Id (memberId)** string (10) – The alphanumeric value representing the service area for the member.
@@ -711,7 +712,7 @@ This section contains the response history for all the members on the ticket, an
         }
       ]
     }
-  ]
+  ],
 ```
 
 **Member Id (memberId)** string (10) – the alphanumeric value that identifies the members facilities.
