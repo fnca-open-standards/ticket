@@ -476,7 +476,7 @@ Information about the excavator, including contact information, is contained in 
     "state": "GA",
     "postalCode": "30096",
     "phoneNumber":"",
-    "contacts":[
+    "contactList":[
 	{
 	   "contactType":"Caller",
 	   "Name":"Jake Jones",	   
@@ -507,35 +507,36 @@ Information about the excavator, including contact information, is contained in 
 
 **Postal Code (postalCode)** string (5)
 
-**Caller Name (callerName)** string (150)
+**ContactList (contactList)** array of Contacts
 
-**Caller Phone (callerPhone)** string (10) - phone number, digits only - no formatting characters
+**Contact**
 
-**Caller Phone Extension (callerPhoneExtension)** string (10)
+- **Contact Type (contactType)** string (40) - Type of excavator contact, such as Caller or Field Contact.
 
-**Caller Email (callerEmail)** string (255)
+- **Name (name)** string (150) - the full name of the excavator contact.
 
-**Contact Name (contactName)** string (150)
+- **Phone (phone)** string (10) - phone number, digits only - no formatting characters.
 
-**Contact Phone (contactPhone)** string (10) - phone number, digits only - no formatting characters
+- **Phone Extension (phoneExtension)** string (10) - Phone extension for the contact.
 
-**Contact Phone Extension (contactPhoneExtension)** string (10)
+- **Email (email)** string (255) - Email address for the contact.
 
-**Contact Email (contactEmail)** string (255)
 
-# Custom Field Groups
+# Custom Field Group List
 
 Custom fields are listed in this section.  Custom fields are contained within a group which defines a group name, display name, and then the list of custom fields.
 
 If the group name matches an existing ticket section (such as timeLine or workSite) then that custom field is intended to be displayed in the same section as the other fields in that section by the receiving system.  If it does not match, then the fields in that group are intended to be displayed in a new, supplemental section.  It is intended that the name of that new group would be what is in the Display Name property for that group.
 
+Members can add their own field groups after receiving an Open Ticket.  For instance, if a member has a system that calculates risk on a ticket, that risk information can be added to an open ticket by using a new custom field group that includes the risk score and other information before passing that information along to a traditional ticket management system.  To identify what field groups were sent by the center, there is a "isCenterCreated" flag on each field group. This will be set to true for all field groups sent by the 811 center.  All other field groups should have this set to False.
+
 ```
-"customFieldGroups": [
+"customFieldGroupList": [
     {
       "groupName": "timeLine",
       "displayName": "Time Line",
-      "isCenterGroup": false,
-      "fields": [
+      "isCenterCreated": true,
+      "fieldList": [
         {
           "fieldName": "responseBy",
           "displayName": "Response By",
@@ -555,8 +556,8 @@ If the group name matches an existing ticket section (such as timeLine or workSi
     {
       "groupName": "reference",
       "displayName": "Reference",
-      "isCenterGroup": false,
-      "fields": [
+      "isCenterCreated": true,
+      "fieldList": [
         {
           "fieldName": "previousTicketNumber",
           "displayName": "Previous Ticket Number",
@@ -582,28 +583,30 @@ Each group within this section has these properties:
 
 **Display Name (displayName)** string (100) – This is a human friendly name for the group that can also be used in the receiving system’s user interface.
 
-**Fields (fields)** – this is an array of custom fields, each with the following properties:
+**Is Center Created (isCenterCreated)** boolean - True for all field groups that were added by the center.  Any field groups added by other systems should set this to False.
 
-   **Field Name (fieldName)** string (100) – This is a computer-friendly name that can be used as a key value for the receiving system.  This should not contain special characters or spaces.
+**Field List (fieldList)** – this is an array of custom fields, each with the following properties:
 
-   **Display Name (displayName)** string (100) – The display name of the custom field as it should appear to anyone viewing the information.
+- **Field Name (fieldName)** string (100) – This is a computer-friendly name that can be used as a key value for the receiving system.  This should not contain special characters or spaces.
 
-   **Type (type)** string (20) – The type of information this field contains, such as String for text, DateTime for date/time values, Boolean for true/false values, Integer for a whole number value, or Number for a numeric value containing a decimal portion.  See Appendix A for value types.
+- **Display Name (displayName)** string (100) – The display name of the custom field as it should appear to anyone viewing the information.
 
-   **Value (value)** string (4000) – This is a textual representation of the value.  This can be used in combination with the Type above to translate the value into an appropriate native representation of that value on the receiving system.  So, an integer can be translated from the text value here into a native integer data type variable so that it can be used appropriately.  If that custom field does not have a value, this attribute will be “null”.
+- **Type (type)** string (20) – The type of information this field contains, such as String for text, DateTime for date/time values, Boolean for true/false values, Integer for a whole number value, or Number for a numeric value containing a decimal portion.  See Appendix A for value types.
 
-   **Max (max)** integer – The maximum number of characters the value can have, or the maximum value for a numeric field.
+- **Value (value)** string (4000) – This is a textual representation of the value.  This can be used in combination with the Type above to translate the value into an appropriate native representation of that value on the receiving system.  So, an integer can be translated from the text value here into a native integer data type variable so that it can be used appropriately.  If that custom field does not have a value, this attribute will be “null”.
 
-# Members
+- **Max (max)** integer – The maximum number of characters the value can have, or the maximum value for a numeric field.
+
+# Member List
 
 The members that have facilities in the work site area will be listed in this section, including their names and phone numbers.  This section is a list of member items.  The sample section contains two members:
 
 ```
-"members": [
+"memberList": [
     {
       "memberId": "ABC120",
       "memberName": "DEMO CITY GAS - ABC120",
-      "facilityTypes": [
+      "facilityTypeList": [
 	{
             "typeName": "Gas",
             "attributes": {
@@ -624,7 +627,7 @@ The members that have facilities in the work site area will be listed in this se
     {
       "memberId": "DEMO230",
       "memberName": "CITY OF DEMO WATER – DEMO230",
-      "facilityTypes": [
+      "facilityTypeList": [
         {
             "typeName": "Water",
             "attributes": {
@@ -648,19 +651,19 @@ The members that have facilities in the work site area will be listed in this se
 
 **Member Name (memberName)** string (300) – The member’s name.
 
-**Facility Types (facilityTypes)** array – This is an array of facility objects containing the facility types this member operates in the service area represented by the member id (above).
+**Facility Type List (facilityTypeList)** array – This is an array of facility objects containing the facility types this member operates in the service area represented by the member id (above).
   
-  **Type Name (typeName)** string (40) - the name of the facility type, such as Electric, Water, Sewer, Telecom, etc.
+-  **Type Name (typeName)** string (40) - the name of the facility type, such as Electric, Water, Sewer, Telecom, etc.
   
-  **Attributes (attributes)** name/value pairs - these are name/value pairs allowing the center to add additional information about the facility that may be useful for the excavator.  This is similar to the Foreign Members feature of GeoJSON.  These can be used to describe the APWA color for that facility, or the types of line (diameter, material, etc.), or any other information.
+-  **Attributes (attributes)** name/value pairs - these are name/value pairs allowing the center to add additional information about the facility that may be useful for the excavator.  This is similar to the Foreign Members feature of GeoJSON.  These can be used to describe the APWA color for that facility, or the types of line (diameter, material, etc.), or any other information.
 
 **Phone Numbers (phoneNumbers)** array – this is an array of phone number objects containing phone information for the member.  These objects contain the following information:
 
-   **Phone (phone)** string (10) – The phone number.
+- **Phone (phone)** string (10) – The phone number.
 
-   **Extension (extension)** string (10) – The extension.
+- **Extension (extension)** string (10) – The extension.
 
-   **Type (type)** string (20) – The type of phone number.  For instance, “Main” would be the phone number for most contact types, but many members have a “Damage” number that should be called to report any damages.
+- **Type (type)** string (20) – The type of phone number.  For instance, “Main” would be the phone number for most contact types, but many members have a “Damage” number that should be called to report any damages.
 
 # Response History
 
@@ -674,7 +677,7 @@ This section contains the response history for all the members on the ticket, an
       "facilityType": [
         "Gas"
       ],
-      "responseEntries": [
+      "responseList": [
         {
           "responseDate": "2023-08-19T00:10:01.620-04:00",
           "responseCode": "LATE",
@@ -685,7 +688,7 @@ This section contains the response history for all the members on the ticket, an
 		  {
 		      "name":"Satellite",
 		      "mimeType":"image/png",		      
-		      "url":"https://media.georgia811.com/cSqMy1+jAN"
+		      "uri":"https://media.tickethost.com/cSqMy1+jAN"
 		  },
 		  {
 		      "name":"Project Plan",
@@ -702,7 +705,7 @@ This section contains the response history for all the members on the ticket, an
       "facilities": [
         "Water"
       ],
-      "responseEntries": [
+      "responseList": [
         {
           "responseDate": "2023-08-19T00:10:02.167-04:00",
           "responseCode": "LATE",
@@ -721,41 +724,40 @@ This section contains the response history for all the members on the ticket, an
 
 **Facilities (facilities)** string (40) array – a string array of the facility types for this member’s response
 
-**Response Entries (responseEntries)** – an array of responses, each containing the following fields:
+**Response List (responseList)** – an array of responses, each containing the following fields:
 
-   **Response Date (responseDate)** datetime – the date/time the response was recorded
+- **Response Date (responseDate)** datetime – the date/time the response was recorded
 
-   **Response Code (responseCode)** string (10) – the name or code of the response.
+- **Response Code (responseCode)** string (10) – the name or code of the response.
 
-   **Response Description (responseDescription)** string (300) – the full meaning of the response.
+- **Response Description (responseDescription)** string (300) – the full meaning of the response.
 
-   **Respondent (respondent)** string (255) – the username or other identifier for the responder.
+- **Respondent (respondent)** string (255) – the username or other identifier for the responder.
 
-   **Note (note)** string (1000) – any comments or notes added by the respondent.
+- **Note (note)** string (1000) – any comments or notes added by the respondent.
    
-   **Attachments (attachments)** - array of attachment objects that are attached to this response.  Attachment objects have the following properties:
+- **AttachmentList (attachmentList)** - array of attachment objects that are attached to this response.  Attachment objects have the following properties:
    
-   - **Name (name)** string (200) - a descriptive name describing the attachment.
+- - **Name (name)** string (200) - a descriptive name describing the attachment.
 
-   - **Mime Type (mimeType)** string (255) - the mime type for the binary information stored in the value field (below).  This is needed so the receiver can correctly interpret the binary data.
+- - **Mime Type (mimeType)** string (255) - the mime type for the binary information stored in the value field (below).  This is needed so the receiver can correctly interpret the binary data.
    
-   - **Value (value)** text - Base64 encoded binary value.
+- - **Value (value)** text - Base64 encoded binary value.
  
-   - **URL (url)** text - URL to the "attached" document.
+- - **URI (uri)** text - URL to the "attached" document.
 
 *Note: The attachment can either have a binary value for transmissions to include the actual document OR the URL for a link to the resource.  This can include either Value or URL, or both.*
 
-# Attachments (Ticket Attachments)
+# AttachmentList (Attachments to tickets)
 
-Attachments to tickets are Base64 encoded binary values contained in a simple object collection where the object has a name and a value.
+Attachments to tickets can be URI links or Base64 encoded binary values contained in a simple object collection.  If a document is directly attached, then the base64 encoded binary informaiton should be in the "value" property.  If the document is a URI reference, the value should be in the "uri" property instead.
 
 ```
-"attachments":[
+"attachmentList":[
   {
       "name":"Satellite",
       "mimeType":"image/png",
-      "value":"MIIHNjCCBh6gAwIBAgIQCVe4E0h49mzI0NcSqMy1+jANBgkqhkiG9w0BAQsFADB1",
-      "url":"https://media.georgia811.com/cSqMy1+jAN"
+      "uri":"https://media.tickethost.com/cSqMy1+jAN"
   },
   {
       "name":"Project Plan",
@@ -769,8 +771,6 @@ Attachments to tickets are Base64 encoded binary values contained in a simple ob
 
 **Mime Type (mimeType)** string (255) - the mime type for the binary information stored in the value field (below).  This is needed so the receiver can correctly interpret the binary data.
 
-*The attachment can either have a binary value for transmissions to include the actual document OR the URL for a link to the resource.  This can include either Value or URL, or both.*
-
 **Value (value)** text - Base64 encoded binary value.
 
-**URL (url)** text - URL to the "attached" document.
+**URI (uri)** text - URL to the "attached" document.
