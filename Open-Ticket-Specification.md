@@ -208,7 +208,7 @@ All geometric information is available in this section
     "latitude": 33.855170,
     "secondaryLongitude": -84.545451,
     "secondaryLatitude": 33.857520,
-    "boundaryArea": ["MULITPOINT((-83.782915, 32.630501),(-83.780738, 32.632213))"],
+    "boundaryArea": ["MULTIPOINT((-83.782915, 32.630501),(-83.780738, 32.632213))"],
     "workSiteArea": ["POLYGON((-84.54761 33.85697,-84.54761 33.85572,…))",
                     "POLYGON((…))"],
     "bufferedArea": ["POLYGON((-84.547642 33.855171,…))"],
@@ -336,7 +336,7 @@ If a ticket contains multiple excavation areas, then the ticket would have multi
 The features also include an **id** which is a (zero-based) index value to indicate the number of the feature that can be used to uniquely identify that feature on the ticket.  This allows senders and receivers to have a way to have a common unique identifier for features when troubleshooting (for instance).
 
 **Multiple Excavation Site Example**
-If there are mulitple shapes that define the excavation site such as a polygon for a power station and a point for a nearby power pole, then the features might look like this (focussing on the Id and Properties of the GeoJson, excluding the actual coordinates for clarity):
+If there are multiple shapes that define the excavation site such as a polygon for a power station and a point for a nearby power pole, then the features might look like this (focussing on the Id and Properties of the GeoJson, excluding the actual coordinates for clarity):
 
 ```
 "id": 0,
@@ -415,7 +415,7 @@ This section should contain all the dates for the ticket.
 *All dates should be transmitted in ISO 8601 format with time zone information.  For greatest compatibility, use millisecond precision (3 decimal places of precision).  For a discussion on time precision between programming languages, visit (https://nickb.dev/blog/iso8601-and-nanosecond-precision-across-languages/)*.
 
 ```
-"timeLine": {
+"timeline": {
     "createdOn": "2023-08-08T07:32:05.493-04:00",
     "responseDue": "2023-08-11T00:00:00.000-04:00",
     "legalOn": "2023-08-12T07:00:00.000-04:00",
@@ -446,7 +446,7 @@ The project section contains information about the excavation project itself.  W
     "workDoneFor": "Someone Else",
     "isDirectionalBoring": false,
     "isExplosives": false,
-    "isRoadExcavation": false,
+    "isRoadWork": false,
     "projectReference": "Demo of Dollar Central # 1435"
   },
 ```
@@ -459,7 +459,7 @@ The project section contains information about the excavation project itself.  W
 
 **Is Explosives (isExplosives)** boolean – Will explosives be used?
 
-**Is Road Excavation (isRoadExcavation)** boolean - Does the excavation involve any work on roads?
+**Is Road Work (isRoadWork)** boolean - Does the excavation involve any work on roads?
 
 **Project Reference (projectReference)** string (100) - This can be used  for a project number, job number, permit number, or project name by the excavator.
 
@@ -672,9 +672,9 @@ This section contains the response history for all the members on the ticket, an
 ```
 "responseHistory": [
     {
-      "memberCode": "DEMO123",
+      "memberId": "DEMO123",
       "memberName": "DEMO GAS – DEMO123",
-      "facilityType": [
+      "facilityTypeList": [
         "Gas"
       ],
       "responseList": [
@@ -684,7 +684,7 @@ This section contains the response history for all the members on the ticket, an
           "responseDescription": "Response is late",
           "respondent": "System",
           "note": "Added by System",
-	  "attachments":[
+	  "attachmentList":[
 		  {
 		      "name":"Satellite",
 		      "mimeType":"image/png",		      
@@ -702,7 +702,7 @@ This section contains the response history for all the members on the ticket, an
     {
       "memberId": "ABC999",
       "memberName": "CITY OF DEMO WATER – DEMO999",
-      "facilities": [
+      "facilityTypeList": [
         "Water"
       ],
       "responseList": [
@@ -722,7 +722,7 @@ This section contains the response history for all the members on the ticket, an
 
 **Member Name (memberName)** string (300) – the name of the utility company that this response is for.
 
-**Facilities (facilities)** string (40) array – a string array of the facility types for this member’s response
+**Facility Type List (facilityTypeList)** string (40) array – a string array of the facility types for this member’s response
 
 **Response List (responseList)** – an array of responses, each containing the following fields:
 
@@ -750,7 +750,7 @@ This section contains the response history for all the members on the ticket, an
 
 # AttachmentList (Attachments to tickets)
 
-Attachments to tickets can be URI links or Base64 encoded binary values contained in a simple object collection.  If a document is directly attached, then the base64 encoded binary informaiton should be in the "value" property.  If the document is a URI reference, the value should be in the "uri" property instead.
+Attachments to tickets can be URI links or Base64 encoded binary values contained in a simple object collection.  If a document is directly attached, then the base64 encoded binary information should be in the "value" property.  If the document is a URI reference, the value should be in the "uri" property instead.
 
 ```
 "attachmentList":[
