@@ -143,7 +143,7 @@ If this is not implemented by the center’s system, then this flag should indic
 
 **Member Ids (memberIds)** string (10) array – this is an array of string values containing the alphanumeric member identifiers for the facilities included in this transmission.  This allows a single ticket to be delivered for multiple facilities for a single operator.  For instance, a member who operates water and sewer facilities may receive a single ticket that includes the codes for the water and sewer facilities they operate, so this would contain both member ids corresponding to those facilities.
 
-This is helful for routing tickets to the appropriate internal group for the recipient.  For instance, contract locator companies with many customers can use this to route the ticket to the appropriate locator.
+This is helpful for routing tickets to the appropriate internal group for the recipient.  For instance, contract locator companies with many customers can use this to route the ticket to the appropriate locator.
 
 Since this format can be used for transmissions of tickets as well as retrieval of tickets by API call, this will only have a value if this is a transmission.
 
