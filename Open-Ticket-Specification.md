@@ -291,7 +291,7 @@ All geometric information is available in this section
 },
 ```
 
-**SRID (srid)** integer – This is the Spatial Reference Identifier of the coordinate system used for WKT values.  The best practice is for this to always be 4326 (WGS84). 
+**SRID (srid)** integer – This is the Spatial Reference Identifier of the coordinate system used for WKT values.  This must always be 4326 (WGS84) to ensure the same coordinate system is used as any GeoJSON transmitted with the ticket.  This field is here to be explicit and ensure the same SRID is used.  If a ticket uses a different value, it should be considered invalid.
 
 The following 4 fields provide the upper-left and lower-right points of a rectangle that encloses the work site extent.  This rectangle could be created as a polygon in Well-Known-Text (WKT) and sent as the boundaryArea below instead.  This provides two methods of sending the extent information.
 
@@ -515,7 +515,7 @@ Information about the excavator, including contact information, is contained in 
 
 - **Name (name)** string (150) - the full name of the excavator contact.
 
-- **Phone (phone)** string (10) - phone number, digits only - no formatting characters.
+- **Phone (phone)** string (15) - phone number, digits only - no formatting characters.  15 digits to allow E.164 standard phone numbers.
 
 - **Phone Extension (phoneExtension)** string (10) - Phone extension for the contact.
 
@@ -559,18 +559,32 @@ Members can add their own field groups after receiving an Open Ticket.  For inst
       "isCenterCreated": true,
       "fieldList": [
         {
-          "fieldName": "previousTicketNumber",
-          "displayName": "Previous Ticket Number",
-          "type": "String",
-          "value": null,
-          "max": 50
+          "fieldName": "updateNumber",
+          "displayName": "Update Number",
+          "type": "integer",
+          "value": 2,
+          "max": 99
         },
         {
-          "fieldName": "originalTicketNumber",
-          "displayName": "Original Ticket Number",
+          "fieldName": "riskScore",
+          "displayName": "Risk Score",
+          "type": "Float",
+          "value": 77.6,
+          "max": 150
+        },
+	{
+          "fieldName": "HasGasFacilities",
+          "displayName": "Has Gas Facilities",
+          "type": "Boolean",
+          "value": false,
+          "max": null
+        },
+	{
+          "fieldName": "projectDescription",
+          "displayName": "Project Description",
           "type": "String",
-          "value": "230815-001002",
-          "max": 50
+          "value": null,
+          "max": 500
         }
       ]
     }
@@ -593,9 +607,22 @@ Each group within this section has these properties:
 
 - **Type (type)** string (20) – The type of information this field contains, such as String for text, DateTime for date/time values, Boolean for true/false values, Integer for a whole number value, or Number for a numeric value containing a decimal portion.  See Appendix A for value types.
 
-- **Value (value)** string (4000) – This is a textual representation of the value.  This can be used in combination with the Type above to translate the value into an appropriate native representation of that value on the receiving system.  So, an integer can be translated from the text value here into a native integer data type variable so that it can be used appropriately.  If that custom field does not have a value, this attribute will be “null”.
+- **Value (value)** (various types, see Custom Field Data Types below) – This value is used in combination with the Type above to translate the value into an appropriate native representation of that value on the receiving system.  So, an integer can be translated from the value here into a native integer data type variable so that it can be used appropriately.  
 
 - **Max (max)** integer – The maximum number of characters the value can have, or the maximum value for a numeric field.
+
+## Custom Field Data Types
+
+Custom fields use native JSON data types for maximum compatibility with standard parsers:
+
+**String** – JSON string value. Max indicates maximum character length.
+**Text** – JSON string value with no length restriction (use sparingly).
+**Integer** – JSON number value representing a whole number. Max indicates maximum allowed value.
+**Float** – JSON number value that may contain decimal places. Max indicates maximum allowed value.
+**Boolean** – JSON boolean value: true, false, or null.
+**DateTime** – JSON string value in ISO 8601 format with timezone information.
+
+Null values are represented as JSON null (not the string "null").
 
 # Member List
 
@@ -659,7 +686,7 @@ The members that have facilities in the work site area will be listed in this se
 
 **Phone Numbers (phoneNumbers)** array – this is an array of phone number objects containing phone information for the member.  These objects contain the following information:
 
-- **Phone (phone)** string (10) – The phone number.
+- **Phone (phone)** string (15) – The phone number.  15 digits allow E.164 standard phone numbers to be used.
 
 - **Extension (extension)** string (10) – The extension.
 
@@ -740,13 +767,13 @@ This section contains the response history for all the members on the ticket, an
    
 - - **Name (name)** string (200) - a descriptive name describing the attachment.
 
-- - **Mime Type (mimeType)** string (255) - the mime type for the binary information stored in the value field (below).  This is needed so the receiver can correctly interpret the binary data.
+- - **Mime Type (mimeType)** string (255) - the mime type for the binary information stored in the value field (below).  Restrictions on mime types should be consistent with the center's positive response attachment policy.
    
-- - **Value (value)** text - Base64 encoded binary value.
+- - **Value (value)** text - Base64 encoded binary value.  Restrictions on size should be consistent with the center's positive response attachment policy.
  
-- - **URI (uri)** text - URL to the "attached" document.
+- - **URI (uri)** text - URL to the "attached" document.  The referenced resource should be available for the life of the ticket (until the expiresOn date).  The reference should be accessible to all receivers of the ticket.
 
-*Note: The attachment can either have a binary value for transmissions to include the actual document OR the URL for a link to the resource.  This can include either Value or URL, or both.*
+*Note: The attachment can either have a binary value for transmissions to include the actual document OR the URL for a link to the resource.  Each attachment should have either Value or URI, but not both.*
 
 # AttachmentList (Attachments to tickets)
 
@@ -771,6 +798,6 @@ Attachments to tickets can be URI links or Base64 encoded binary values containe
 
 **Mime Type (mimeType)** string (255) - the mime type for the binary information stored in the value field (below).  This is needed so the receiver can correctly interpret the binary data.
 
-**Value (value)** text - Base64 encoded binary value.
+**Value (value)** text - Base64 encoded binary value.  Limits should be set by the center on the maximum size that should be sent, and receivers should be prepared to receive attachments of that size.  For centers that receive tickets with attachments, size limits should be communicated and enforced to ensure acceptable service levels for all senders and receivers.
 
-**URI (uri)** text - URL to the "attached" document.
+**URI (uri)** text - URL to the "attached" document.  The referenced resource should be available for the life of the ticket (until the expiresOn date).  The reference should be accessible to all receivers of the ticket.
