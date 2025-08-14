@@ -825,22 +825,22 @@ Embedded attachments should be limited to reasonable numbers and sizes, and shou
 When receiving Open Tickets, receivers should use the following response codes to communicate the status of the delivery back to the sender.
 
 ## Success Responses
-200 OK - Ticket successfully processed and accepted
-201 Created - New ticket successfully created
+ - 200 OK - Ticket successfully processed and accepted
+ - 201 Created - New ticket successfully created
 
 ## Client Error Responses (4xx)
-400 Bad Request - Invalid JSON format or malformed request. A return JSON document with the errors should be sent to the sender (see the next section for the format of this document).
-401 Unauthorized - Authentication credentials missing or invalid
-403 Forbidden - Valid credentials provided but insufficient permissions for this operation
-409 Conflict - Validation errors, a return JSON document with the errors should be sent to the sender (see the next section for the format of this document).
-413 Payload Too Large - Request body exceeds maximum allowed size (typically for large embedded attachments)
-429 Too Many Requests - Rate limit exceeded, client should retry after delay
+ - 400 Bad Request - Invalid JSON format or malformed request. A return JSON document with the errors should be sent to the sender (see the next section for the format of this document).
+ - 401 Unauthorized - Authentication credentials missing or invalid
+ - 403 Forbidden - Valid credentials provided but insufficient permissions for this operation
+ - 409 Conflict - Validation errors, a return JSON document with the errors should be sent to the sender (see the next section for the format of this document).
+ - 413 Payload Too Large - Request body exceeds maximum allowed size (typically for large embedded attachments)
+ - 429 Too Many Requests - Rate limit exceeded, client should retry after delay
 
 ## Server Error Responses (5xx)
-500 Internal Server Error - Unexpected server error occurred during processing
-502 Bad Gateway - Error communicating with upstream services (member notification systems, databases)
-503 Service Unavailable - Service temporarily unavailable (maintenance, overload)
-504 Gateway Timeout - Timeout occurred while processing the request
+ - 500 Internal Server Error - Unexpected server error occurred during processing
+ - 502 Bad Gateway - Error communicating with upstream services (member notification systems, databases)
+ - 503 Service Unavailable - Service temporarily unavailable (maintenance, overload)
+ - 504 Gateway Timeout - Timeout occurred while processing the request
 
 # Error Responses
 Ticket receivers (including centers receiving new excavation tickets in open ticket format) should validate the received ticket and reject any that are not valid.  The entire ticket should be validated and all errors with the ticket should be returned to the sender.
@@ -889,33 +889,33 @@ errorList - required - an array of Errors
 ## Error Codes
 Common error codes are provided here with their meanings.  This list can be extended to cover additional requirements as needed.
 ### Validation Errors
-INVALID_JSON - Malformed JSON document
-INVALID_FORMAT_VERSION - Unsupported or invalid formatVersion
-MISSING_REQUIRED_FIELD - Required field is missing or null
-INVALID_DATA_TYPE - Field contains wrong data type (string where number expected)
-FIELD_TOO_LONG - String field exceeds maximum length
-INVALID_PHONE_FORMAT - Phone number format is invalid
-INVALID_EMAIL_FORMAT - Email address format is invalid
-INVALID_POSTAL_CODE - Postal/ZIP code format is invalid
-INVALID_DATE_FORMAT - DateTime not in proper ISO 8601 format
-INVALID_COORDINATE - Longitude/latitude values out of valid range
-INVALID_SRID - SRID value is not 4326
-INVALID_WKT - Well-Known Text geometry is malformed
-INVALID_GEOJSON - GeoJSON structure is invalid
-INVALID_ENUM_VALUE - Field value not in allowed list (priority, excavatorType, etc.)
+ - INVALID_JSON - Malformed JSON document
+ - INVALID_FORMAT_VERSION - Unsupported or invalid formatVersion
+ - MISSING_REQUIRED_FIELD - Required field is missing or null
+ - INVALID_DATA_TYPE - Field contains wrong data type (string where number expected)
+ - FIELD_TOO_LONG - String field exceeds maximum length
+ - INVALID_PHONE_FORMAT - Phone number format is invalid
+ - INVALID_EMAIL_FORMAT - Email address format is invalid
+ - INVALID_POSTAL_CODE - Postal/ZIP code format is invalid
+ - INVALID_DATE_FORMAT - DateTime not in proper ISO 8601 format
+ - INVALID_COORDINATE - Longitude/latitude values out of valid range
+ - INVALID_SRID - SRID value is not 4326
+ - INVALID_WKT - Well-Known Text geometry is malformed
+ - INVALID_GEOJSON - GeoJSON structure is invalid
+ - INVALID_ENUM_VALUE - Field value not in allowed list (priority, excavatorType, etc.)
 
 ### Business Logic Errors
-INVALID_WORK_AREA - Geographic area outside service boundaries
-MISSING_GEOMETRY - No geometric data provided when required
-GEOMETRY_MISMATCH - WKT and GeoJSON geometries don't match
-INVALID_CUSTOM_FIELD_TYPE - Custom field type not supported
-CUSTOM_FIELD_VALUE_RANGE - Custom field value exceeds max constraints
-INVALID_ATTACHMENT - Attachment data is corrupted or inaccessible
-ATTACHMENT_TOO_LARGE - Embedded attachment exceeds size limits
-INVALID_URI - Attachment URI is malformed or inaccessible
+ - INVALID_WORK_AREA - Geographic area outside service boundaries
+ - MISSING_GEOMETRY - No geometric data provided when required
+ - GEOMETRY_MISMATCH - WKT and GeoJSON geometries don't match
+ - INVALID_CUSTOM_FIELD_TYPE - Custom field type not supported
+ - CUSTOM_FIELD_VALUE_RANGE - Custom field value exceeds max constraints
+ - INVALID_ATTACHMENT - Attachment data is corrupted or inaccessible
+ - ATTACHMENT_TOO_LARGE - Embedded attachment exceeds size limits
+ - INVALID_URI - Attachment URI is malformed or inaccessible
 
 ### Version/Compatibility Errors
-UNSUPPORTED_VERSION - formatVersion not supported by this system
-UNKNOWN_FIELD - Field not recognized in this version
+ - UNSUPPORTED_VERSION - formatVersion not supported by this system
+ - UNKNOWN_FIELD - Field not recognized in this version
 
 
