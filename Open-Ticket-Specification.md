@@ -828,8 +828,8 @@ The following sections cover implementation of API's that are used to receive op
 When receiving Open Tickets, receivers should use the following response codes to communicate the status of the delivery back to the sender.
 
 ## Success Responses
- - 200 OK - Ticket successfully processed and accepted
- - 201 Created - New ticket successfully created
+ - 200 OK - Ticket successfully processed and accepted.  This should be used by TMS systems and members receiving open tickets.
+ - 201 Created - New ticket successfully created.  This should be used by 811 centers receiving NEW tickets from Member Excavators, if the center accepts new tickets from these stakeholders.
 
 ## Client Error Responses (4xx)
  - 400 Bad Request - Invalid JSON format or malformed request. A return JSON document with the errors should be sent to the sender (see the next section for the format of this document).
