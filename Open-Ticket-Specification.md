@@ -790,13 +790,12 @@ Embedded attachments should be limited to reasonable numbers and sizes, and shou
 **Maximum Number of Attachments:** 10 file attachments
 
 ## Acceptable MIME Types
-**Images:** image/jpeg, image/png, image/gif, image/bmp, image/tiff
-**Documents:** application/pdf, text/plain
-**CAD/Technical:** application/dwg, application/dxf
-**Geospatial:** application/vnd.google-earth.kml+xml, application/vnd.google-earth.kmz, application/json (for GeoJSON), text/xml (for GML), application/gpx+xml (for GPX tracks)
-**Data:** text/csv, application/csv
-**Archive:** application/zip (for multiple related files)
-
+- **Images:** image/jpeg, image/png, image/gif, image/bmp, image/tiff
+- **Documents:** application/pdf, text/plain
+- **CAD/Technical:** application/dwg, application/dxf
+- **Geospatial:** application/vnd.google-earth.kml+xml, application/vnd.google-earth.kmz, application/json (for GeoJSON), text/xml (for GML), application/gpx+xml (for GPX tracks)
+- **Data:** text/csv, application/csv
+- **Archive:** application/zip (for multiple related files)
 
 ```
 "attachmentList":[
