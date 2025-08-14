@@ -13,7 +13,7 @@ Each section below includes a description of what that section contains, followe
 
 Common and Custom field should conform to the following value types:
 
-**DateTime** - All dates should be transmitted in ISO 8601 format with time zone information.  For greatest compatibility, use millisecond precision (3 decimal places of precision).  Dates for excavation tickets are very close to the present time, so the minimum and maximum values of all receiving systems should never be an issue.
+**DateTime** - All dates should be transmitted in ISO 8601 format with time zone information.  For greatest compatibility, use millisecond precision (3 decimal places of precision).  In most cases time to the second is the highest level of precision needed. However, there are cases involving positive response where millisecond precision is useful to determine which response is added first.  This Keeps a single date/time format for consistency of parsing that also allows a high degree of precision where needed.
 
 **Integer** - A signed value that can be represented by 32 bits, from -2,147,483,648 through 2,147,483,647.  This is a signed value because most systems default to a signed integer.  A Max value can be specified if appropriate.  For instance, if the custom field should only have a value up to 99, then set this as the Max value.
 
@@ -820,6 +820,10 @@ Embedded attachments should be limited to reasonable numbers and sizes, and shou
 **Value (value)** text - optional - Base64 encoded binary value.  Limits should be set by the center on the maximum size that should be sent, and receivers should be prepared to receive attachments of that size.  For centers that receive tickets with attachments, size limits should be communicated and enforced to ensure acceptable service levels for all senders and receivers.
 
 **URI (uri)** text - optional - URL to the "attached" document.  The referenced resource should be available for the life of the ticket (until the expiresOn date).  The reference should be accessible to all receivers of the ticket.
+
+
+# Open Ticket API
+The following sections cover implementation of API's that are used to receive open tickets.
 
 # HTTP Response Codes
 When receiving Open Tickets, receivers should use the following response codes to communicate the status of the delivery back to the sender.
