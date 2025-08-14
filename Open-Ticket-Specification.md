@@ -783,6 +783,21 @@ This optional section contains the response history for all the members on the t
 
 Attachments to tickets can be URI links or Base64 encoded binary values contained in a simple object collection.  If a document is directly attached, then the base64 encoded binary information should be in the "value" property.  If the document is a URI reference, the value should be in the "uri" property instead.
 
+Embedded attachments should be limited to reasonable numbers and sizes, and should only be for acceptable mime types.  What is "reasonable" and "acceptable" can change over time so the following information are guidelines only.
+
+**Maximum Individual File Size:** 10 MB per attachment (after Base64 encoding)
+**Maximum Total File Size:** 50 MB (after Base64 encoding)
+**Maximum Number of Attachments:** 10 file attachments
+
+## Acceptable MIME Types
+**Images:** image/jpeg, image/png, image/gif, image/bmp, image/tiff
+**Documents:** application/pdf, text/plain
+**CAD/Technical:** application/dwg, application/dxf
+**Geospatial:** application/vnd.google-earth.kml+xml, application/vnd.google-earth.kmz, application/json (for GeoJSON), text/xml (for GML), application/gpx+xml (for GPX tracks)
+**Data:** text/csv, application/csv
+**Archive:** application/zip (for multiple related files)
+
+
 ```
 "attachmentList":[
   {
@@ -805,3 +820,102 @@ Attachments to tickets can be URI links or Base64 encoded binary values containe
 **Value (value)** text - optional - Base64 encoded binary value.  Limits should be set by the center on the maximum size that should be sent, and receivers should be prepared to receive attachments of that size.  For centers that receive tickets with attachments, size limits should be communicated and enforced to ensure acceptable service levels for all senders and receivers.
 
 **URI (uri)** text - optional - URL to the "attached" document.  The referenced resource should be available for the life of the ticket (until the expiresOn date).  The reference should be accessible to all receivers of the ticket.
+
+# HTTP Response Codes
+When receiving Open Tickets, receivers should use the following response codes to communicate the status of the delivery back to the sender.
+
+## Success Responses
+200 OK - Ticket successfully processed and accepted
+201 Created - New ticket successfully created
+
+## Client Error Responses (4xx)
+400 Bad Request - Invalid JSON format or malformed request. A return JSON document with the errors should be sent to the sender (see the next section for the format of this document).
+401 Unauthorized - Authentication credentials missing or invalid
+403 Forbidden - Valid credentials provided but insufficient permissions for this operation
+409 Conflict - Validation errors, a return JSON document with the errors should be sent to the sender (see the next section for the format of this document).
+413 Payload Too Large - Request body exceeds maximum allowed size (typically for large embedded attachments)
+429 Too Many Requests - Rate limit exceeded, client should retry after delay
+
+## Server Error Responses (5xx)
+500 Internal Server Error - Unexpected server error occurred during processing
+502 Bad Gateway - Error communicating with upstream services (member notification systems, databases)
+503 Service Unavailable - Service temporarily unavailable (maintenance, overload)
+504 Gateway Timeout - Timeout occurred while processing the request
+
+# Error Responses
+Ticket receivers (including centers receiving new excavation tickets in open ticket format) should validate the received ticket and reject any that are not valid.  The entire ticket should be validated and all errors with the ticket should be returned to the sender.
+
+The format for the document that lists all ticket errors has root level properties that will help with logging and tracing (like the ticket number, format version, error count, and the current date and time), and then an array of errors.
+
+```
+{
+  "ticketNumber: "546115477441",
+  "formatVersion": "1.0",
+  "errorCount": 4,
+  "timestamp": "2023-08-08T07:32:05.493-04:00",
+  "errorList": [
+    {
+      "field": "geometry.srid",
+      "error": "INVALID_SRID",
+      "message": "SRID must be 4326, received 3857"
+    },
+    {
+      "field": "timeline.workOn", 
+      "error": "INVALID_DATE",
+      "message": "Work date cannot be before legal date"
+    },
+    {
+      "field": "excavator.contactList",
+      "error": "MISSING_REQUIRED_FIELD",
+      "message": "At least one contact is required"
+    },
+    {
+      "field": "customFieldGroupList[0].fieldList[2].value",
+      "error": "INVALID_TYPE",
+      "message": "Expected Float, received String"
+    }
+  ]
+}
+```
+ticketNumber - required - the number of the ticket that failed validation
+formatVersion - required - the format version the ticket was validated for.  This should be the same version as was transmitted.  If the version transmitted is not supported by the receiver, then the receiver should return an error indicating that that version of the open ticket is not supported.
+errorCount - required - the number of errors found
+timestamp - required - the date and time of the validation
+errorList - required - an array of Errors
+ - field - optional - the field where the validation error ocurred. If the error applies to the entire document, this should not be included with this error message.
+ - error - required - an error code indicating the type of error (see below for a list of common error codes)
+ - Message - detail information on the error
+
+## Error Codes
+Common error codes are provided here with their meanings.  This list can be extended to cover additional requirements as needed.
+### Validation Errors
+INVALID_JSON - Malformed JSON document
+INVALID_FORMAT_VERSION - Unsupported or invalid formatVersion
+MISSING_REQUIRED_FIELD - Required field is missing or null
+INVALID_DATA_TYPE - Field contains wrong data type (string where number expected)
+FIELD_TOO_LONG - String field exceeds maximum length
+INVALID_PHONE_FORMAT - Phone number format is invalid
+INVALID_EMAIL_FORMAT - Email address format is invalid
+INVALID_POSTAL_CODE - Postal/ZIP code format is invalid
+INVALID_DATE_FORMAT - DateTime not in proper ISO 8601 format
+INVALID_COORDINATE - Longitude/latitude values out of valid range
+INVALID_SRID - SRID value is not 4326
+INVALID_WKT - Well-Known Text geometry is malformed
+INVALID_GEOJSON - GeoJSON structure is invalid
+INVALID_ENUM_VALUE - Field value not in allowed list (priority, excavatorType, etc.)
+
+### Business Logic Errors
+INVALID_WORK_AREA - Geographic area outside service boundaries
+MISSING_GEOMETRY - No geometric data provided when required
+GEOMETRY_MISMATCH - WKT and GeoJSON geometries don't match
+INVALID_CUSTOM_FIELD_TYPE - Custom field type not supported
+CUSTOM_FIELD_VALUE_RANGE - Custom field value exceeds max constraints
+INVALID_ATTACHMENT - Attachment data is corrupted or inaccessible
+ATTACHMENT_TOO_LARGE - Embedded attachment exceeds size limits
+INVALID_URI - Attachment URI is malformed or inaccessible
+
+### Version/Compatibility Errors
+UNSUPPORTED_VERSION - formatVersion not supported by this system
+UNKNOWN_FIELD - Field not recognized in this version
+
+
