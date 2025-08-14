@@ -785,9 +785,9 @@ Attachments to tickets can be URI links or Base64 encoded binary values containe
 
 Embedded attachments should be limited to reasonable numbers and sizes, and should only be for acceptable mime types.  What is "reasonable" and "acceptable" can change over time so the following information are guidelines only.
 
-**Maximum Individual File Size:** 10 MB per attachment (after Base64 encoding)
-**Maximum Total File Size:** 50 MB (after Base64 encoding)
-**Maximum Number of Attachments:** 10 file attachments
+- **Maximum Individual File Size:** 20 MB per attachment (after Base64 encoding)
+- **Maximum Total File Size:** 50 MB (after Base64 encoding)
+- **Maximum Number of Attachments:** 10 file attachments
 
 ## Acceptable MIME Types
 - **Images:** image/jpeg, image/png, image/gif, image/bmp, image/tiff
