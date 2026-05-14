@@ -402,7 +402,7 @@ This section contains the information the locator needs to mark facilities at th
 ```
 **Is White Lined (isWhiteLined)** boolean - is the area outlined in white paint or flags? True or False
 
-**Locate Instructions (locateInstructions)** text - Instructions to the locators explaining what to locate.
+**Marking Instructions (markingInstructions)** text - Instructions to the locators explaining what to locate.
 
 **Remarks (remarks)** text - Additional remarks about the ticket.
 
