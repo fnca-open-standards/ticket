@@ -27,6 +27,9 @@ Common and Custom field should conform to the following value types:
 
 The type for custom fields is specified in its Type value as part of its definition.  Common field types have value types and valid values or lengths defined in their descriptions below.
 
+# Required Fields
+Most of the common fields are required, but some are optional.  Optional fields with no values should be sent as null.  Required values that do not have a value should be sent as an empty string (such as "addressPrefix": "") to indicate that the value is empty.
+
 # Open Ticket Format Sections
 
 **Header** - Information to identify the ticket and process it.
@@ -149,11 +152,11 @@ Since this format can be used for transmissions of tickets as well as retrieval 
 
 **Trace (trace)** array of trace objects - optional - this section contains the trace information for this ticket.  The optional trace information is appended to the ticket by each system that processes a ticket.  This allows for inspecting the path the ticket has taken through various systems.  This information will be more critical as more systems are used for processing and forwarding tickets.
 
-> **DateTime (dateTime)** DateTime - The date and time of the event (ticket send or receive).
+> **DateTime (dateTime)** DateTime - required - The date and time of the event (ticket send or receive).
 >  
-> **Action (action)** String (20) - typically "sent" or "received".  What action is being taken on the ticket.  Other actions can be specified, such as routing to internal processing or groups.
+> **Action (action)** String (20) - required - typically "sent" or "received".  What action is being taken on the ticket.  Other actions can be specified, such as routing to internal processing or groups.
 > 
-> **Host (host)** String (100) - an identifier to show the organization and host name of the system processing the ticket for this action.
+> **Host (host)** String (100) - required - an identifier to show the organization and host name of the system processing the ticket for this action.
 
 # Work Site
 
@@ -208,7 +211,7 @@ All geometric information is available in this section.
     "latitude": 33.855170,
     "secondaryLongitude": -84.545451,
     "secondaryLatitude": 33.857520,
-    "boundaryArea": ["MULTIPOINT((-83.782915, 32.630501),(-83.780738, 32.632213))"],
+    "boundaryArea": ["MULTIPOINT((-83.782915 32.630501),(-83.780738 32.632213))"],
     "workSiteArea": ["POLYGON((-84.54761 33.85697,-84.54761 33.85572,…))",
                     "POLYGON((…))"],
     "bufferedArea": ["POLYGON((-84.547642 33.855171,…))"],
@@ -374,7 +377,7 @@ If there are multiple shapes that define the excavation site such as a polygon f
     "type": "Polygon",
 ```
 
-Each feature can be referenced using the id, and each feature identifies with the Layer property if it is either the excavation site, or the buffered excavation site.
+Each feature can be referenced using the id, and each feature identifies with the "objectType" property if it is either the excavation site, or the buffered excavation site.
 
 **Bounding Box**
 
@@ -400,13 +403,13 @@ This section contains the information the locator needs to mark facilities at th
     "drivingDirections": ""
   },
 ```
-**Is White Lined (isWhiteLined)** Boolean - is the area outlined in white paint or flags? True or False
+**Is White Lined (isWhiteLined)** Boolean - required - is the area outlined in white paint or flags? True or False
 
-**Marking Instructions (markingInstructions)** Text - Instructions to the locators explaining what to locate.
+**Marking Instructions (markingInstructions)** Text - required - Instructions to the locators explaining what to locate.
 
-**Remarks (remarks)** Text - Additional remarks about the ticket.
+**Remarks (remarks)** Text - optional - Additional remarks about the ticket.
 
-**Driving Directions (drivingDirections)** Text - Any driving directions for the locators
+**Driving Directions (drivingDirections)** Text - optional - Any driving directions for the locators
 
 # Timeline
 
@@ -484,14 +487,14 @@ The contact list must have at least 1 contact entry.
 	   "name":"Jake Jones",	   
            "phone": "7705559999",
            "phoneExtension": "",
-	   "emailAddress":""
+	   "email":""
 	},
 	{
 	   "contactType":"Field Contact",
 	   "name":"Jake Jones",	   
            "phone": "7705559999",
            "phoneExtension": "",
-	   "emailAddress":""
+	   "email":""
 	}
     ]
   },
@@ -507,9 +510,9 @@ The contact list must have at least 1 contact entry.
 
 **State (state)** String (2) - required
 
-**Postal Code (postalCode)** String (9) - required
+**Postal Code (postalCode)** String (10) - required, can accomodate codes with spaces or hyphens
 
-**Phone Number (phoneNumber)** String (10) - required
+**Phone Number (phoneNumber)** String (15) - required
 
 **ContactList (contactList)** array of Contacts - required
 
@@ -579,7 +582,7 @@ Members can add their own field groups after receiving an Open Ticket.  For inst
           "max": 150
         },
 	{
-          "fieldName": "HasGasFacilities",
+          "fieldName": "hasGasFacilities",
           "displayName": "Has Gas Facilities",
           "type": "Boolean",
           "value": false,
@@ -615,7 +618,7 @@ Each group within this section has these properties:
 
 - **Value (value)** (various types, see Custom Field Data Types below) - required - This value is used in combination with the Type above to translate the value into an appropriate native representation of that value on the receiving system.  So, an integer can be translated from the value here into a native integer data type variable so that it can be used appropriately.  
 
-- **Max (max)** Integer - required for string, integer, and float types - The maximum number of characters the value can have, or the maximum value for a numeric field.
+- **Max (max)** Integer - required for string, and optional for integer, and float types - The maximum number of characters the value can have, or the maximum value for a numeric field.
 
 ## Custom Field Data Types
 
@@ -856,7 +859,7 @@ The format for the document that lists all ticket errors has root level properti
 {
   "ticketNumber": "546115477441",
   "formatVersion": "1.0",
-  "errorCount": 4,
+  "errorCount": 3,
   "timestamp": "2023-08-08T07:32:05.493-04:00",
   "errorList": [
     {
@@ -877,14 +880,14 @@ The format for the document that lists all ticket errors has root level properti
   ]
 }
 ```
-ticketNumber - required - the number of the ticket that failed validation
+ticketNumber - optional - the number of the ticket that failed validation, if the value is extractable (for instance, invalid JSON errors may make this unavailable)
 formatVersion - required - the format version the ticket was validated for.  This should be the same version as was transmitted.  If the version transmitted is not supported by the receiver, then the receiver should return an error indicating that that version of the open ticket is not supported.
 errorCount - required - the number of errors found
 timestamp - required - the date and time of the validation
 errorList - required - an array of Errors
  - field - optional - the field where the validation error ocurred. If the error applies to the entire document, this should not be included with this error message.
  - error - required - an error code indicating the type of error (see below for a list of common error codes)
- - Message - detail information on the error
+ - message - detail information on the error
 
 ## Error Codes
 Common error codes are provided here with their meanings.  This list can be extended to cover additional requirements as needed.
