@@ -35,7 +35,7 @@ The type for custom fields is specified in its Type value as part of its definit
 
 **Geometry** - all geometric information for the ticket.
 
-**Locate Information** - Locate instructions, remarks, and driving directions.  These are needed by the locator to properly locate the facilities.
+**Marking Information** - Marking instructions, remarks, and driving directions.  These are needed by the locator to properly locate the facilities.
 
 **Project** - Additional information about the excavation project.  This is not required for the location, but is useful in damage prevention, such as whether or not explosives will be used, or the expected duration of the excavation.
 
@@ -350,28 +350,28 @@ If there are multiple shapes that define the excavation site such as a polygon f
 .
 "id": 1,
 "properties": {
-    "layer": "excavationSite"
+    "objectType": "excavationSite"
 },
   "geometry": {
-    "objectType": "Point",
+    "type": "Point",
 .
 .
 .
 "id": 2,
 "properties": {
-    "layer": "bufferedSite"
+    "objectType": "bufferedSite"
 },
   "geometry": {
-    "objectType": "Polygon",
+    "type": "Polygon",
 .
 .
 .
 "id": 3,
 "properties": {
-    "layer": "bufferedSite"
+    "objectType": "bufferedSite"
 },
   "geometry": {
-    "objectType": "Polygon",
+    "type": "Polygon",
 ```
 
 Each feature can be referenced using the id, and each feature identifies with the Layer property if it is either the excavation site, or the buffered excavation site.
@@ -481,17 +481,17 @@ The contact list must have at least 1 contact entry.
     "contactList":[
 	{
 	   "contactType":"Caller",
-	   "Name":"Jake Jones",	   
-           "Phone": "7705559999",
-           "PhoneExtension": "",
-	   "EmailAddress":""
+	   "name":"Jake Jones",	   
+           "phone": "7705559999",
+           "phoneExtension": "",
+	   "emailAddress":""
 	},
 	{
 	   "contactType":"Field Contact",
-	   "Name":"Jake Jones",	   
-           "Phone": "7705559999",
-           "PhoneExtension": "",
-	   "EmailAddress":""
+	   "name":"Jake Jones",	   
+           "phone": "7705559999",
+           "phoneExtension": "",
+	   "emailAddress":""
 	}
     ]
   },
@@ -507,7 +507,7 @@ The contact list must have at least 1 contact entry.
 
 **State (state)** string (2) - required
 
-**Postal Code (postalCode)** string (5) - required
+**Postal Code (postalCode)** string (9) - required
 
 **ContactList (contactList)** array of Contacts - required
 
@@ -742,7 +742,7 @@ This optional section contains the response history for all the members on the t
           "responseCode": "LATE",
           "responseDescription": "Response is late",
           "respondent": "System",
-          "Note": "Added by System"
+          "note": "Added by System"
         }
       ]
     }
@@ -852,7 +852,7 @@ The format for the document that lists all ticket errors has root level properti
 
 ```
 {
-  "ticketNumber: "546115477441",
+  "ticketNumber": "546115477441",
   "formatVersion": "1.0",
   "errorCount": 4,
   "timestamp": "2023-08-08T07:32:05.493-04:00",
