@@ -17,7 +17,7 @@ Common and Custom field should conform to the following value types:
 
 **Integer** - A signed value that can be represented by 32 bits, from -2,147,483,648 through 2,147,483,647.  This is a signed value because most systems default to a signed integer.  A Max value can be specified if appropriate.  For instance, if the custom field should only have a value up to 99, then set this as the Max value.
 
-**Float** - A signed floating point value that can be represented by 32 bits.
+**Float** - A signed floating point value that can be represented by 64 bits (double precision).
 
 **String** - A string value, the value of Max indicates the maximum length of the string.  The Max should be specified for all custom string fields.  This can help the receiving system store as well as display this value appropriately.
 
@@ -98,20 +98,20 @@ The first section of the JSON format is the header object.   The purpose of the 
   },
 ```
 
-**Format Version (formatVersion)** string (10) - required - This is the version of the Open Ticket Format specification this JSON document represents.  When new versions of the specification are developed, this will allow receivers to know what version of the specification the transmission follows.  For centers not yet implementing newer versions, they can continue to send, and receivers can continue to receive for that version of the spec.  Once a center or receiver has upgraded their system to the latest spec, then they can coordinate the changeover to the new format.
+**Format Version (formatVersion)** String (10) - required - This is the version of the Open Ticket Format specification this JSON document represents.  When new versions of the specification are developed, this will allow receivers to know what version of the specification the transmission follows.  For centers not yet implementing newer versions, they can continue to send, and receivers can continue to receive for that version of the spec.  Once a center or receiver has upgraded their system to the latest spec, then they can coordinate the changeover to the new format.
 
-**Ticket Number (ticketNumber)** string (25) - required - this is the ticket number.
+**Ticket Number (ticketNumber)** String (25) - required - this is the ticket number.
 
-**Ticket Version (ticketVersion)** integer - optional - the version number for the ticket, if the source system uses ticket versioning.
+**Ticket Version (ticketVersion)** Integer - optional - the version number for the ticket, if the source system uses ticket versioning.
 
-**Sequence (sequence)** integer - optional - this is a serial number of this transmission for this receiver.   This allows the receiver to know what order tickets were sent to them in a day.  Since this format can be used for transmissions of tickets as well as retrieval of tickets by API call, this will only have a value if this is a transmission.
+**Sequence (sequence)** Integer - optional - this is a serial number of this transmission for this receiver.   This allows the receiver to know what order tickets were sent to them in a day.  Since this format can be used for transmissions of tickets as well as retrieval of tickets by API call, this will only have a value if this is a transmission.
 [This is very much like a session number for networking.  This identifies the order the ticket was transmitted each day, as if each ticket were a packet sent in a daily session]
 
-**Source (source)** string (30) - required - this is the channel (Call Center, Web Portal, etc.) the ticket was submitted through.
+**Source (source)** String (30) - required - this is the channel (Call Center, Web Portal, etc.) the ticket was submitted through.
 
-**Type (type)** string (60) - required - the legal ticket type for this ticket.
+**Type (type)** String (60) - required - the legal ticket type for this ticket.
 
-**Standard Type (standardType)** string (60) - required - the standard ticket type for this ticket.  This should be mapped to a national standard.  For instance, “Design Request” might be the legal ticket type defined by a state law, but “Design” would be an appropriate “standard” type.  Each center should define their ticket type mappings to a national standard.
+**Standard Type (standardType)** String (60) - required - the standard ticket type for this ticket.  This should be mapped to a national standard.  For instance, “Design Request” might be the legal ticket type defined by a state law, but “Design” would be an appropriate “standard” type.  Each center should define their ticket type mappings to a national standard.
 
 - Normal - standard new production ticket for normal excavation and notice periods
 - Emergency - immediate work that must be performed to eliminate danger to life, health, property, etc.
@@ -126,22 +126,22 @@ The first section of the JSON format is the header object.   The purpose of the 
 - Project - a longer-term excavation than a Normal ticket
 - Other - any ticket that does not fit another category
 
-**Action (action)** - required - The action that caused this ticket to be created, such as New (for a new request), Resend, Cancel, 2nd Notice, Relocate, Late, etc.
+**Action (action)** String (50) - required - The action that caused this ticket to be created, such as New (for a new request), Resend, Cancel, 2nd Notice, Relocate, Late, etc.
 
-**Class (class)** - optional - Classification for the ticket, if used by the center.  Centers that use qualifiers in their ticket types can use class to modify the base Type (above).  Centers that do not use Class should send a NULL value.
+**Class (class)** String (50) - optional - Classification for the ticket, if used by the center.  Centers that use qualifiers in their ticket types can use class to modify the base Type (above).  Centers that do not use Class should send a NULL value.
 
-**Priority (priority)** string (10) - required - This helps the receiver determine how fast this ticket needs to be processed.  Values may include:
+**Priority (priority)** String (10) - required - This helps the receiver determine how fast this ticket needs to be processed.  Values may include:
 	Normal - This should be processed after Rush or Emergency tickets
   Rush - This should be processed before Normal priority tickets, but after emergency priority tickets
 	Emergency - This should be processed before other priority types.
 
-**IsTest (isTest)** boolean - optional - If implemented by the center, this would allow them to send test tickets to members and have them identify those tickets as test tickets.  Although most testing is done using test systems, there is still a need for test tickets to be sent through production systems.  This would allow the identification of test tickets that do not require an actual locate to be performed. If this is not implemented by the center, a NULL value should be sent.
+**IsTest (isTest)** Boolean - optional - If implemented by the center, this would allow them to send test tickets to members and have them identify those tickets as test tickets.  Although most testing is done using test systems, there is still a need for test tickets to be sent through production systems.  This would allow the identification of test tickets that do not require an actual locate to be performed. If this is not implemented by the center, a NULL value should be sent.
 
 If this is not implemented by the center’s system, then this flag should indicate Null.  This will tell the receiver that the sending system does not implement this feature, rather than False which would indicate the center positively identifying this as a production ticket.
 
-**Center Name (centerName)** string (25) - required - an identifier for the center transmitting the ticket.  This is most often the state abbreviation plus “811”.
+**Center Name (centerName)** String (25) - required - an identifier for the center transmitting the ticket.  This is most often the state abbreviation plus “811”.
 
-**Member Ids (memberIds)** string (10) array - required - this is an array of string values containing the alphanumeric member identifiers for the facilities included in this transmission.  This allows a single ticket to be delivered for multiple facilities for a single operator.  For instance, a member who operates water and sewer facilities may receive a single ticket that includes the codes for the water and sewer facilities they operate, so this would contain both member ids corresponding to those facilities.
+**Member Ids (memberIds)** String (10) array - required - this is an array of string values containing the alphanumeric member identifiers for the facilities included in this transmission.  This allows a single ticket to be delivered for multiple facilities for a single operator.  For instance, a member who operates water and sewer facilities may receive a single ticket that includes the codes for the water and sewer facilities they operate, so this would contain both member ids corresponding to those facilities.
 
 This is helpful for routing tickets to the appropriate internal group for the recipient.  For instance, contract locator companies with many customers can use this to route the ticket to the appropriate locator.
 
@@ -151,9 +151,9 @@ Since this format can be used for transmissions of tickets as well as retrieval 
 
 > **DateTime (dateTime)** DateTime - The date and time of the event (ticket send or receive).
 >  
-> **Action (action)** string (20) - typically "send" or "receive".  What action is being taken on the ticket.  Other actions can be specified, such as routing to internal processing or groups.
+> **Action (action)** String (20) - typically "sent" or "received".  What action is being taken on the ticket.  Other actions can be specified, such as routing to internal processing or groups.
 > 
-> **Host (host)** string (100) - an identifier to show the organization and host name of the system processing the ticket for this action.
+> **Host (host)** String (100) - an identifier to show the organization and host name of the system processing the ticket for this action.
 
 # Work Site
 
@@ -175,27 +175,27 @@ The work site information is all the information regarding where the excavation 
   },
 ```
 
-**Country Code (countryCode)** string (2) - required - specifying a country code allows this specification to be used in countries other than the United States.  This should be the ISO Alpha-2 code for the country, such as US for the United States, or CA for Canada.
+**Country Code (countryCode)** String (2) - required - specifying a country code allows this specification to be used in countries other than the United States.  This should be the ISO Alpha-2 code for the country, such as US for the United States, or CA for Canada.
 
-**State/Province (stateProvince)** string (2) - required - a two-character abbreviation for the state or province.
+**State/Province (stateProvince)** String (2) - required - a two-character abbreviation for the state or province.
 
-**County (county)** string (75) - optional - the name of the county for the work site.
+**County (county)** String (75) - optional - the name of the county for the work site.
 
-**Place (place)** string (75) - required - the city, town, or unincorporated place name.
+**Place (place)** String (75) - required - the city, town, or unincorporated place name.
 
-**Full Address (fullAddress)** string (370) - optional - the full street address for the work site.
+**Full Address (fullAddress)** String (370) - optional - the full street address for the work site.
 
-**Address Number (addressNumber)** string (20) - required - number part of the address.  This is a string, not a number, to accommodate alphabetic characters (‘34B’ for instance).
+**Address Number (addressNumber)** String (20) - required - number part of the address.  This is a string, not a number, to accommodate alphabetic characters (‘34B’ for instance).
 
-**Address Prefix (addressPrefix)** string (10) - required - A prefix to the street name, normally directional (North, East, West, etc.)
+**Address Prefix (addressPrefix)** String (10) - required - A prefix to the street name, normally directional (North, East, West, etc.)
 
-**Address Street Name (addressStreetName)** string (300) - required - The street name.
+**Address Street Name (addressStreetName)** String (300) - required - The street name.
 
-**Address Street Type (addressStreetType)** string (30) - required - The type of street (Rd, St, Blvd, Hwy, etc.)
+**Address Street Type (addressStreetType)** String (30) - required - The type of street (Rd, St, Blvd, Hwy, etc.)
 
-**Address Suffix (addressSuffix)** string (10) - required - A suffix, normally directional (North, East, West, etc.)
+**Address Suffix (addressSuffix)** String (10) - required - A suffix, normally directional (North, East, West, etc.)
 
-**Intersection (intersection)** string (370) - required - the name of the nearest intersecting street.
+**Intersection (intersection)** String (370) - required - the name of the nearest intersecting street.
 
 # Geometry
 
@@ -291,27 +291,27 @@ All geometric information is available in this section.
 },
 ```
 
-**SRID (srid)** integer - required - This is the Spatial Reference Identifier of the coordinate system used for WKT values.  This must always be 4326 (WGS84) to ensure the same coordinate system is used as any GeoJSON transmitted with the ticket.  This field is here to be explicit and ensure the same SRID is used.  If a ticket uses a different value, it should be considered invalid.
+**SRID (srid)** Integer - required - This is the Spatial Reference Identifier of the coordinate system used for WKT values.  This must always be 4326 (WGS84) to ensure the same coordinate system is used as any GeoJSON transmitted with the ticket.  This field is here to be explicit and ensure the same SRID is used.  If a ticket uses a different value, it should be considered invalid.
 
 The following 4 fields provide the upper-left and lower-right points of a rectangle that encloses the work site extent.  This rectangle could be created as a polygon in Well-Known-Text (WKT) and sent as the boundaryArea below instead.  This provides two methods of sending the extent information.
 
-**Longitude (longitude)** float - required - The longitude of the left-most point of the work site.
+**Longitude (longitude)** Float - required - The longitude of the left-most point of the work site.
 
-**Latitude (latitude)** float - required - The latitude of the upper-most point of the work site.
+**Latitude (latitude)** Float - required - The latitude of the upper-most point of the work site.
 
-**Secondary Longitude (secondaryLongitude)** float - required - the longitude of the right-most point of the work site.
+**Secondary Longitude (secondaryLongitude)** Float - required - the longitude of the right-most point of the work site.
 
-**Secondary Latitude (secondaryLatitude)** float - required - the latitude of the bottom-most point of the work site.
+**Secondary Latitude (secondaryLatitude)** Float - required - the latitude of the bottom-most point of the work site.
 
 *NOTE: Well Known Text Fields - The following fields contain Well Known Text (WKT) values.  All WKT values are expressed in the WGS84 (SRID 4326) and have a precision of 6 digits (11.1 cm resolution at the equator).*
 
 *Additionally, any buffered geometry should minimize the number of points used in rounding endcaps.  Reducing the number of points and keeping the precision to 6 digits can speed up processing significantly, which is particularly important for high-volume receivers or pre-screeners.*
 
-**Boundary Area (boundaryArea)** text array - optional - a string array of the well-known-text of the work site extent.  The extent is a rectangle that encompasses the excavation sites on the ticket.  If provided, it is represented by a MULTIPOINT WKT string that contains two points: the lower-left (Southwestern) corner of the rectangle, and the upper-right (Northeastern) corner of the rectangle.  This is similar to the bbox property in GeoJson.
+**Boundary Area (boundaryArea)** Text array - optional - a string array of the well-known-text of the work site extent.  The extent is a rectangle that encompasses the excavation sites on the ticket.  If provided, it is represented by a MULTIPOINT WKT string that contains two points: the lower-left (Southwestern) corner of the rectangle, and the upper-right (Northeastern) corner of the rectangle.  This is similar to the bbox property in GeoJson.
 
-**Work Site Area (workSiteArea)** text array - optional - a string array of the the well-known-text of the work site areas.
+**Work Site Area (workSiteArea)** Text array - optional - a string array of the the well-known-text of the work site areas.
 
-**Buffered Area (bufferedArea)** text array - optional - a string array of the well-known-text of the buffered work site areas.
+**Buffered Area (bufferedArea)** Text array - optional - a string array of the well-known-text of the buffered work site areas.
 
 ## GeoJson (optional)
 
@@ -400,13 +400,13 @@ This section contains the information the locator needs to mark facilities at th
     "drivingDirections": ""
   },
 ```
-**Is White Lined (isWhiteLined)** boolean - is the area outlined in white paint or flags? True or False
+**Is White Lined (isWhiteLined)** Boolean - is the area outlined in white paint or flags? True or False
 
-**Marking Instructions (markingInstructions)** text - Instructions to the locators explaining what to locate.
+**Marking Instructions (markingInstructions)** Text - Instructions to the locators explaining what to locate.
 
-**Remarks (remarks)** text - Additional remarks about the ticket.
+**Remarks (remarks)** Text - Additional remarks about the ticket.
 
-**Driving Directions (drivingDirections)** text - Any driving directions for the locators
+**Driving Directions (drivingDirections)** Text - Any driving directions for the locators
 
 # Timeline
 
@@ -424,17 +424,17 @@ This section should contain all the dates for the ticket.  Most of these dates a
     "expiresOn": "2023-09-11T23:59:59.000-04:00"
   },
 ```
-**Created On (createdOn)** datetime - required - The date and time the ticket was created.
+**Created On (createdOn)** DateTime - required - The date and time the ticket was created.
 
-**Response Due (responseDue)** datetime - optional - The date and time responses are due for this ticket.  If no time is included, this is assumed to be be inclusive of the entire date (i.e. a due date of 4/1/2024 has all day 4/1/2024 to respond).  It is highly recommended to include this date for excavation tickets wtih positive response due.  This prevents the receiver from having to attempt to calculate the due date which can be difficult when the receiver handles tickets for multiple centers with potentially different observed holidays.
+**Response Due (responseDue)** DateTime - optional - The date and time responses are due for this ticket.  If no time is included, this is assumed to be be inclusive of the entire date (i.e. a due date of 4/1/2024 has all day 4/1/2024 to respond).  It is highly recommended to include this date for excavation tickets wtih positive response due.  This prevents the receiver from having to attempt to calculate the due date which can be difficult when the receiver handles tickets for multiple centers with potentially different observed holidays.
 
-**Legal On (legalOn)** datetime - optional - the date and time the ticket is legal to dig.
+**Legal On (legalOn)** DateTime - optional - the date and time the ticket is legal to dig.
 
-**Work On (workOn)** datetime - optional - the date the excavator states that work will begin.
+**Work On (workOn)** DateTime - optional - the date the excavator states that work will begin.
 
-**Update By (updateBy)** datetime - optional - the date and time the ticket needs to be updated.  After this date and time, a new ticket would be needed.
+**Update By (updateBy)** DateTime - optional - the date and time the ticket needs to be updated.  After this date and time, a new ticket would be needed.
 
-**Expires On (expiresOn)** datetime - optional - the date and time the ticket will expire.
+**Expires On (expiresOn)** DateTime - optional - the date and time the ticket will expire.
 
 # Project
 
@@ -451,17 +451,17 @@ The project section contains information about the excavation project itself.  W
   },
 ```
 
-**Work Type (workType)** string (300) - required - the description for the type of work being performed.
+**Work Type (workType)** String (300) - required - the description for the type of work being performed.
 
-**Work Done For (workDoneFor)** string (100) - optional - The name of the person or company that this excavation is being done for. 
+**Work Done For (workDoneFor)** String (100) - optional - The name of the person or company that this excavation is being done for. 
 
-**Is Directional Boring (isDirectionalBoring)** boolean - required - Will directional boring be used?
+**Is Directional Boring (isDirectionalBoring)** Boolean - required - Will directional boring be used?
 
-**Is Explosives (isExplosives)** boolean - required - Will explosives be used?
+**Is Explosives (isExplosives)** Boolean - required - Will explosives be used?
 
-**Is Road Work (isRoadWork)** boolean - optional - Does the excavation involve any work on roads?
+**Is Road Work (isRoadWork)** Boolean - optional - Does the excavation involve any work on roads?
 
-**Project Reference (projectReference)** string (100) - optional - This can be used  for a project number, job number, permit number, or project name by the excavator.
+**Project Reference (projectReference)** String (100) - optional - This can be used  for a project number, job number, permit number, or project name by the excavator.
 
 # Excavator
 
@@ -497,31 +497,33 @@ The contact list must have at least 1 contact entry.
   },
 ```
 
-**Name (name)** string (300) - required - the name of the excavator, or excavator company.
+**Name (name)** String (300) - required - the name of the excavator, or excavator company.
 
-**Excavator Type (excavatorType)** string (100) - required - The type of excavator, such as Homeowner, Contractor, or Utility Owner.
+**Excavator Type (excavatorType)** String (100) - required - The type of excavator, such as Homeowner, Contractor, or Utility Owner.
 
-**Street Address (streetAddress)** string (300) - required
+**Street Address (streetAddress)** String (300) - required
 
-**City (city)** string (300) - required
+**City (city)** String (300) - required
 
-**State (state)** string (2) - required
+**State (state)** String (2) - required
 
-**Postal Code (postalCode)** string (9) - required
+**Postal Code (postalCode)** String (9) - required
+
+**Phone Number (phoneNumber)** String (10) - required
 
 **ContactList (contactList)** array of Contacts - required
 
 **Contact**
 
-- **Contact Type (contactType)** string (40) - required - Type of excavator contact, such as Caller or Field Contact.
+- **Contact Type (contactType)** String (40) - required - Type of excavator contact, such as Caller or Field Contact.
 
-- **Name (name)** string (150) - required - the full name of the excavator contact.
+- **Name (name)** String (150) - required - the full name of the excavator contact.
 
-- **Phone (phone)** string (15) - required - phone number, digits only - no formatting characters.  15 digits to allow E.164 standard phone numbers.
+- **Phone (phone)** String (15) - required - phone number, digits only - no formatting characters.  15 digits to allow E.164 standard phone numbers.
 
-- **Phone Extension (phoneExtension)** string (10) - optional - Phone extension for the contact.
+- **Phone Extension (phoneExtension)** String (10) - optional - Phone extension for the contact.
 
-- **Email (email)** string (255) - optional - Email address for the contact.
+- **Email (email)** String (255) - optional - Email address for the contact.
 
 
 # Custom Field Group List
@@ -530,14 +532,14 @@ Custom fields are listed in this section.  Custom fields are contained within a 
 
 This section is optional.  If no custom fields are used by a particular ticket type for a center, then this can be empty.  For tickets using custom fields, then all items in this section are required for each group and each field in the field list for the group.
 
-If the group name matches an existing ticket section (such as timeLine or workSite) then that custom field is intended to be displayed in the same section as the other fields in that section by the receiving system.  If it does not match, then the fields in that group are intended to be displayed in a new, supplemental section.  It is intended that the name of that new group would be what is in the Display Name property for that group.
+If the group name matches an existing ticket section (such as timeline or workSite) then that custom field is intended to be displayed in the same section as the other fields in that section by the receiving system.  If it does not match, then the fields in that group are intended to be displayed in a new, supplemental section.  It is intended that the name of that new group would be what is in the Display Name property for that group.
 
 Members can add their own field groups after receiving an Open Ticket.  For instance, if a member has a system that calculates risk on a ticket, that risk information can be added to an open ticket by using a new custom field group that includes the risk score and other information before passing that information along to a traditional ticket management system.  To identify what field groups were sent by the center, there is a "isCenterCreated" flag on each field group. This will be set to true for all field groups sent by the 811 center.  All other field groups should have this set to False.
 
 ```
 "customFieldGroupList": [
     {
-      "groupName": "timeLine",
+      "groupName": "timeline",
       "displayName": "Time Line",
       "isCenterCreated": true,
       "fieldList": [
@@ -565,7 +567,7 @@ Members can add their own field groups after receiving an Open Ticket.  For inst
         {
           "fieldName": "updateNumber",
           "displayName": "Update Number",
-          "type": "integer",
+          "type": "Integer",
           "value": 2,
           "max": 99
         },
@@ -597,23 +599,23 @@ Members can add their own field groups after receiving an Open Ticket.  For inst
 
 Each group within this section has these properties:
 
-**Group Name (groupName)** string (100) - required - this is a key value that can be used to identify the group.  This is in camel case to be compatible with automated systems.
+**Group Name (groupName)** String (100) - required - this is a key value that can be used to identify the group.  This is in camel case to be compatible with automated systems.
 
-**Display Name (displayName)** string (100) - required - This is a human friendly name for the group that can also be used in the receiving system’s user interface.
+**Display Name (displayName)** String (100) - required - This is a human friendly name for the group that can also be used in the receiving system’s user interface.
 
-**Is Center Created (isCenterCreated)** boolean - required - True for all field groups that were added by the center.  Any field groups added by other systems should set this to False.
+**Is Center Created (isCenterCreated)** Boolean - required - True for all field groups that were added by the center.  Any field groups added by other systems should set this to False.
 
 **Field List (fieldList)** - required - this is an array of custom fields, each with the following properties:
 
-- **Field Name (fieldName)** string (100) - required - This is a computer-friendly name that can be used as a key value for the receiving system.  This should not contain special characters or spaces.
+- **Field Name (fieldName)** String (100) - required - This is a computer-friendly name that can be used as a key value for the receiving system.  This should not contain special characters or spaces.
 
-- **Display Name (displayName)** string (100) - required - The display name of the custom field as it should appear to anyone viewing the information.
+- **Display Name (displayName)** String (100) - required - The display name of the custom field as it should appear to anyone viewing the information.
 
-- **Type (type)** string (20) - required - The type of information this field contains, such as String for text, DateTime for date/time values, Boolean for true/false values, Integer for a whole number value, or Number for a numeric value containing a decimal portion.  See Appendix A for value types.
+- **Type (type)** String (20) - required - The type of information this field contains, such as String for text, DateTime for date/time values, Boolean for true/false values, Integer for a whole number value, or Float for a numeric value containing a decimal portion.  See Data Types above for value types.
 
 - **Value (value)** (various types, see Custom Field Data Types below) - required - This value is used in combination with the Type above to translate the value into an appropriate native representation of that value on the receiving system.  So, an integer can be translated from the value here into a native integer data type variable so that it can be used appropriately.  
 
-- **Max (max)** integer - required for string, integer, and float types - The maximum number of characters the value can have, or the maximum value for a numeric field.
+- **Max (max)** Integer - required for string, integer, and float types - The maximum number of characters the value can have, or the maximum value for a numeric field.
 
 ## Custom Field Data Types
 
@@ -678,23 +680,23 @@ The members that have facilities in the work site area will be listed in this se
   ],
 ```
 
-**Member Id (memberId)** string (10) - required - The alphanumeric value representing the service area for the member.
+**Member Id (memberId)** String (10) - required - The alphanumeric value representing the service area for the member.
 
-**Member Name (memberName)** string (300) - required - The member’s name.
+**Member Name (memberName)** String (300) - required - The member’s name.
 
 **Facility Type List (facilityTypeList)** array - required - This is an array of facility objects containing the facility types this member operates in the service area represented by the member id (above).
   
--  **Type Name (typeName)** string (40) - required - the name of the facility type, such as Electric, Water, Sewer, Telecom, etc.
+-  **Type Name (typeName)** String (40) - required - the name of the facility type, such as Electric, Water, Sewer, Telecom, etc.
   
 -  **Attributes (attributes)** name/value pairs - optional - these are name/value pairs allowing the center to add additional information about the facility that may be useful for the excavator.  This is similar to the Foreign Members feature of GeoJSON.  These can be used to describe the APWA color for that facility, or the types of line (diameter, material, etc.), or any other information.
 
 **Phone Numbers (phoneNumbers)** array - required - this is an array of phone number objects containing phone information for the member.  These objects contain the following information:
 
-- **Phone (phone)** string (15) - required - The phone number.  15 digits allow E.164 standard phone numbers to be used.
+- **Phone (phone)** String (15) - required - The phone number.  15 digits allow E.164 standard phone numbers to be used.
 
-- **Extension (extension)** string (10) - optional - The extension.
+- **Extension (extension)** String (10) - optional - The extension.
 
-- **Type (type)** string (20) - required - The type of phone number.  For instance, “Main” would be the phone number for most contact types, but many members have a “Damage” number that should be called to report any damages.
+- **Type (type)** String (20) - required - The type of phone number.  For instance, “Main” would be the phone number for most contact types, but many members have a “Damage” number that should be called to report any damages.
 
 # Response History
 
@@ -749,33 +751,33 @@ This optional section contains the response history for all the members on the t
   ],
 ```
 
-**Member Id (memberId)** string (10) - required - the alphanumeric value that identifies the members facilities.
+**Member Id (memberId)** String (10) - required - the alphanumeric value that identifies the members facilities.
 
-**Member Name (memberName)** string (300) - required - the name of the utility company that this response is for.
+**Member Name (memberName)** String (300) - required - the name of the utility company that this response is for.
 
-**Facility Type List (facilityTypeList)** string (40) array - required - a string array of the facility types for this member’s response
+**Facility Type List (facilityTypeList)** String (40) array - required - a string array of the facility types for this member’s response
 
 **Response List (responseList)** - required - an array of responses, each containing the following fields:
 
-- **Response Date (responseDate)** datetime - required - the date/time the response was recorded
+- **Response Date (responseDate)** DateTime - required - the date/time the response was recorded
 
-- **Response Code (responseCode)** string (10) - required - the name or code of the response.
+- **Response Code (responseCode)** String (10) - required - the name or code of the response.
 
-- **Response Description (responseDescription)** string (300) - required - the full meaning of the response.
+- **Response Description (responseDescription)** String (300) - required - the full meaning of the response.
 
-- **Respondent (respondent)** string (255) - required - the username or other identifier for the responder.
+- **Respondent (respondent)** String (255) - required - the username or other identifier for the responder.
 
-- **Note (note)** string (1000) - optional - any comments or notes added by the respondent.
+- **Note (note)** String (1000) - optional - any comments or notes added by the respondent.
    
 - **AttachmentList (attachmentList)** - optional - array of attachment objects that are attached to this response.  Attachment objects have the following properties:
    
-- - **Name (name)** string (200) - required - a descriptive name describing the attachment.
+- - **Name (name)** String (200) - required - a descriptive name describing the attachment.
 
-- - **Mime Type (mimeType)** string (255) - required - the mime type for the binary information stored in the value field (below).  Restrictions on mime types should be consistent with the center's positive response attachment policy.
+- - **Mime Type (mimeType)** String (255) - required - the mime type for the binary information stored in the value field (below).  Restrictions on mime types should be consistent with the center's positive response attachment policy.
    
-- - **Value (value)** text - optional - Base64 encoded binary value.  Restrictions on size should be consistent with the center's positive response attachment policy.
+- - **Value (value)** Text - optional - Base64 encoded binary value.  Restrictions on size should be consistent with the center's positive response attachment policy.
  
-- - **URI (uri)** text - optional - URL to the "attached" document.  The referenced resource should be available for the life of the ticket (until the expiresOn date).  The reference should be accessible to all receivers of the ticket.
+- - **URI (uri)** Text - optional - URL to the "attached" document.  The referenced resource should be available for the life of the ticket (until the expiresOn date).  The reference should be accessible to all receivers of the ticket.
 
 *Note: The attachment can either have a binary value for transmissions to include the actual document OR the URL for a link to the resource.  Each attachment should have either Value or URI, but not both.*
 
@@ -812,13 +814,13 @@ Embedded attachments should be limited to reasonable numbers and sizes, and shou
 ]
 ```
 
-**Name (name)** string (200) - required - a descriptive name describing the attachment.
+**Name (name)** String (200) - required - a descriptive name describing the attachment.
 
-**Mime Type (mimeType)** string (255) - required - the mime type for the binary information stored in the value field (below).  This is needed so the receiver can correctly interpret the binary data.
+**Mime Type (mimeType)** String (255) - required - the mime type for the binary information stored in the value field (below).  This is needed so the receiver can correctly interpret the binary data.
 
-**Value (value)** text - optional - Base64 encoded binary value.  Limits should be set by the center on the maximum size that should be sent, and receivers should be prepared to receive attachments of that size.  For centers that receive tickets with attachments, size limits should be communicated and enforced to ensure acceptable service levels for all senders and receivers.
+**Value (value)** Text - optional - Base64 encoded binary value.  Limits should be set by the center on the maximum size that should be sent, and receivers should be prepared to receive attachments of that size.  For centers that receive tickets with attachments, size limits should be communicated and enforced to ensure acceptable service levels for all senders and receivers.
 
-**URI (uri)** text - optional - URL to the "attached" document.  The referenced resource should be available for the life of the ticket (until the expiresOn date).  The reference should be accessible to all receivers of the ticket.
+**URI (uri)** Text - optional - URL to the "attached" document.  The referenced resource should be available for the life of the ticket (until the expiresOn date).  The reference should be accessible to all receivers of the ticket.
 
 
 # Open Ticket API
@@ -863,18 +865,13 @@ The format for the document that lists all ticket errors has root level properti
       "message": "SRID must be 4326, received 3857"
     },
     {
-      "field": "timeline.workOn", 
-      "error": "INVALID_DATE",
-      "message": "Work date cannot be before legal date"
-    },
-    {
       "field": "excavator.contactList",
       "error": "MISSING_REQUIRED_FIELD",
       "message": "At least one contact is required"
     },
     {
-      "field": "customFieldGroupList[0].fieldList[2].value",
-      "error": "INVALID_TYPE",
+      "field": "customFieldGroupList[1].fieldList[1].value",
+      "error": "INVALID_DATA_TYPE",
       "message": "Expected Float, received String"
     }
   ]
