@@ -83,7 +83,7 @@ Common and Custom field should conform to the following value types:
 
 **Text** - A string with no maximum length.  The use of these fields should be very limited (for instance, only used for WKT values).  
 
-**Boolean** - JSON boolean value: true, false, or null.
+**Boolean** - JSON boolean value: true or false; null only where the field is optional.
 
 The type for custom fields is specified in its Type value as part of its definition.  Common field types have value types and valid values or lengths defined in their descriptions below.
 
@@ -460,7 +460,7 @@ This section contains the information the locator needs to mark facilities at th
     "isWhiteLined": false,
     "markingInstructions": "FRONT RIGHT - DAF",
     "remarks": "fdgaewsfa",
-    "drivingDirections": ""
+    "drivingDirections": null
   },
 ```
 **Is White Lined (isWhiteLined)** Boolean - required - is the area outlined in white paint or flags? True or False
@@ -546,15 +546,15 @@ The contact list must have at least 1 contact entry.
 	   "contactType":"Caller",
 	   "name":"Jake Jones",	   
            "phone": "7705559999",
-           "phoneExtension": "",
-	   "email":""
+           "phoneExtension": null,
+	   "email": null
 	},
 	{
 	   "contactType":"Field Contact",
 	   "name":"Jake Jones",	   
            "phone": "7705559999",
-           "phoneExtension": "",
-	   "email":""
+           "phoneExtension": null,
+	   "email": null
 	}
     ]
   },
@@ -715,7 +715,7 @@ The members that have facilities in the work site area will be listed in this se
       "phoneNumbers": [
         {
           "phone": "9995551234",
-          "extension": "",
+          "extension": null,
           "type": "Main"
         }
       ]
@@ -735,7 +735,7 @@ The members that have facilities in the work site area will be listed in this se
       "phoneNumbers": [
         {
           "phone": "8885554587",
-          "extension": "",
+          "extension": null,
           "type": "Main"
         }
       ]
