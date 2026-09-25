@@ -8,6 +8,66 @@ Fields that are custom to a center are contained in the custom field groups sect
 
 Each section below includes a description of what that section contains, followed by a sample in JSON format.  Finally, each field in the section is described along with its data type and maximum length (for strings).
 
+# Requirement Levels
+
+The key words "MUST", "MUST NOT", "SHOULD", "SHOULD NOT", and "MAY" in this
+specification are to be interpreted as described in RFC 2119 and RFC 8174 when,
+and only when, they appear in all capitals.
+
+# Required and Optional Fields
+
+Each field in this specification is marked as either required or optional.
+
+## Required Fields
+
+- A required field MUST be present in the document and MUST NOT be null.
+- A required String or Text field that has no applicable value MUST be sent as
+  an empty string (for example, "addressPrefix": ""). Receivers MUST treat an
+  empty string as "no value" and MUST NOT reject it.
+- A required Boolean, Integer, Float, or DateTime field MUST contain a valid
+  value of that type. Empty strings and placeholder values are not permitted.
+- A required array MUST be present. If it has no entries, it MUST be sent as an
+  empty array ([]). Where a section requires a minimum number of entries (for
+  example, at least one excavator contact), that minimum is stated in the
+  section.
+- A required object (section) MUST be present.
+
+## Optional Fields
+
+- An optional field MAY be omitted or sent as null. Receivers MUST treat an
+  omitted field and a null field identically.
+- Senders SHOULD send null, rather than an empty string, for an optional String
+  or Text field with no value. Receivers SHOULD accept an empty string in an
+  optional field and treat it as null.
+- An optional array with no entries MAY be omitted, sent as null, or sent as an
+  empty array ([]). Receivers MUST treat all three identically.
+- For optional Boolean fields, null means "not specified" and is distinct from
+  false. For example, an isTest value of null indicates the sending system does
+  not implement test tickets, while false positively identifies a production
+  ticket.
+
+## Custom Fields
+
+The properties of a custom field (fieldName, displayName, type, value, and max)
+follow the rules above, with one exception: value is required but MAY be null,
+indicating the field has no value on this ticket. This allows a center to send
+its complete set of fields for a ticket type even when some are not populated.
+
+## Validation
+
+- A required field that is missing or null MUST be reported as
+  MISSING_REQUIRED_FIELD, except for custom field value as described above.
+- A required non-string field sent as an empty string MUST be reported as
+  INVALID_DATA_TYPE.
+
+# Compatibility
+
+- Receivers MUST accept any 1.x formatVersion and MUST ignore fields they do
+  not recognize. Receivers MAY log unrecognized fields, but MUST NOT reject a
+  ticket because of them.
+- Minor versions (1.x) will only add optional fields. Changes that remove
+  fields, rename fields, or change a field's type or requirement level require
+  a new major version.
 
 ## Data Types
 
